@@ -1,0 +1,7 @@
+﻿  main.cpp
+c:\users\tomalbrecht\desktop\procmapgeneration\procmapgeneration\main.cpp(17): warning C4244: 'argument': conversion from 'double' to 'const T', possible loss of data
+          with
+          [
+              T=irr::u32
+          ]
+  ProcMapGeneration.vcxproj -> C:\Users\tomalbrecht\Desktop\ProcMapGeneration\x64\Debug\ProcMapGeneration.exe
