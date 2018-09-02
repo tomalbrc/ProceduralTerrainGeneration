@@ -53,22 +53,6 @@ int main(int argc, char** argv) {
 	auto mainScene = smgr->addEmptySceneNode();
 
 	std::map<irr::core::vector2di, irr::scene::IMeshSceneNode*> chunks;
-	for (int y = 0; y < 8; y++) {
-		for (int x = 0; x < 8; x++) {
-			auto m = ter2.getMeshAt(irr::core::vector2di{ x,y });
-			mainScene->addChild(m);
-
-			auto key = irr::core::vector2di(x, y);
-			bool hasKey = chunks.find(key) != chunks.end();
-			if (hasKey) {
-
-			}
-			chunks[key] = (m);
-		}
-	}
-
-
-
     
     auto player = smgr->addCubeSceneNode(1);
 	player->setScale(irr::core::vector3df{1, 1, 1});
@@ -80,12 +64,13 @@ int main(int argc, char** argv) {
 
 
     auto light = smgr->addLightSceneNode();
-    light->setRadius(60.f);
-    light->enableCastShadow();
+    light->setRadius(100.f);
+	light->enableCastShadow();
     light->setLightType(video::ELT_POINT);
     player->addChild(light);
   
-    
+
+
 
 	while(device->run() && device) {
 		auto x = eventReceiver->mouseInformation().x;
@@ -102,15 +87,29 @@ int main(int argc, char** argv) {
 		if (eventReceiver->keyPressed(irr::KEY_SPACE)) player->setPosition(player->getPosition() + irr::core::vector3df(0,1,0));
 		if (eventReceiver->keyPressed(irr::KEY_KEY_X)) player->setPosition(player->getPosition() + irr::core::vector3df(0,-1,0));
 
-		auto vect = player->getBoundingBox().getCenter();
-		player->getAbsoluteTransformation().transformVect(vect);
-		cam2->setTarget(vect);
+		cam2->setTarget(player->getPosition());
 
 		player->setRotation(irr::core::vector3df(0,-angle,0));
-		cam2->setPosition(vect + irr::core::vector3df(-10*xVal, 5, -10*yVal));
+		cam2->setPosition(player->getPosition() + irr::core::vector3df(-10*xVal, 5, -10*yVal));
 
-		for (auto chunk : chunks) {
-			chunk->getBoundingBox().isPointInside(player.);
+		auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / 64.f / 6.f, player->getPosition().Z / 64.f / 6.f);
+
+		for (auto ting : chunks) ting.second->setVisible(false);
+		for (int y = -2; y <= 2; y++) {
+			for (int x = -2; x <= 2; x++) {
+
+
+				auto key = irr::core::vector2di(x, y) + playerChunkLoc;
+				bool hasKey = false;
+				for (auto ting : chunks) if (key.equals(ting.first)) hasKey = true;
+				if (hasKey) chunks[key]->setVisible(true);
+				else {
+					auto m = ter2.getMeshAt(key);
+					mainScene->addChild(m);
+					chunks[key] = m;
+				}
+
+			}
 		}
 
 		video->beginScene(true, true, video::SColor(255,200,200,200));
