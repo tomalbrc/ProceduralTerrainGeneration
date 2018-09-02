@@ -12,9 +12,9 @@
 
 NoiseMap NoiseMapGenerator::Generate(irr::core::dimension2du size, irr::core::vector2di offset, unsigned seed, float scale) {
 
-    int octaves = 5;
-    float persistance = 0.6f;
-    float lacunarity = 2.3f;
+    int octaves = 4;
+    float persistance = 0.25f;
+    float lacunarity = 4;
     
     float frequency = 1.f;
     float amplitude = 1.f;
@@ -52,7 +52,7 @@ NoiseMap NoiseMapGenerator::Generate(irr::core::dimension2du size, irr::core::ve
                 float sampleX = ((j - (float)size.Width/2.f) + octaveOffsets[oct].X) / scale * frequency;
                 float sampleY = ((i - (float)size.Height/2.f) + octaveOffsets[oct].Y) / scale * frequency;
                 
-                float value = (_Perlin.noise(sampleX,sampleY,4));
+                float value = (_Perlin.noise(sampleX,sampleY,0));
                 finalHeight += value * amplitude;
                 
                 amplitude *= persistance;
@@ -75,8 +75,8 @@ NoiseMap NoiseMapGenerator::Generate(irr::core::dimension2du size, irr::core::ve
             //auto ttt = newValue;//pow(newValue, .5/newValue);
 
             auto mapVal = map[i][j];
-            auto newValue = (mapVal+1.0) / (maxPossibleHeight);
-            newValue = pow(newValue, 1.f/newValue);
+            auto newValue = (mapVal+1.0) / (maxPossibleHeight*1.2);
+            //newValue = pow(newValue, 2.f);//1.f/newValue
             auto ttt = irr::core::clamp<float>(newValue, 0, 1.f);
             ttt = pow(ttt, 1.f/ttt);
             

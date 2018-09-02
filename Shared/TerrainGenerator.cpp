@@ -9,6 +9,7 @@
 #include "TerrainGenerator.hpp"
 #include "ColorSelector.hpp"
 #include <random>
+#include <time.h>
 
 /**
  * C-style functions to generate an image for the heightmap and an image for chunk-texture
@@ -53,7 +54,8 @@ irr::video::IImage *IImageFromNoiseMap(const NoiseMap & nm, irr::video::IVideoDr
 ///
 TerrainGenerator::TerrainGenerator(irr::core::dimension2du chunkSize, float terrainHeight, irr::IrrlichtDevice *device) {
     m_chunkSize = chunkSize;
-    m_seed = std::default_random_engine::default_seed;
+	srand(time(NULL));
+	m_seed = rand();//std::default_random_engine::default_seed;
     m_device = device;
     m_terrainHeight = terrainHeight;
 }
@@ -61,10 +63,10 @@ TerrainGenerator::TerrainGenerator(irr::core::dimension2du chunkSize, float terr
 irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation) {
     auto geomentryCreator = m_device->getSceneManager()->getGeometryCreator();
         
-    auto noiseScale = 200.f;
-    auto offset = irr::core::vector2di{chunkLocation.X*(int)(m_chunkSize.Width-1), chunkLocation.Y*(int)(m_chunkSize.Height-1)};
+    auto noiseScale = 250.f;
+    auto offset = irr::core::vector2di{chunkLocation.X*((int)m_chunkSize.Width-1), chunkLocation.Y*((int)m_chunkSize.Height-1)};
     auto nm = NoiseMapGenerator::Generate(m_chunkSize, chunkLocation, m_seed, noiseScale);
-    auto nm2 = NoiseMapGenerator::Generate(m_chunkSize*2.f, chunkLocation, m_seed, noiseScale*2.f);
+	auto nm2 = NoiseMapGenerator::Generate(m_chunkSize*4.f-irr::core::dimension2du(1,1), chunkLocation, m_seed, noiseScale*4.f);
 
     irr::video::IImage *image = IImageColoredFromNoiseMap(nm2, m_device->getVideoDriver());
     irr::video::IImage *imageHeightmap = IImageFromNoiseMap(nm, m_device->getVideoDriver());
@@ -72,7 +74,7 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
 	_image = image;
 	_heightmap = imageHeightmap;
 
-    auto quadScale = irr::core::dimension2df{1.f,1.f}*6;
+    auto quadScale = irr::core::dimension2df{1.f,1.f};
     auto terrain = geomentryCreator->createTerrainMesh(image, imageHeightmap, quadScale, m_terrainHeight, m_device->getVideoDriver(), m_chunkSize*2.0, false);
     terrain->setMaterialFlag(irr::video::EMF_LIGHTING, true); // global lightning for heightmap display
     terrain->setMaterialFlag(irr::video::EMF_BILINEAR_FILTER, false);
