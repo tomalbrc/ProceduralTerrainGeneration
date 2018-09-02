@@ -3,6 +3,7 @@
 
 #include "irrlicht.h"
 #include <vector>
+#include <map>
 #include "MapControlEventReceiver.hpp"
 #include "TerrainGenerator.hpp"
 
@@ -48,48 +49,31 @@ int main(int argc, char** argv) {
     
     
     auto ter2 = TerrainGenerator(irr::core::dimension2du{64,64}, 256.0, device);
-    auto m1 = ter2.getMeshAt(irr::core::vector2di{0,0});
-	auto tt1 = video->addTexture("myTeeext1", ter2._heightmap);
-	auto itt1 = video->addTexture("myTeeext1", ter2._image);
+
+	auto mainScene = smgr->addEmptySceneNode();
+
+	std::map<irr::core::vector2di, irr::scene::IMeshSceneNode*> chunks;
+	for (int y = 0; y < 8; y++) {
+		for (int x = 0; x < 8; x++) {
+			auto m = ter2.getMeshAt(irr::core::vector2di{ x,y });
+			mainScene->addChild(m);
+
+			auto key = irr::core::vector2di(x, y);
+			bool hasKey = chunks.find(key) != chunks.end();
+			if (hasKey) {
+
+			}
+			chunks[key] = (m);
+		}
+	}
 
 
-    auto m2 = ter2.getMeshAt(irr::core::vector2di{1,0});
-	auto tt2 = video->addTexture("myTeeext2", ter2._heightmap);
-	auto itt2 = video->addTexture("myTeeext2", ter2._image);
 
-    auto m3 = ter2.getMeshAt(irr::core::vector2di{-1,0});
-	auto tt3 = video->addTexture("myTeeext3", ter2._heightmap);
-	auto itt3 = video->addTexture("myTeeext3", ter2._image);
-
-    auto m4 = ter2.getMeshAt(irr::core::vector2di{0,1});
-	auto tt4 = video->addTexture("myTeeext4", ter2._heightmap);
-	auto itt4 = video->addTexture("myTeeext4", ter2._image);
-
-    auto m5 = ter2.getMeshAt(irr::core::vector2di{0,-1});
-	auto tt5 = video->addTexture("myTeeext5", ter2._heightmap);
-	auto itt5 = video->addTexture("myTeeext5", ter2._image);
-
-    
-    auto mainScene = smgr->addEmptySceneNode();
-    mainScene->addChild(m1);
-    mainScene->addChild(m2);
-    mainScene->addChild(m3);
-    mainScene->addChild(m4);
-    mainScene->addChild(m5);
-
-    std::vector<IMeshSceneNode*> meshScenes{m1,m2,m3,m4,m5};
     
     auto player = smgr->addCubeSceneNode(1);
 	player->setScale(irr::core::vector3df{1, 1, 1});
 	player->setPosition(irr::core::vector3df{32,32,5});
     
-    
-    // camera
-    /*ICameraSceneNode *cam = smgr->addCameraSceneNodeMaya();
-    cam->setPosition(irr::core::vector3df(0, 50, 10));
-    cam->setTarget(m1->getBoundingBox().getCenter());
-	mainScene->addChild(cam);
-	*/
 	ICameraSceneNode *cam2 = smgr->addCameraSceneNode();
 	cam2->setPosition(irr::core::vector3df(0, 0, -10));
 	mainScene->addChild(cam2);
@@ -100,31 +84,14 @@ int main(int argc, char** argv) {
     light->enableCastShadow();
     light->setLightType(video::ELT_POINT);
     player->addChild(light);
-    
-
-
-    // smoking hot lambda
-    eventReceiver->setPressedKeyHandler([&](irr::EKEY_CODE kc){
-        if (kc == irr::KEY_COMMA) {
-            for (auto scene : meshScenes) {
-                scene->setPosition(scene->getPosition()*3);
-                scene->setScale(irr::core::vector3df{3.0});
-            }
-        } else if (kc == irr::KEY_DIVIDE) {
-            for (auto scene : meshScenes) {
-                scene->setPosition(scene->getPosition()/3);
-                scene->setScale( irr::core::vector3df{1.0});
-            }
-        }
-    });
+  
     
 
 	while(device->run() && device) {
-		//manageInput(video, params.EventReceiver, cube);
 		auto x = eventReceiver->mouseInformation().x;
 		auto screenW = (1920 * 0.75f);
 		auto perc = x / screenW;
-		auto angle = 360.f * perc;
+		auto angle = 360.f*2 * perc;
 		float yVal = sin(irr::core::degToRad(angle));
 		float xVal = cos(irr::core::degToRad(angle));
 
@@ -142,21 +109,11 @@ int main(int argc, char** argv) {
 		player->setRotation(irr::core::vector3df(0,-angle,0));
 		cam2->setPosition(vect + irr::core::vector3df(-10*xVal, 5, -10*yVal));
 
+		for (auto chunk : chunks) {
+			chunk->getBoundingBox().isPointInside(player.);
+		}
 
-		video->beginScene(false, true, video::SColor(255,200,200,200));
-
-		video->draw2DImage(tt5, core::vector2d<s32>{64, 0});
-		video->draw2DImage(tt3, core::vector2d<s32>{0, 64});
-		video->draw2DImage(tt1, core::vector2d<s32>{64, 64});
-		video->draw2DImage(tt2, core::vector2d<s32>{128, 64});
-		video->draw2DImage(tt4, core::vector2d<s32>{64, 128});
-
-
-		video->draw2DImage(itt5, core::vector2d<s32>{-10 + 192 + 64*3, 0*3});
-		video->draw2DImage(itt3, core::vector2d<s32>{-10 + 192 + 0*3, 64*3});
-		video->draw2DImage(itt1, core::vector2d<s32>{-10 + 192 + 64*3, 64*3});
-		video->draw2DImage(itt2, core::vector2d<s32>{-10 + 192 + 128*3, 64*3});
-		video->draw2DImage(itt4, core::vector2d<s32>{-10 + 192 + 64*3, 128*3});
+		video->beginScene(true, true, video::SColor(255,200,200,200));
 
         smgr->drawAll();
         
