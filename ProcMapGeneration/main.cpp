@@ -38,16 +38,16 @@ const SIrrlichtCreationParameters CreationParameters() {
 }
 
 void AddChunk(TerrainGenerator & ter2, std::map<irr::core::vector2di, irr::scene::IMeshSceneNode*> &chunks, irr::scene::ISceneNode * mainScene, irr::core::vector2di key) {
-    ter2.getMeshAt(key, std::move([mainScene = mainScene, chunks = std::ref(chunks), key = key](irr::scene::IMeshSceneNode* m) mutable {
+    ter2.getMeshAt(key, [mainScene = mainScene, chunks = std::ref(chunks), key = key](irr::scene::IMeshSceneNode* m) mutable {
         mainScene->addChild(m);
         chunks.get()[key] = m;
-    }));
+    });
 }
 
 int main(int argc, char** argv) {
     auto eventReceiver = new MapControlEventReceiver();
-    
-	auto params = CreationParameters();
+
+    auto params = CreationParameters();
 	IrrlichtDevice *device = createDeviceEx(params);
     device->setEventReceiver(eventReceiver);
     
@@ -55,9 +55,8 @@ int main(int argc, char** argv) {
 	device->setWindowCaption(str.c_str());
 	
 	IVideoDriver* video = device->getVideoDriver();
-    video->getMaterial2D().TextureLayer[0].BilinearFilter = true;
     video->getMaterial2D().AntiAliasing=video::EAAM_FULL_BASIC;
-    
+
     
     ISceneManager* smgr = device->getSceneManager();
     
@@ -139,7 +138,7 @@ int main(int argc, char** argv) {
 		player->setRotation(irr::core::vector3df(0,-angle,0));
 
 		auto newPosition = player->getPosition() + irr::core::vector3df(-10 * xVal, 5, -10 * yVal);
-		float lowpassfilterFactor = .03f;
+		float lowpassfilterFactor = .045f;
 		newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
 		cam2->setPosition(newPosition);
 

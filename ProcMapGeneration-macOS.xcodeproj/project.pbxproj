@@ -23,6 +23,23 @@
 		9AEA764D213DE23400E689E7 /* TerrainShaderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9A3E0F70213F18B60051F4BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5E34C9F31B7F6E3400F212E8;
+			remoteInfo = Irrlicht_OSX;
+		};
+		9A3E0F76213F1CED0051F4BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5E34C9F31B7F6E3400F212E8;
+			remoteInfo = Irrlicht_OSX;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		09570A73213410B0001A5FCC /* NoiseMapGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoiseMapGenerator.h; path = Shared/NoiseMapGenerator.h; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		09570A74213411F0001A5FCC /* NoiseMapGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NoiseMapGenerator.cpp; path = Shared/NoiseMapGenerator.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
@@ -33,6 +50,8 @@
 		09A29CDC213E85210055157B /* file.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = file.vert; path = Shared/file.vert; sourceTree = SOURCE_ROOT; };
 		09A29CDE213E85320055157B /* file.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = file.frag; path = Shared/file.frag; sourceTree = SOURCE_ROOT; };
 		09ED26C621354261007AEDFD /* PerlinNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PerlinNoise.hpp; path = Shared/PerlinNoise.hpp; sourceTree = SOURCE_ROOT; };
+		9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
+		9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
 		9A75F6EE212F3AD400E375B5 /* ProcMapGeneration-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ProcMapGeneration-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A75F6F4212F3AD600E375B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A75F6F9212F3AD700E375B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,7 +65,7 @@
 		9A87983C212F478800D477F2 /* texture_image.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = texture_image.bmp; sourceTree = "<group>"; };
 		9AB696AA212F3C0100E164C0 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9AB696AC212F3C0600E164C0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		9AB696AE212F3C5100E164C0 /* libIrrlicht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIrrlicht.a; path = ../../../../usr/local/Cellar/irrlicht/1.8.4/lib/libIrrlicht.a; sourceTree = "<group>"; };
+		9AB696AE212F3C5100E164C0 /* libIrrlicht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIrrlicht.a; path = ../../external/irrlicht/lib/OSX/libIrrlicht.a; sourceTree = "<group>"; };
 		9AB696B0212F3C7600E164C0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		9AB696B3212F3CFF00E164C0 /* Perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Perlin.h; path = ProcMapGeneration/Perlin.h; sourceTree = SOURCE_ROOT; };
 		9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TerrainShaderCallback.cpp; path = Shared/TerrainShaderCallback.cpp; sourceTree = SOURCE_ROOT; };
@@ -68,9 +87,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A3E0F6D213F18B60051F4BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A3E0F71213F18B60051F4BD /* libIrrlicht.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A3E0F73213F1CED0051F4BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A3E0F77213F1CED0051F4BD /* libIrrlicht.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A75F6E5212F3AD400E375B5 = {
 			isa = PBXGroup;
 			children = (
+				9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */,
 				9A75F6F0212F3AD400E375B5 /* ProcMapGeneration-macOS */,
 				9A75F6EF212F3AD400E375B5 /* Products */,
 				9AB696A9212F3C0100E164C0 /* Frameworks */,
@@ -113,6 +149,7 @@
 		9AB696A9212F3C0100E164C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */,
 				9AB696B0212F3C7600E164C0 /* IOKit.framework */,
 				9AB696AE212F3C5100E164C0 /* libIrrlicht.a */,
 				9AB696AC212F3C0600E164C0 /* AppKit.framework */,
@@ -183,12 +220,39 @@
 			mainGroup = 9A75F6E5212F3AD400E375B5;
 			productRefGroup = 9A75F6EF212F3AD400E375B5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A3E0F6D213F18B60051F4BD /* Products */;
+					ProjectRef = 9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A3E0F73213F1CED0051F4BD /* Products */;
+					ProjectRef = 9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A75F6ED212F3AD400E375B5 /* ProcMapGeneration-macOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A3E0F71213F18B60051F4BD /* libIrrlicht.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libIrrlicht.a;
+			remoteRef = 9A3E0F70213F18B60051F4BD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A3E0F77213F1CED0051F4BD /* libIrrlicht.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libIrrlicht.a;
+			remoteRef = 9A3E0F76213F1CED0051F4BD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9A75F6EC212F3AD400E375B5 /* Resources */ = {
@@ -341,7 +405,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = (
 					ProcMapGeneration,
-					/usr/local/include/irrlicht,
+					../../external/irrlicht/include,
 					Shared,
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
@@ -349,10 +413,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
-					/usr/local/Cellar/irrlicht/1.8.4/lib,
-				);
+				LIBRARY_SEARCH_PATHS = ../../external/irrlicht/lib/OSX;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -372,7 +433,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = (
 					ProcMapGeneration,
-					/usr/local/include/irrlicht,
+					../../external/irrlicht/include,
 					Shared,
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
@@ -380,10 +441,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
-					/usr/local/Cellar/irrlicht/1.8.4/lib,
-				);
+				LIBRARY_SEARCH_PATHS = ../../external/irrlicht/lib/OSX;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
