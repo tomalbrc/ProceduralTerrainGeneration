@@ -158,6 +158,7 @@
     <ClInclude Include="..\Shared\NoiseMapGenerator.h" />
     <ClInclude Include="..\Shared\PerlinNoise.hpp" />
     <ClInclude Include="..\Shared\TerrainGenerator.hpp" />
+    <ClInclude Include="..\Shared\TerrainShaderCallback.h" />
     <ClInclude Include="bitmap_image.h" />
     <ClInclude Include="ColorSelector.hpp" />
     <ClInclude Include="Map.hpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="..\Shared\MapControlEventReceiver.cpp" />
     <ClCompile Include="..\Shared\NoiseMapGenerator.cpp" />
     <ClCompile Include="..\Shared\TerrainGenerator.cpp" />
+    <ClCompile Include="..\Shared\TerrainShaderCallback.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Perlin.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

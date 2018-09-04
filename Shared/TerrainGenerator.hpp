@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <irrlicht.h>
+#include <functional>
+#include <vector>
 #include "NoiseMapGenerator.h"
 
 class TerrainGenerator {
@@ -27,7 +29,8 @@ public:
      * @param chunkLocation The offset of the chunk
      */
     irr::scene::IMeshSceneNode *getMeshAt(irr::core::vector2di chunkLocation);
-    
+    irr::scene::IMeshSceneNode* getMeshAt(irr::core::vector2di chunkLocation, const std::function<void(irr::scene::IMeshSceneNode*)> & completion);
+
 	irr::video::IImage *_image;
 	irr::video::IImage *_heightmap;
 

@@ -10,6 +10,8 @@
 		09570A75213411F0001A5FCC /* NoiseMapGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A74213411F0001A5FCC /* NoiseMapGenerator.cpp */; };
 		09570A7821341B25001A5FCC /* MapControlEventReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A7621341B25001A5FCC /* MapControlEventReceiver.cpp */; };
 		09570A7B21341E24001A5FCC /* TerrainGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A7921341E24001A5FCC /* TerrainGenerator.cpp */; };
+		09A29CDD213E85210055157B /* file.vert in Resources */ = {isa = PBXBuildFile; fileRef = 09A29CDC213E85210055157B /* file.vert */; };
+		09A29CDF213E85320055157B /* file.frag in Resources */ = {isa = PBXBuildFile; fileRef = 09A29CDE213E85320055157B /* file.frag */; };
 		9A75F6F5212F3AD600E375B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A75F6F4212F3AD600E375B5 /* Assets.xcassets */; };
 		9A87983D212F478800D477F2 /* texture_image.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9A87983C212F478800D477F2 /* texture_image.bmp */; };
 		9AB696A6212F3B8F00E164C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75F703212F3B5800E375B5 /* main.cpp */; };
@@ -18,6 +20,7 @@
 		9AB696AD212F3C0600E164C0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AC212F3C0600E164C0 /* AppKit.framework */; };
 		9AB696AF212F3C5100E164C0 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AE212F3C5100E164C0 /* libIrrlicht.a */; };
 		9AB696B1212F3C7600E164C0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696B0212F3C7600E164C0 /* IOKit.framework */; };
+		9AEA764D213DE23400E689E7 /* TerrainShaderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,8 @@
 		09570A7721341B25001A5FCC /* MapControlEventReceiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = MapControlEventReceiver.hpp; path = Shared/MapControlEventReceiver.hpp; sourceTree = SOURCE_ROOT; };
 		09570A7921341E24001A5FCC /* TerrainGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TerrainGenerator.cpp; path = Shared/TerrainGenerator.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		09570A7A21341E24001A5FCC /* TerrainGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = TerrainGenerator.hpp; path = Shared/TerrainGenerator.hpp; sourceTree = SOURCE_ROOT; };
+		09A29CDC213E85210055157B /* file.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = file.vert; path = Shared/file.vert; sourceTree = SOURCE_ROOT; };
+		09A29CDE213E85320055157B /* file.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = file.frag; path = Shared/file.frag; sourceTree = SOURCE_ROOT; };
 		09ED26C621354261007AEDFD /* PerlinNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PerlinNoise.hpp; path = Shared/PerlinNoise.hpp; sourceTree = SOURCE_ROOT; };
 		9A75F6EE212F3AD400E375B5 /* ProcMapGeneration-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ProcMapGeneration-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A75F6F4212F3AD600E375B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +49,8 @@
 		9AB696AE212F3C5100E164C0 /* libIrrlicht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIrrlicht.a; path = ../../../../usr/local/Cellar/irrlicht/1.8.4/lib/libIrrlicht.a; sourceTree = "<group>"; };
 		9AB696B0212F3C7600E164C0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		9AB696B3212F3CFF00E164C0 /* Perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Perlin.h; path = ProcMapGeneration/Perlin.h; sourceTree = SOURCE_ROOT; };
+		9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TerrainShaderCallback.cpp; path = Shared/TerrainShaderCallback.cpp; sourceTree = SOURCE_ROOT; };
+		9AEA764C213DE23400E689E7 /* TerrainShaderCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TerrainShaderCallback.h; path = Shared/TerrainShaderCallback.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +96,16 @@
 				09570A74213411F0001A5FCC /* NoiseMapGenerator.cpp */,
 				09570A7721341B25001A5FCC /* MapControlEventReceiver.hpp */,
 				09570A7621341B25001A5FCC /* MapControlEventReceiver.cpp */,
+				9AEA764C213DE23400E689E7 /* TerrainShaderCallback.h */,
+				9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */,
 				9AB696B4212F3D1F00E164C0 /* External */,
 				9A75F70B212F3B5800E375B5 /* Types.hpp */,
 				9A87983C212F478800D477F2 /* texture_image.bmp */,
 				9A75F6F4212F3AD600E375B5 /* Assets.xcassets */,
 				9A75F6F9212F3AD700E375B5 /* Info.plist */,
 				9A75F6FC212F3AD700E375B5 /* ProcMapGeneration_macOS.entitlements */,
+				09A29CDC213E85210055157B /* file.vert */,
+				09A29CDE213E85320055157B /* file.frag */,
 			);
 			path = "ProcMapGeneration-macOS";
 			sourceTree = "<group>";
@@ -184,8 +195,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A29CDD213E85210055157B /* file.vert in Resources */,
 				9A75F6F5212F3AD600E375B5 /* Assets.xcassets in Resources */,
 				9A87983D212F478800D477F2 /* texture_image.bmp in Resources */,
+				09A29CDF213E85320055157B /* file.frag in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +214,7 @@
 				09570A7B21341E24001A5FCC /* TerrainGenerator.cpp in Sources */,
 				09570A7821341B25001A5FCC /* MapControlEventReceiver.cpp in Sources */,
 				9AB696A7212F3BA200E164C0 /* Perlin.cpp in Sources */,
+				9AEA764D213DE23400E689E7 /* TerrainShaderCallback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
