@@ -80,7 +80,7 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
 
     
     
-    tom::addMainCallback([offset = std::move(offset), m_device = m_device, image = image, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
+    tom::threading::addMainCallback([offset = std::move(offset), m_device = m_device, image = image, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
         auto quadScale = irr::core::dimension2df{1.f,1.f};
         auto geomentryCreator = m_device->getSceneManager()->getGeometryCreator();
         auto terrain = geomentryCreator->createTerrainMesh(image, imageHeightmap, quadScale, m_terrainHeight, m_device->getVideoDriver(), m_chunkSize*2.0 , false);

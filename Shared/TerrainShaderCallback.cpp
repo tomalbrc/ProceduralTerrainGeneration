@@ -14,9 +14,6 @@
 
 using namespace irr;
 
-
-
-
 TerrainShaderCallback::TerrainShaderCallback(irr::IrrlichtDevice *device) : irr::video::IShaderConstantSetCallBack{} {
     m_device = device;
 }

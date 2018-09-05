@@ -11,49 +11,52 @@
 #define Utils_h
 #include "TerrainShaderCallback.h"
 
-
 namespace tom {
     using namespace irr;
     using namespace video;
-
+    
     using MainCallback = std::packaged_task<void()>;
     using MainCallbackQueue = std::deque<MainCallback>;
     
-    static MainCallbackQueue mainCallbackQueue;
-    static std::mutex mainCallbackQueueMutex;
-    
-    inline void manageMainthreadCallbacks() {
-        std::unique_lock<std::mutex> lock(tom::mainCallbackQueueMutex);
-        if (!tom::mainCallbackQueue.empty()) {
-            // executeon main
-            auto fun = std::move(tom::mainCallbackQueue.front());
-            tom::mainCallbackQueue.pop_front(); // throw away
-            lock.unlock();
-            fun();
-            lock.lock();
-            printf("executed task\n");
+    class threading {
+    public:
+        static MainCallbackQueue mainCallbackQueue;
+        static std::mutex mainCallbackQueueMutex;
+        
+        static void manageMainthreadCallbacks() {
+            std::unique_lock<std::mutex> lock(mainCallbackQueueMutex);
+            if (!mainCallbackQueue.empty()) {
+                // executeon main
+                auto fun = std::move(mainCallbackQueue.front());
+                mainCallbackQueue.pop_front(); // throw away
+                lock.unlock();
+                fun();
+                lock.lock();
+                printf("executed task\n");
+            }
         }
-    }
+        
+        static void addMainCallback(const std::function<void(void)> &f) {
+            std::packaged_task<void()> task(std::move(f)); //!!
+            std::lock_guard<std::mutex> lock{mainCallbackQueueMutex};
+            mainCallbackQueue.push_back(std::move(task));
+        }
+        
+        static void onSeparateThread(const std::function<void(void)> &f) {
+            std::thread thread{f};
+            thread.detach();
+        }
+    };
     
-    inline void addMainCallback(const std::function<void(void)> &f) {
-        std::packaged_task<void()> task(std::move(f)); //!!
-        std::lock_guard<std::mutex> lock{tom::mainCallbackQueueMutex};
-        tom::mainCallbackQueue.push_back(std::move(task));
-    }
-    
-    inline void onSeparateThread(const std::function<void(void)> &f) {
-        std::thread thread{f};
-        thread.detach();
-    }
-    
-    
+    MainCallbackQueue threading::mainCallbackQueue;
+    std::mutex threading::mainCallbackQueueMutex;
     
     
     ///
     /// game utils
     ///
     
-    inline std::vector<irr::s32> setupShader(irr::IrrlichtDevice *device) {
+    static std::vector<irr::s32> setupShader(irr::IrrlichtDevice *device) {
         std::vector<irr::s32> res;
         
         irr::video::IGPUProgrammingServices *gps = device->getVideoDriver()->getGPUProgrammingServices();
@@ -76,5 +79,6 @@ namespace tom {
         return res;
     }
 }
+
 
 #endif /* Utils_h */

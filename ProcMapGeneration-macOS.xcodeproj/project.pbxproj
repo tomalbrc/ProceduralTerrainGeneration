@@ -67,7 +67,7 @@
 		9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TerrainShaderCallback.cpp; path = Shared/TerrainShaderCallback.cpp; sourceTree = SOURCE_ROOT; };
 		9AEA764C213DE23400E689E7 /* TerrainShaderCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TerrainShaderCallback.h; path = Shared/TerrainShaderCallback.h; sourceTree = SOURCE_ROOT; };
 		9AEEFC37213F2B7D005B4CC6 /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
-		9AEEFC41213F58AF005B4CC6 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Shared/Utils.h; sourceTree = SOURCE_ROOT; };
+		9AEEFC41213F58AF005B4CC6 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Shared/Utils.h; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -82,7 +82,7 @@ int main(int argc, char** argv) {
         
         frameDeltaTime = 0.005f;
         
-        tom::manageMainthreadCallbacks();
+        tom::threading::manageMainthreadCallbacks();
         
 		auto x = eventReceiver->mouseInformation().x;
 		auto screenW = (1920 * 0.75f);
@@ -120,7 +120,7 @@ int main(int argc, char** argv) {
 				if (hasKey && chunks[key]) chunks[key]->setVisible(true);
 				else {
                     chunks[key] = smgr->addCubeSceneNode();
-                    tom::onSeparateThread([ter2 = std::ref(ter2), mainScene = mainScene, chunks = std::ref(chunks), key = key]() mutable {
+                    tom::threading::onSeparateThread([ter2 = std::ref(ter2), mainScene = mainScene, chunks = std::ref(chunks), key = key]() mutable {
                         ter2.get().getMeshAt(key, [mainScene = mainScene, chunks = std::ref(chunks), key = key](irr::scene::IMeshSceneNode* m) mutable {
                             mainScene->addChild(m);
                             chunks.get()[key]->remove();
