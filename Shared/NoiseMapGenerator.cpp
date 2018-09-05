@@ -75,7 +75,7 @@ NoiseMap NoiseMapGenerator::Generate(irr::core::dimension2du size, irr::core::ve
             //auto ttt = newValue;//pow(newValue, .5/newValue);
 
             auto mapVal = map[i][j];
-            auto newValue = (mapVal+1.0) / (maxPossibleHeight*1.2);
+            auto newValue = (mapVal+1.0) / (maxPossibleHeight*1.5);
             //newValue = pow(newValue, 2.f);//1.f/newValue
             auto ttt = irr::core::clamp<float>(newValue, 0, 1.f);
             ttt = pow(ttt, 1.f/ttt);

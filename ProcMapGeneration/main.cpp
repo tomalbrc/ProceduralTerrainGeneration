@@ -48,8 +48,9 @@ int main(int argc, char** argv) {
     ISceneManager* smgr = device->getSceneManager();
     
     float chunkSizeAB = 128.f;
-    auto ter2 = TerrainGenerator(irr::core::dimension2du{chunkSizeAB,chunkSizeAB}, 90.0, device);
-
+    auto ter2 = TerrainGenerator(irr::core::dimension2du{chunkSizeAB,chunkSizeAB}, 120.0, device);
+    chunkSizeAB *= 4.f;
+    
 	auto mainScene = smgr->addEmptySceneNode();
 
 	std::map<irr::core::vector2di, irr::scene::IMeshSceneNode*> chunks;
@@ -104,7 +105,7 @@ int main(int argc, char** argv) {
 
 		player->setRotation(irr::core::vector3df(0,-angle,0));
 
-		auto newPosition = player->getPosition() + irr::core::vector3df(-10 * xVal, 10, -10 * yVal);
+		auto newPosition = player->getPosition() + irr::core::vector3df(-10 * xVal, 4.f, -10 * yVal);
 		float lowpassfilterFactor = .045f;
 		newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
 		cam2->setPosition(newPosition);

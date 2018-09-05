@@ -29,9 +29,13 @@ void TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices
     // if we are using highlevel shaders (the user can select this when
     // starting the program), we must set the constants by name.
     
-    core::matrix4 invView = video->getTransform(video::ETS_VIEW);
+    core::matrix4 invView = video->getTransform(video::ETS_WORLD);
     invView.makeInverse();
-    services->setVertexShaderConstant("ViewMatrix", video->getTransform(video::ETS_WORLD).pointer(), 16);
+    services->setVertexShaderConstant("ViewMatrix", invView.pointer(), 16);
+
+
+    float time = (float)m_device->getTimer()->getTime();
+    services->setVertexShaderConstant("time", &time, 1);
     
     // set clip matrix
     

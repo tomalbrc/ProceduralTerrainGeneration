@@ -26,20 +26,15 @@ public:
 			col.green = 240;
 			col.blue = 20;
 		}
-        if (value > 30) {
+        if (value > 20) {
             col.red = 130;
             col.green = 16;
             col.blue = 20;
         }
-        if (value > 40) {
+        if (value > 26) {
 			col.red = 80;
 			col.green = 40;
 			col.blue = 10;
-		}
-		if (value > 80) {
-			col.red = 250;
-			col.green = 250;
-			col.blue = 250;
 		}
 
 		return col;

@@ -70,7 +70,7 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
     auto noiseScale = 250.f;
     auto offset = irr::core::vector2di{chunkLocation.X*((int)m_chunkSize.Width-1), chunkLocation.Y*((int)m_chunkSize.Height-1)};
     auto nm = NoiseMapGenerator::Generate(m_chunkSize, chunkLocation, m_seed, noiseScale);
-	auto nm2 = NoiseMapGenerator::Generate(m_chunkSize*4.f-irr::core::dimension2du(1,1), chunkLocation, m_seed, noiseScale*4.f);
+	auto nm2 = NoiseMapGenerator::Generate(m_chunkSize*4.f, chunkLocation, m_seed, noiseScale*4.f);
 
     irr::video::IImage *image = IImageColoredFromNoiseMap(nm2, m_device->getVideoDriver());
     irr::video::IImage *imageHeightmap = IImageFromNoiseMap(nm, m_device->getVideoDriver());
@@ -81,9 +81,9 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
     
     
     tom::threading::addMainCallback([offset = std::move(offset), m_device = m_device, image = image, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
-        auto quadScale = irr::core::dimension2df{1.f,1.f};
+        auto quadScale = irr::core::dimension2df{1.f,1.f}*4.f;
         auto geomentryCreator = m_device->getSceneManager()->getGeometryCreator();
-        auto terrain = geomentryCreator->createTerrainMesh(image, imageHeightmap, quadScale, m_terrainHeight, m_device->getVideoDriver(), m_chunkSize*2.0 , false);
+        auto terrain = geomentryCreator->createTerrainMesh(image, imageHeightmap, quadScale, m_terrainHeight*4.f, m_device->getVideoDriver(), m_chunkSize*2.0 , false);
         terrain->setMaterialFlag(irr::video::EMF_LIGHTING, true); // global lightning for heightmap display
         terrain->setMaterialFlag(irr::video::EMF_BILINEAR_FILTER, false);
         terrain->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING, false);
