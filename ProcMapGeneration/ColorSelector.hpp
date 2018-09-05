@@ -31,7 +31,7 @@ public:
             col.green = 16;
             col.blue = 20;
         }
-        if (value > 26) {
+        if (value > 23) {
 			col.red = 80;
 			col.green = 40;
 			col.blue = 10;

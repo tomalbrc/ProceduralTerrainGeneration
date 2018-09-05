@@ -5,9 +5,8 @@ uniform sampler2D textureUnit0;
 
 void main() {
     float depth = gl_FragCoord.z / gl_FragCoord.w;
-    //gl_FragData[0] = vec4(depth/300.f);
     float val = vertexWorldPos.y/1024.f;
-    gl_FragColor = vec4(val,val,val,1.f);//vec4(depth/300.f);
+    gl_FragColor = vec4(val,val,val,1.f);
     //gl_FragColor = vec4(depth/300.f);
     
     vec4 color = texture2D(textureUnit0, gl_TexCoord[0].xy);
@@ -16,6 +15,8 @@ void main() {
         gl_FragColor += vec4(vertexWorldPos.y/100.f);
     } else if (vertexWorldPos.y < 6.f*4.f) {
         gl_FragColor.y += vertexWorldPos.y/6.f/4.f;
+        gl_FragColor.x -= vertexWorldPos.y/6.f*0.03f;
+        gl_FragColor.z -= vertexWorldPos.y/6.f*0.03f;
     }
 }
 
