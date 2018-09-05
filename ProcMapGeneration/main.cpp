@@ -69,8 +69,9 @@ int main(int argc, char** argv) {
 	light->setRotation(irr::core::vector3df(90, 0, 0));
     player->addChild(light);
   
-    tom::setupShader(device);
-
+    auto shaderMaterialIDS = tom::setupShader(device);
+    auto myMat = shaderMaterialIDS.front();
+    
 	int viewDistance = 4; // view distance as radius in chunks
 
     u32 then = device->getTimer()->getTime();
@@ -120,9 +121,10 @@ int main(int argc, char** argv) {
 				if (hasKey && chunks[key]) chunks[key]->setVisible(true);
 				else {
                     chunks[key] = smgr->addCubeSceneNode();
-                    tom::threading::onSeparateThread([ter2 = std::ref(ter2), mainScene = mainScene, chunks = std::ref(chunks), key = key]() mutable {
-                        ter2.get().getMeshAt(key, [mainScene = mainScene, chunks = std::ref(chunks), key = key](irr::scene::IMeshSceneNode* m) mutable {
+                    tom::threading::onSeparateThread([ter2 = std::ref(ter2), mainScene = mainScene, chunks = std::ref(chunks), key = key, myMat = myMat]() mutable {
+                        ter2.get().getMeshAt(key, [mainScene = mainScene, chunks = std::ref(chunks), key = key, myMat = myMat](irr::scene::IMeshSceneNode* m) mutable {
                             mainScene->addChild(m);
+                            m->setMaterialType((video::E_MATERIAL_TYPE)myMat);
                             chunks.get()[key]->remove();
                             chunks.get()[key] = m;
                         });
