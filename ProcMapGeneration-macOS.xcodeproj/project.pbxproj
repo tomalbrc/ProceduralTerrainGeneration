@@ -21,6 +21,7 @@
 		9AB696B1212F3C7600E164C0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696B0212F3C7600E164C0 /* IOKit.framework */; };
 		9AEA764D213DE23400E689E7 /* TerrainShaderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */; };
 		9AEEFC3E213F47C7005B4CC6 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEFC3C213F2B7D005B4CC6 /* libIrrlicht.a */; };
+		9AEEFC44214036A8005B4CC6 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEFC43214036A8005B4CC6 /* Utils.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		9AEA764C213DE23400E689E7 /* TerrainShaderCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TerrainShaderCallback.h; path = Shared/TerrainShaderCallback.h; sourceTree = SOURCE_ROOT; };
 		9AEEFC37213F2B7D005B4CC6 /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
 		9AEEFC41213F58AF005B4CC6 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Shared/Utils.h; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
+		9AEEFC43214036A8005B4CC6 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = Shared/Utils.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				09A29CDC213E85210055157B /* file.vert */,
 				09A29CDE213E85320055157B /* file.frag */,
 				9AEEFC41213F58AF005B4CC6 /* Utils.h */,
+				9AEEFC43214036A8005B4CC6 /* Utils.cpp */,
 			);
 			path = "ProcMapGeneration-macOS";
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				09570A75213411F0001A5FCC /* NoiseMapGenerator.cpp in Sources */,
 				9AB696A6212F3B8F00E164C0 /* main.cpp in Sources */,
+				9AEEFC44214036A8005B4CC6 /* Utils.cpp in Sources */,
 				09570A7B21341E24001A5FCC /* TerrainGenerator.cpp in Sources */,
 				09570A7821341B25001A5FCC /* MapControlEventReceiver.cpp in Sources */,
 				9AB696A7212F3BA200E164C0 /* Perlin.cpp in Sources */,

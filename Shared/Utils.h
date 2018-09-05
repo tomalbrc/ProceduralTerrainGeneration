@@ -10,6 +10,12 @@
 #ifndef Utils_h
 #define Utils_h
 #include "TerrainShaderCallback.h"
+#include <future>
+#include <functional>
+#include <mutex>
+#include <thread>
+#include <deque>
+#include <vector>
 
 namespace tom {
     using namespace irr;
@@ -48,10 +54,6 @@ namespace tom {
         }
     };
     
-    //MainCallbackQueue threading::mainCallbackQueue;
-    //std::mutex threading::mainCallbackQueueMutex;
-    
-    
     ///
     /// game utils
     ///
@@ -70,13 +72,13 @@ namespace tom {
                                                                      "file.frag", "pixelMain", video::EPST_PS_1_1,
                                                                      mc, video::EMT_SOLID, 0, shadingLanguage);
             
-            irr::s32 matType2 = gps->addHighLevelShaderMaterialFromFiles(
+            /*irr::s32 matType2 = gps->addHighLevelShaderMaterialFromFiles(
                                                                          "file.vert", "vertexMain", video::EVST_VS_1_1,
                                                                          "file.frag", "pixelMain", video::EPST_PS_1_1,
                                                                      mc, video::EMT_TRANSPARENT_ADD_COLOR, 0, shadingLanguage);
             //res.emplace_back(matType1, matType2);
+            res.push_back(matType1);*/
             res.push_back(matType1);
-            res.push_back(matType2);
         }
         return res;
     }

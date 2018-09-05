@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../external/irrlicht/source/Irrlicht/CNSOGLManager.mm"
-            timestampString = "557800642.602569"
+            timestampString = "557861059.27592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "188"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../external/irrlicht/source/Irrlicht/CIrrDeviceOSX.mm"
-            timestampString = "557796852.425655"
+            timestampString = "557861603.377256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "699"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../external/irrlicht/source/Irrlicht/CIrrDeviceOSX.mm"
-            timestampString = "557796852.426159"
+            timestampString = "557861603.37734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "876"
@@ -154,12 +154,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../external/irrlicht/source/Irrlicht/CIrrDeviceOSX.mm"
-            timestampString = "557796852.426262"
+            timestampString = "557861603.377405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "872"
             endingLineNumber = "872"
             landmarkName = "CIrrDeviceMacOSX::createDriver()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/TerrainShaderCallback.cpp"
+            timestampString = "557861603.37747"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

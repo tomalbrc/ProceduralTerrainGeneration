@@ -19,6 +19,8 @@ public:
     void OnSetMaterial(const irr::video::SMaterial &material) override;
     void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) override;
 
+    
+    
 private:
     irr::video::SMaterial m_material;
     irr::IrrlichtDevice *m_device;
