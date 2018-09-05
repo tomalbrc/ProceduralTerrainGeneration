@@ -13,13 +13,8 @@
 #include <queue>
 #include <mutex>
 #include <time.h>
+#include "Utils.h"
 
-using MainCallback = std::packaged_task<void()>;
-using MainCallbackQueue = std::deque<MainCallback>;
-namespace tom {
-    extern MainCallbackQueue _mainCallbackQueue;
-    extern std::mutex mainCallbackQueueMutex;
-}
 
 /**
  * C-style functions to generate an image for the heightmap and an image for chunk-texture
@@ -83,8 +78,9 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
 	_image = image;
 	_heightmap = imageHeightmap;
 
-    auto f = [offset = std::move(offset), m_device = m_device, image = image, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
-        
+    
+    
+    tom::addMainCallback([offset = std::move(offset), m_device = m_device, image = image, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
         auto quadScale = irr::core::dimension2df{1.f,1.f};
         auto geomentryCreator = m_device->getSceneManager()->getGeometryCreator();
         auto terrain = geomentryCreator->createTerrainMesh(image, imageHeightmap, quadScale, m_terrainHeight, m_device->getVideoDriver(), m_chunkSize*2.0 , false);
@@ -97,16 +93,7 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
         msn->setPosition(irr::core::vector3df{(float)offset.X*quadScale.Width, 0,(float)offset.Y*quadScale.Height});
         
         completion(msn);
-    };
+    });
     
-    std::packaged_task<void()> task(std::move(f)); //!!
-    //std::future<void> result = task.get_future();
-    
-    {
-        std::lock_guard<std::mutex> lock{tom::mainCallbackQueueMutex};
-        tom::_mainCallbackQueue.push_back(std::move(task));
-    }
-    
-    //result.get();
     return nullptr;
 }

@@ -18,24 +18,24 @@
 		9AB696A7212F3BA200E164C0 /* Perlin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75F702212F3B5800E375B5 /* Perlin.cpp */; };
 		9AB696AB212F3C0200E164C0 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AA212F3C0100E164C0 /* OpenGL.framework */; };
 		9AB696AD212F3C0600E164C0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AC212F3C0600E164C0 /* AppKit.framework */; };
-		9AB696AF212F3C5100E164C0 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AE212F3C5100E164C0 /* libIrrlicht.a */; };
 		9AB696B1212F3C7600E164C0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696B0212F3C7600E164C0 /* IOKit.framework */; };
 		9AEA764D213DE23400E689E7 /* TerrainShaderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */; };
+		9AEEFC3E213F47C7005B4CC6 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEFC3C213F2B7D005B4CC6 /* libIrrlicht.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A3E0F70213F18B60051F4BD /* PBXContainerItemProxy */ = {
+		9AEEFC3B213F2B7D005B4CC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */;
+			containerPortal = 9AEEFC37213F2B7D005B4CC6 /* Irrlicht.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5E34C9F31B7F6E3400F212E8;
 			remoteInfo = Irrlicht_OSX;
 		};
-		9A3E0F76213F1CED0051F4BD /* PBXContainerItemProxy */ = {
+		9AEEFC3F213F492C005B4CC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5E34C9F31B7F6E3400F212E8;
+			containerPortal = 9AEEFC37213F2B7D005B4CC6 /* Irrlicht.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E34C9F21B7F6E3400F212E8;
 			remoteInfo = Irrlicht_OSX;
 		};
 /* End PBXContainerItemProxy section */
@@ -50,8 +50,6 @@
 		09A29CDC213E85210055157B /* file.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = file.vert; path = Shared/file.vert; sourceTree = SOURCE_ROOT; };
 		09A29CDE213E85320055157B /* file.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = file.frag; path = Shared/file.frag; sourceTree = SOURCE_ROOT; };
 		09ED26C621354261007AEDFD /* PerlinNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PerlinNoise.hpp; path = Shared/PerlinNoise.hpp; sourceTree = SOURCE_ROOT; };
-		9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
-		9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
 		9A75F6EE212F3AD400E375B5 /* ProcMapGeneration-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ProcMapGeneration-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A75F6F4212F3AD600E375B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A75F6F9212F3AD700E375B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,15 +59,15 @@
 		9A75F706212F3B5800E375B5 /* bitmap_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bitmap_image.h; path = ProcMapGeneration/bitmap_image.h; sourceTree = SOURCE_ROOT; };
 		9A75F709212F3B5800E375B5 /* ColorSelector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ColorSelector.hpp; path = ProcMapGeneration/ColorSelector.hpp; sourceTree = SOURCE_ROOT; };
 		9A75F70A212F3B5800E375B5 /* targetver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = targetver.h; path = ProcMapGeneration/targetver.h; sourceTree = SOURCE_ROOT; };
-		9A75F70B212F3B5800E375B5 /* Types.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Types.hpp; path = ProcMapGeneration/Types.hpp; sourceTree = SOURCE_ROOT; };
 		9A87983C212F478800D477F2 /* texture_image.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = texture_image.bmp; sourceTree = "<group>"; };
 		9AB696AA212F3C0100E164C0 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9AB696AC212F3C0600E164C0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		9AB696AE212F3C5100E164C0 /* libIrrlicht.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIrrlicht.a; path = ../../external/irrlicht/lib/OSX/libIrrlicht.a; sourceTree = "<group>"; };
 		9AB696B0212F3C7600E164C0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		9AB696B3212F3CFF00E164C0 /* Perlin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Perlin.h; path = ProcMapGeneration/Perlin.h; sourceTree = SOURCE_ROOT; };
 		9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TerrainShaderCallback.cpp; path = Shared/TerrainShaderCallback.cpp; sourceTree = SOURCE_ROOT; };
 		9AEA764C213DE23400E689E7 /* TerrainShaderCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TerrainShaderCallback.h; path = Shared/TerrainShaderCallback.h; sourceTree = SOURCE_ROOT; };
+		9AEEFC37213F2B7D005B4CC6 /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
+		9AEEFC41213F58AF005B4CC6 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Shared/Utils.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AEEFC3E213F47C7005B4CC6 /* libIrrlicht.a in Frameworks */,
 				9AB696B1212F3C7600E164C0 /* IOKit.framework in Frameworks */,
-				9AB696AF212F3C5100E164C0 /* libIrrlicht.a in Frameworks */,
 				9AB696AD212F3C0600E164C0 /* AppKit.framework in Frameworks */,
 				9AB696AB212F3C0200E164C0 /* OpenGL.framework in Frameworks */,
 			);
@@ -87,26 +85,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A3E0F6D213F18B60051F4BD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A3E0F71213F18B60051F4BD /* libIrrlicht.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A3E0F73213F1CED0051F4BD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A3E0F77213F1CED0051F4BD /* libIrrlicht.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A75F6E5212F3AD400E375B5 = {
 			isa = PBXGroup;
 			children = (
-				9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */,
 				9A75F6F0212F3AD400E375B5 /* ProcMapGeneration-macOS */,
 				9A75F6EF212F3AD400E375B5 /* Products */,
 				9AB696A9212F3C0100E164C0 /* Frameworks */,
@@ -135,13 +116,13 @@
 				9AEA764C213DE23400E689E7 /* TerrainShaderCallback.h */,
 				9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */,
 				9AB696B4212F3D1F00E164C0 /* External */,
-				9A75F70B212F3B5800E375B5 /* Types.hpp */,
 				9A87983C212F478800D477F2 /* texture_image.bmp */,
 				9A75F6F4212F3AD600E375B5 /* Assets.xcassets */,
 				9A75F6F9212F3AD700E375B5 /* Info.plist */,
 				9A75F6FC212F3AD700E375B5 /* ProcMapGeneration_macOS.entitlements */,
 				09A29CDC213E85210055157B /* file.vert */,
 				09A29CDE213E85320055157B /* file.frag */,
+				9AEEFC41213F58AF005B4CC6 /* Utils.h */,
 			);
 			path = "ProcMapGeneration-macOS";
 			sourceTree = "<group>";
@@ -149,9 +130,8 @@
 		9AB696A9212F3C0100E164C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */,
+				9AEEFC37213F2B7D005B4CC6 /* Irrlicht.xcodeproj */,
 				9AB696B0212F3C7600E164C0 /* IOKit.framework */,
-				9AB696AE212F3C5100E164C0 /* libIrrlicht.a */,
 				9AB696AC212F3C0600E164C0 /* AppKit.framework */,
 				9AB696AA212F3C0100E164C0 /* OpenGL.framework */,
 			);
@@ -170,6 +150,14 @@
 			name = External;
 			sourceTree = "<group>";
 		};
+		9AEEFC38213F2B7D005B4CC6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEFC3C213F2B7D005B4CC6 /* libIrrlicht.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -184,6 +172,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AEEFC40213F492C005B4CC6 /* PBXTargetDependency */,
 			);
 			name = "ProcMapGeneration-macOS";
 			productName = "ProcMapGeneration-macOS";
@@ -222,12 +211,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A3E0F6D213F18B60051F4BD /* Products */;
-					ProjectRef = 9A3E0F6C213F18B60051F4BD /* Irrlicht.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A3E0F73213F1CED0051F4BD /* Products */;
-					ProjectRef = 9A3E0F72213F1CED0051F4BD /* Irrlicht.xcodeproj */;
+					ProductGroup = 9AEEFC38213F2B7D005B4CC6 /* Products */;
+					ProjectRef = 9AEEFC37213F2B7D005B4CC6 /* Irrlicht.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -238,18 +223,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A3E0F71213F18B60051F4BD /* libIrrlicht.a */ = {
+		9AEEFC3C213F2B7D005B4CC6 /* libIrrlicht.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libIrrlicht.a;
-			remoteRef = 9A3E0F70213F18B60051F4BD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A3E0F77213F1CED0051F4BD /* libIrrlicht.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libIrrlicht.a;
-			remoteRef = 9A3E0F76213F1CED0051F4BD /* PBXContainerItemProxy */;
+			remoteRef = 9AEEFC3B213F2B7D005B4CC6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -283,6 +261,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9AEEFC40213F492C005B4CC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Irrlicht_OSX;
+			targetProxy = 9AEEFC3F213F492C005B4CC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9A75F6FD212F3AD700E375B5 /* Debug */ = {
@@ -403,9 +389,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				HEADER_SEARCH_PATHS = (
 					ProcMapGeneration,
-					../../external/irrlicht/include,
 					Shared,
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
@@ -421,6 +407,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.defense2000x.ProcMapGeneration-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = ../../external/irrlicht/include;
 			};
 			name = Debug;
 		};
@@ -433,7 +420,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = (
 					ProcMapGeneration,
-					../../external/irrlicht/include,
 					Shared,
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
@@ -449,6 +435,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.defense2000x.ProcMapGeneration-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = ../../external/irrlicht/include;
 			};
 			name = Release;
 		};
