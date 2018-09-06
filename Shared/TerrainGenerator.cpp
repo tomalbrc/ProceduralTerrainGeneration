@@ -59,7 +59,7 @@ irr::video::IImage *IImageFromNoiseMap(const NoiseMap & nm, irr::video::IVideoDr
 ///
 TerrainGenerator::TerrainGenerator(irr::core::dimension2du chunkSize, float terrainHeight, irr::IrrlichtDevice *device) {
     m_chunkSize = chunkSize;
-	srand(time(NULL));
+	srand((unsigned)time(NULL));
 	m_seed = rand();//std::default_random_engine::default_seed;
     m_device = device;
     m_terrainHeight = terrainHeight;

@@ -6,7 +6,7 @@ uniform float time;
 void main(){
     gl_Position = ftransform();
     // water
-    if (gl_Vertex.y < 6.f) gl_Position.y += ((sin(((mod(gl_Vertex.x+gl_Vertex.z,128*4-1))+time)/150.f)-0.5f));
+    if (gl_Vertex.y < 4.f) gl_Position.y += ((sin(((mod(gl_Vertex.x+gl_Vertex.z,128*4-1))+time)/200.f)-0.5f));
     
     // pass through
     vertexWorldPos = gl_Vertex;

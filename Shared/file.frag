@@ -10,13 +10,12 @@ void main() {
     //gl_FragColor = vec4(depth/300.f);
     
     vec4 color = texture2D(textureUnit0, gl_TexCoord[0].xy);
-    gl_FragColor += color - vec4(depth/(1024.f*16.f));
+    gl_FragColor += color - vec4(depth/(1024.f*12.f));
     if (vertexWorldPos.y > 80.f*4.f) {
         gl_FragColor += vec4(vertexWorldPos.y/100.f);
     } else if (vertexWorldPos.y < 6.f*4.f) {
-        gl_FragColor.y += vertexWorldPos.y/6.f/4.f;
-        gl_FragColor.x -= vertexWorldPos.y/6.f*0.03f;
-        gl_FragColor.z -= vertexWorldPos.y/6.f*0.03f;
+        gl_FragColor.y += vertexWorldPos.y/100.f;
+        gl_FragColor.xz -= vec2(vertexWorldPos.y/6.f*0.5f);
     }
 }
 

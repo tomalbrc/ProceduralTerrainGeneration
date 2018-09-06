@@ -94,9 +94,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function&lt;void(irr::scene::IMeshSceneNode*)&gt; &amp;completion)"
-            landmarkType = "7">
+            endingLineNumber = "100">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -110,9 +108,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function&lt;void(irr::scene::IMeshSceneNode*)&gt; &amp;completion)"
-            landmarkType = "7">
+            endingLineNumber = "100">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,9 +122,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function&lt;void(irr::scene::IMeshSceneNode*)&gt; &amp;completion)"
-            landmarkType = "7">
+            endingLineNumber = "100">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

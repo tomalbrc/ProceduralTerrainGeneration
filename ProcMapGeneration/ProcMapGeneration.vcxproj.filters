@@ -54,6 +54,9 @@
     <ClInclude Include="..\Shared\TerrainShaderCallback.h">
       <Filter>Quelldateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\Shared\Utils.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Perlin.cpp">
@@ -72,6 +75,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="..\Shared\TerrainShaderCallback.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\Utils.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
