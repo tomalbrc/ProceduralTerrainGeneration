@@ -89,6 +89,8 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
         terrain->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING, false);
         terrain->getMeshBuffer(0)->getMaterial().GouraudShading = false;
         
+        
+        
         auto msn = m_device->getSceneManager()->addMeshSceneNode(terrain);
         msn->setPosition(irr::core::vector3df{(float)offset.X*quadScale.Width, 0,(float)offset.Y*quadScale.Height});
         

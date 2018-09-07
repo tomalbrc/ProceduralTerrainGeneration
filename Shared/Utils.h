@@ -68,8 +68,8 @@ namespace tom {
             auto mc = new TerrainShaderCallback{ device };
             
             irr::s32 matType1 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                     "file.vert", "vertexMain", video::EVST_VS_1_1,
-                                                                     "file.frag", "pixelMain", video::EPST_PS_1_1,
+                                                                     "file.vert", "main", video::EVST_VS_1_1,
+                                                                     "file.frag", "main", video::EPST_PS_1_1,
                                                                      mc, video::EMT_SOLID, 0, shadingLanguage);
             
             /*irr::s32 matType2 = gps->addHighLevelShaderMaterialFromFiles(

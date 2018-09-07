@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
 	device->setWindowCaption(str.c_str());
 	
 	IVideoDriver* video = device->getVideoDriver();
-    video->getMaterial2D().AntiAliasing=video::EAAM_FULL_BASIC;
+    //video->getMaterial2D().AntiAliasing=video::EAAM_FULL_BASIC;
 
     
     ISceneManager* smgr = device->getSceneManager();
@@ -126,6 +126,9 @@ int main(int argc, char** argv) {
                         ter2.get().getMeshAt(key, [mainScene = mainScene, chunks = std::ref(chunks), key = key, myMat = myMat](irr::scene::IMeshSceneNode* m) mutable {
                             mainScene->addChild(m);
                             m->setMaterialType((video::E_MATERIAL_TYPE)myMat);
+                            m->getMaterial(0).GouraudShading = false;
+                            m->setMaterialFlag(EMF_GOURAUD_SHADING, false);
+                            m->getMaterial(0).setFlag(EMF_GOURAUD_SHADING, false);
                             chunks.get()[key]->remove();
                             chunks.get()[key] = m;
                         });

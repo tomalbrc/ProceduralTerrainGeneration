@@ -20,6 +20,7 @@ TerrainShaderCallback::TerrainShaderCallback(irr::IrrlichtDevice *device) : irr:
 
 void TerrainShaderCallback::OnSetMaterial(const irr::video::SMaterial &material) {
     m_material = material;
+    m_material.GouraudShading = false;
 }
 
 void TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) {
