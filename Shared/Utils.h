@@ -72,13 +72,20 @@ namespace tom {
                                                                      "file.frag", "main", video::EPST_PS_1_1,
                                                                      mc, video::EMT_SOLID, 0, shadingLanguage);
             
-            /*irr::s32 matType2 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                         "file.vert", "vertexMain", video::EVST_VS_1_1,
-                                                                         "file.frag", "pixelMain", video::EPST_PS_1_1,
-                                                                     mc, video::EMT_TRANSPARENT_ADD_COLOR, 0, shadingLanguage);
+            irr::s32 matType2 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                         "tree.vert", "main", video::EVST_VS_1_1,
+                                                                         "tree.frag", "main", video::EPST_PS_1_1,
+                                                                     mc, video::EMT_SOLID, 0, shadingLanguage);
+            
+            irr::s32 matType3 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                         "cloud.vert", "main", video::EVST_VS_1_1,
+                                                                         "cloud.frag", "main", video::EPST_PS_1_1,
+                                                                         mc, video::EMT_SOLID, 0, shadingLanguage);
+            
             //res.emplace_back(matType1, matType2);
-            res.push_back(matType1);*/
             res.push_back(matType1);
+            res.push_back(matType2);
+            res.push_back(matType3);
         }
         return res;
     }

@@ -1,7 +1,7 @@
 #version 120
 #extension GL_EXT_gpu_shader4 : require
 
-varying vec4 vertexWorldPos;
+flat varying vec4 vertexWorldPos;
 flat varying vec3 fragNormal;
 
 uniform float time;
@@ -9,7 +9,7 @@ uniform float time;
 void main(){
     gl_Position = ftransform();
     // water
-    if (gl_Vertex.y < 4.f) gl_Position.y += ((sin(((mod(gl_Vertex.x+gl_Vertex.z,128*4-1))+time)/200.f)-0.5f));
+    if (gl_Vertex.y < 4.f) gl_Position.y += ((sin(((mod(gl_Vertex.x+gl_Vertex.z,128*6.f-1.f))+time)/200.f)-0.5f));
     
     // pass through
     vertexWorldPos = gl_Vertex;

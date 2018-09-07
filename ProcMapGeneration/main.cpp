@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
 
     auto params = []() -> const SIrrlichtCreationParameters {
         SIrrlichtCreationParameters params;
-        params.AntiAlias = 4;
+        params.AntiAlias = 2;
         params.DriverType = video::EDT_OPENGL;
         params.WindowSize = core::dimension2d<u32>(1920*0.75, 1080*0.75);
         params.Fullscreen = false;
@@ -49,7 +49,7 @@ int main(int argc, char** argv) {
     
     float chunkSizeAB = 128.f;
     auto ter2 = TerrainGenerator(irr::core::dimension2du{chunkSizeAB,chunkSizeAB}, 120.0, device);
-    chunkSizeAB *= 4.f;
+    chunkSizeAB *= 6.f;
     
 	auto mainScene = smgr->addEmptySceneNode();
 
@@ -70,6 +70,16 @@ int main(int argc, char** argv) {
 	light->setRotation(irr::core::vector3df(90, 0, 0));
     player->addChild(light);
   
+    ///
+    ///
+    ///
+    
+
+    
+    ///
+    ///
+    ///
+    
     auto shaderMaterialIDS = tom::setupShader(device);
     auto myMat = shaderMaterialIDS.front();
     
@@ -82,7 +92,7 @@ int main(int argc, char** argv) {
         f32 frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
         then = now;
         
-        frameDeltaTime = 0.005f;
+        frameDeltaTime = 0.02f;
         
         tom::threading::manageMainthreadCallbacks();
         
@@ -122,15 +132,57 @@ int main(int argc, char** argv) {
 				if (hasKey && chunks[key]) chunks[key]->setVisible(true);
 				else {
                     chunks[key] = smgr->addCubeSceneNode();
-                    tom::threading::onSeparateThread([ter2 = std::ref(ter2), mainScene = mainScene, chunks = std::ref(chunks), key = key, myMat = myMat]() mutable {
-                        ter2.get().getMeshAt(key, [mainScene = mainScene, chunks = std::ref(chunks), key = key, myMat = myMat](irr::scene::IMeshSceneNode* m) mutable {
+                    tom::threading::onSeparateThread([video=video, smgr = smgr/* <-use in main only! */, ter2 = std::ref(ter2), mainScene = mainScene, chunks = std::ref(chunks), key = key, shaderMaterialIDS = shaderMaterialIDS]() mutable {
+                        ter2.get().getMeshAt(key, [video=video, smgr = smgr/* <-use in main only! */, mainScene = mainScene, chunks = std::ref(chunks), key = key, shaderMaterialIDS = shaderMaterialIDS](irr::scene::IMeshSceneNode* m) mutable {
                             mainScene->addChild(m);
-                            m->setMaterialType((video::E_MATERIAL_TYPE)myMat);
-                            m->getMaterial(0).GouraudShading = false;
-                            m->setMaterialFlag(EMF_GOURAUD_SHADING, false);
-                            m->getMaterial(0).setFlag(EMF_GOURAUD_SHADING, false);
+                            m->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.front());
                             chunks.get()[key]->remove();
                             chunks.get()[key] = m;
+                            
+                            
+                            auto mesh = smgr->getMesh("BigTreeWithLeaves.obj");
+                            auto mesh2 = smgr->getMesh("SmallTreeWithLeave.obj");
+                            auto meshBush = smgr->getMesh("BigBush.obj");
+
+                            auto meshCloud1 = smgr->getMesh("Cloud1.obj");
+                            auto meshCloud2 = smgr->getMesh("Cloud2.obj");
+                            auto meshCloud3 = smgr->getMesh("Cloud3.obj");
+
+                            for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
+                                auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
+                                
+                                // BigTreeWithLeaves.obj
+                                if (rand()%100 == 1 && vertexPos.Y > 30.f && vertexPos.Y < 80.f) {
+                                    auto ran = rand()%3;
+                                    auto meshScene = smgr->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
+                                    meshScene->setPosition(vertexPos);
+                                    meshScene->setScale(irr::core::vector3df{6.f});
+                                    
+                                    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
+                                    meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
+                                    
+                                    auto img = video->createImageFromFile(ran > 1 ? "BushTexture.png" : "TreeTexture.png");
+                                    meshScene->setMaterialTexture(0, video->addTexture(ran > 1 ? "BushTexture" : "TreeTexture", img));
+                                    
+                                    m->addChild(meshScene);
+                                }
+                                
+                                if (rand()%10000 == 123) {
+                                    auto ran = rand()%3;
+                                    auto meshScene = smgr->addMeshSceneNode(ran == 0 ? meshCloud1 : ran==1 ? meshCloud2 : meshCloud3);
+                                    vertexPos.Y = 600.f;
+                                    meshScene->setPosition(vertexPos);
+                                    meshScene->setScale(irr::core::vector3df{70.f});
+                                    meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
+                                    meshScene->setMaterialFlag(video::EMF_GOURAUD_SHADING, false);
+                                    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
+                                    auto img = video->createImageFromFile("white.png");
+                                    meshScene->setMaterialTexture(0, video->addTexture("white", img));
+                                    m->addChild(meshScene);
+                                }
+                                
+                            }
+                            
                         });
                     });
 				}
