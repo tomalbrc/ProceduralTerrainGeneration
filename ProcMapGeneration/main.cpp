@@ -15,10 +15,38 @@
 
 #include "Utils.h"
 
+#include "post.h"
+
 using namespace irr;
 using namespace irr::scene;
 using namespace irr::video;
 
+void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2) {
+    auto x = eventReceiver->mouseInformation().x;
+    auto screenW = (1920 * 0.75f);
+    auto perc = x / screenW;
+    auto angle = 360.f*2 * -perc;
+    float yVal = sin(irr::core::degToRad(angle));
+    float xVal = cos(irr::core::degToRad(angle));
+    
+    float value = 100.f;
+    if (eventReceiver->keyPressed(irr::KEY_RIGHT) || eventReceiver->keyPressed(irr::KEY_KEY_D)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle - 90.f)), 0.f, value*sin(irr::core::degToRad(angle - 90.f))));
+    if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f))));
+    if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal, 0.f, value*yVal));
+    if (eventReceiver->keyPressed(irr::KEY_DOWN) || eventReceiver->keyPressed(irr::KEY_KEY_S)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 180.f)), 0.f, value*sin(irr::core::degToRad(angle + 180.f))));
+    if (eventReceiver->keyPressed(irr::KEY_SPACE)) player->setPosition(player->getPosition() + irr::core::vector3df(0,1,0));
+    if (eventReceiver->keyPressed(irr::KEY_KEY_X)) player->setPosition(player->getPosition() + irr::core::vector3df(0,-1,0));
+    
+    cam2->setTarget(player->getPosition());
+    
+    player->setRotation(irr::core::vector3df(0,-angle,0));
+    
+    auto newPosition = player->getPosition() + irr::core::vector3df(-10 * xVal, 4.f, -10 * yVal);
+    float lowpassfilterFactor = .045f;
+    newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
+    cam2->setPosition(newPosition);
+
+}
 
 int main(int argc, char** argv) {
     auto eventReceiver = new MapControlEventReceiver();
@@ -35,6 +63,8 @@ int main(int argc, char** argv) {
         return params;
     }();
     
+    
+    
     IrrlichtDevice *device = irr::createDeviceEx(params);
     device->setEventReceiver(eventReceiver);
     
@@ -42,9 +72,6 @@ int main(int argc, char** argv) {
 	device->setWindowCaption(str.c_str());
 	
 	IVideoDriver* video = device->getVideoDriver();
-    //video->getMaterial2D().AntiAliasing=video::EAAM_FULL_BASIC;
-
-    
     ISceneManager* smgr = device->getSceneManager();
     
     float chunkSizeAB = 32.f;
@@ -52,8 +79,10 @@ int main(int argc, char** argv) {
     chunkSizeAB *= 6.f;
     
 	auto mainScene = smgr->addEmptySceneNode();
-
+    
+    // chunk cache
 	std::map<irr::core::vector2di, irr::scene::IMeshSceneNode*> chunks;
+    
     
     auto player = smgr->addCubeSceneNode(1);
 	player->setScale(irr::core::vector3df{1, 1, 1});
@@ -70,19 +99,17 @@ int main(int argc, char** argv) {
 	light->setRotation(irr::core::vector3df(90, 0, 0));
     player->addChild(light);
   
-    ///
-    ///
-    ///
-    
-
-    
-    ///
-    ///
-    ///
     
     auto shaderMaterialIDS = tom::setupShader(device);
     
 	int viewDistance = 8; // view distance as radius in chunks
+    eventReceiver->setPressedKeyHandler([&viewDistance](irr::EKEY_CODE kc){
+        if (kc == irr::KEY_KEY_N) {
+            viewDistance++;
+        } else if (kc == irr::KEY_KEY_M) {
+            viewDistance--;
+        }
+    });
     
     u32 then = device->getTimer()->getTime();
 	while(device->run() && device) {
@@ -95,29 +122,7 @@ int main(int argc, char** argv) {
         
         tom::threading::manageMainthreadCallbacks();
         
-		auto x = eventReceiver->mouseInformation().x;
-		auto screenW = (1920 * 0.75f);
-		auto perc = x / screenW;
-		auto angle = 360.f*2 * -perc;
-		float yVal = sin(irr::core::degToRad(angle));
-		float xVal = cos(irr::core::degToRad(angle));
-
-        float value = 100.f;
-		if (eventReceiver->keyPressed(irr::KEY_RIGHT) || eventReceiver->keyPressed(irr::KEY_KEY_D)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle - 90.f)), 0.f, value*sin(irr::core::degToRad(angle - 90.f)))*frameDeltaTime);
-		if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f)))*frameDeltaTime);
-		if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal*(frameDeltaTime), 0.f, value*yVal*(frameDeltaTime)));
-		if (eventReceiver->keyPressed(irr::KEY_DOWN) || eventReceiver->keyPressed(irr::KEY_KEY_S)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 180.f)), 0.f, value*sin(irr::core::degToRad(angle + 180.f)))*frameDeltaTime);
-		if (eventReceiver->keyPressed(irr::KEY_SPACE)) player->setPosition(player->getPosition() + irr::core::vector3df(0,1,0));
-		if (eventReceiver->keyPressed(irr::KEY_KEY_X)) player->setPosition(player->getPosition() + irr::core::vector3df(0,-1,0));
-
-		cam2->setTarget(player->getPosition());
-
-		player->setRotation(irr::core::vector3df(0,-angle,0));
-
-		auto newPosition = player->getPosition() + irr::core::vector3df(-10 * xVal, 4.f, -10 * yVal);
-		float lowpassfilterFactor = .045f;
-		newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
-		cam2->setPosition(newPosition);
+        manageInput(eventReceiver, player, cam2);
 
         auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / (chunkSizeAB-1), player->getPosition().Z / (chunkSizeAB-1));
 
@@ -139,11 +144,9 @@ int main(int argc, char** argv) {
                             chunks.get()[key]->remove();
                             chunks.get()[key] = m;
                             
-                            
                             auto mesh = smgr->getMesh("BigTreeWithLeaves.obj");
                             auto mesh2 = smgr->getMesh("SmallTreeWithLeave.obj");
                             auto meshBush = smgr->getMesh("BigBush.obj");
-
                             auto meshCloud1 = smgr->getMesh("Cloud1.obj");
                             auto meshCloud2 = smgr->getMesh("Cloud2.obj");
                             auto meshCloud3 = smgr->getMesh("Cloud3.obj");
