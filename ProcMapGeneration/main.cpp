@@ -27,7 +27,7 @@ void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode 
     float yVal = sin(irr::core::degToRad(angle));
     float xVal = cos(irr::core::degToRad(angle));
     
-    float value = 100.f;
+    float value = 1.f;
     if (eventReceiver->keyPressed(irr::KEY_RIGHT) || eventReceiver->keyPressed(irr::KEY_KEY_D)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle - 90.f)), 0.f, value*sin(irr::core::degToRad(angle - 90.f))));
     if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f))));
     if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal, 0.f, value*yVal));
@@ -109,19 +109,25 @@ int main(int argc, char** argv) {
         }
     });
     
-    u32 then = device->getTimer()->getTime();
+    irr::gui::IGUIStaticText* fpsTextElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25, 140, 50), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1001, true);
+    irr::gui::IGUIStaticText* viewDistanceElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25, 140, 75), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1002, true);
+    int lastFPS = 0;
+    
 	while(device->run() && device) {
-        // Work out a frame delta time.
-        const u32 now = device->getTimer()->getTime();
-        f32 frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
-        then = now;
-        
-        frameDeltaTime = 0.02f;
-        
         tom::threading::manageMainthreadCallbacks();
-        
         manageInput(eventReceiver, player, cam2);
 
+        if (lastFPS != video->getFPS()) {
+            core::stringw str = L"FPS: ";
+            str += video->getFPS();
+            fpsTextElement->setText(str.c_str());
+            lastFPS = video->getFPS();
+        }
+        core::stringw str = L"View distance: ";
+        str += viewDistance;
+        viewDistanceElement->setText(str.c_str());
+        
+        
         auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / (chunkSizeAB-1), player->getPosition().Z / (chunkSizeAB-1));
 
 		for (auto ting : chunks) ting.second->setVisible(false);
@@ -148,24 +154,42 @@ int main(int argc, char** argv) {
                             auto meshCloud1 = smgr->getMesh("Cloud1.obj");
                             auto meshCloud2 = smgr->getMesh("Cloud2.obj");
                             auto meshCloud3 = smgr->getMesh("Cloud3.obj");
+                            
+                            auto meshRock1 = smgr->getMesh("Rock1.obj");
 
                             for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
                                 auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
                                 
                                 // BigTreeWithLeaves.obj
-                                if (rand()%100 == 1 && vertexPos.Y > 10.f && vertexPos.Y < 80.f) {
-                                    auto ran = rand()%3;
-                                    auto meshScene = smgr->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
-                                    meshScene->setPosition(vertexPos);
-                                    meshScene->setScale(irr::core::vector3df{6.f});
+                                if (rand()%100 == 1 && vertexPos.Y > 10.f) {
+                                    if (vertexPos.Y < 80.f) {
+                                        auto ran = rand()%3;
+                                        auto meshScene = smgr->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
+                                        meshScene->setPosition(vertexPos);
+                                        meshScene->setScale(irr::core::vector3df{6.f});
+                                        
+                                        meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
+                                        meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
+                                        
+                                        auto img = video->createImageFromFile(ran > 1 ? "BushTexture.png" : "TreeTexture.png");
+                                        meshScene->setMaterialTexture(0, video->addTexture(ran > 1 ? "BushTexture" : "TreeTexture", img));
+                                        
+                                        m->addChild(meshScene);
+                                    } else if (rand()%100 == 5) {
+                                        auto ran = rand()%3;
+                                        auto meshScene = smgr->addMeshSceneNode(ran == 0 ? meshRock1 : ran==1 ? meshRock1 : meshRock1);
+                                        vertexPos.Y -= 2.f;
+                                        meshScene->setPosition(vertexPos);
+                                        meshScene->setScale(irr::core::vector3df{16.f});
+                                        meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
+                                        meshScene->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+                                        meshScene->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING, true);
+                                        meshScene->setMaterialFlag(video::EMF_BLEND_FACTOR, true);
+                                        meshScene->getMaterial(0).ColorMask = 0x0;
+                                        meshScene->getMaterial(0).BlendFactor = 0.5f;
+                                        m->addChild(meshScene);
+                                    }
                                     
-                                    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
-                                    meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
-                                    
-                                    auto img = video->createImageFromFile(ran > 1 ? "BushTexture.png" : "TreeTexture.png");
-                                    meshScene->setMaterialTexture(0, video->addTexture(ran > 1 ? "BushTexture" : "TreeTexture", img));
-                                    
-                                    m->addChild(meshScene);
                                 }
                                 
                                 if (rand()%10000 == 123) {
@@ -192,6 +216,7 @@ int main(int argc, char** argv) {
 		
         video->beginScene(true, true, video::SColor(255,173,241,255));
         smgr->drawAll();
+        device->getGUIEnvironment()->drawAll();
 		video->endScene();
 	}
 	

@@ -8,8 +8,6 @@ uniform float time;
 
 void main(){
     gl_Position = ftransform();
-    gl_Position.x += mod(time/10000,1000.f);
-    gl_Position.z += mod(time/10000,1000.f);
 
     // pass through
     vertexWorldPos = gl_Vertex;

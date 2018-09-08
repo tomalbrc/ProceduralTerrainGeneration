@@ -32,6 +32,8 @@
 		9A8FB8B621430D2B00050186 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8FB8B521430D2B00050186 /* white.png */; };
 		9A8FB8B921430EA500050186 /* cloud.frag in Resources */ = {isa = PBXBuildFile; fileRef = 9A8FB8B721430EA400050186 /* cloud.frag */; };
 		9A8FB8BA21430EA500050186 /* cloud.vert in Resources */ = {isa = PBXBuildFile; fileRef = 9A8FB8B821430EA500050186 /* cloud.vert */; };
+		9AAD539021435C3200A56FB5 /* Rock1.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD538E21435C3200A56FB5 /* Rock1.mtl */; };
+		9AAD539121435C3200A56FB5 /* Rock1.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9AAD538F21435C3200A56FB5 /* Rock1.obj */; };
 		9AB696A6212F3B8F00E164C0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75F703212F3B5800E375B5 /* main.cpp */; };
 		9AB696AB212F3C0200E164C0 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AA212F3C0100E164C0 /* OpenGL.framework */; };
 		9AB696AD212F3C0600E164C0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AC212F3C0600E164C0 /* AppKit.framework */; };
@@ -95,6 +97,8 @@
 		9A8FB8B521430D2B00050186 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		9A8FB8B721430EA400050186 /* cloud.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = cloud.frag; path = Shader/cloud.frag; sourceTree = SOURCE_ROOT; };
 		9A8FB8B821430EA500050186 /* cloud.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = cloud.vert; path = Shader/cloud.vert; sourceTree = SOURCE_ROOT; };
+		9AAD538E21435C3200A56FB5 /* Rock1.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rock1.mtl; sourceTree = "<group>"; };
+		9AAD538F21435C3200A56FB5 /* Rock1.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rock1.obj; sourceTree = "<group>"; };
 		9AB696AA212F3C0100E164C0 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9AB696AC212F3C0600E164C0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9AB696B0212F3C7600E164C0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -163,6 +167,8 @@
 		9A8FB89F2142FC7900050186 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9AAD538E21435C3200A56FB5 /* Rock1.mtl */,
+				9AAD538F21435C3200A56FB5 /* Rock1.obj */,
 				9A8FB8912142FAEB00050186 /* BigTreeWithLeaves.mtl */,
 				9A8FB88B2142E9E000050186 /* BigTreeWithLeaves.obj */,
 				9A8FB8942142FC6900050186 /* Cloud1_.mtl */,
@@ -323,6 +329,7 @@
 				9A8FB8A1214301B200050186 /* TreeTexture.png in Resources */,
 				9A8FB89E2142FC6C00050186 /* Cloud2.obj in Resources */,
 				9A8FB8B121430AA700050186 /* file.vert in Resources */,
+				9AAD539121435C3200A56FB5 /* Rock1.obj in Resources */,
 				9A8FB8B221430AA700050186 /* tree.vert in Resources */,
 				9A8FB8A52143051700050186 /* SmallTreeWithLeave.obj in Resources */,
 				9A8FB8992142FC6C00050186 /* Cloud3.mtl in Resources */,
@@ -332,6 +339,7 @@
 				9A8FB89B2142FC6C00050186 /* Cloud3.obj in Resources */,
 				9A8FB8B921430EA500050186 /* cloud.frag in Resources */,
 				9A8FB8922142FAEB00050186 /* BigTreeWithLeaves.mtl in Resources */,
+				9AAD539021435C3200A56FB5 /* Rock1.mtl in Resources */,
 				9A8FB8AB2143052E00050186 /* BigBush.mtl in Resources */,
 				9A8FB89D2142FC6C00050186 /* Cloud2.mtl in Resources */,
 				9A8FB8B421430AA700050186 /* tree.frag in Resources */,
