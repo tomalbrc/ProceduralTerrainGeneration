@@ -12,9 +12,9 @@
 
 NoiseMap NoiseMapGenerator::Generate(irr::core::dimension2du size, irr::core::vector2di offset, unsigned seed, float scale) {
 
-    int octaves = 4;
-    float persistance = 0.25f;
-    float lacunarity = 4;
+    int octaves = 5;
+    float persistance = 0.2f;
+    float lacunarity = 3.5f;
     
     float frequency = 1.f;
     float amplitude = 1.f;
@@ -73,15 +73,12 @@ NoiseMap NoiseMapGenerator::Generate(irr::core::dimension2du size, irr::core::ve
             //auto newValue = (map[i][j] - minHeightMapValue) / (maxHeightMapValue - minHeightMapValue);
             // function to smooth everythgin out: f(x) = x^(1/x^3)
             //auto ttt = newValue;//pow(newValue, .5/newValue);
-
+            
             auto mapVal = map[i][j];
-            auto newValue = (mapVal+1.0) / (maxPossibleHeight*1.5);
-            //newValue = pow(newValue, 2.f);//1.f/newValue
-            auto ttt = irr::core::clamp<float>(newValue, 0, 1.f);
+            auto newValue = (mapVal+1.f) / (maxPossibleHeight*1.75f);
+            auto x = newValue;
+            auto ttt = irr::core::clamp<float>(x, 0.f, 1.f);
             ttt = pow(ttt, 1.f/ttt);
-            
-            
-            //printf("VAAL: %f (orig: %f)\n", ttt, map[i][j]);
             
             map[i][j] = ttt;
         }

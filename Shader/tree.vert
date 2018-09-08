@@ -9,10 +9,11 @@ uniform float time;
 void main(){
     gl_Position = ftransform();
     // water
-    float multi = (gl_Vertex.y/4.f); // 4.f == max model height (todo: set as callback)
-    float val = (multi*multi*time)/300.f;
-    gl_Position.x += sin(val)/4.f;
-    
+    float multi = (gl_Vertex.y/5.f); // 4.f == max model height (todo: set as callback)
+    float val = (multi*time*2)/300.f;
+    gl_Position.x += sin(val/10.f)*multi;
+    gl_Position.y += cos(val/8.f)*multi;
+
     // pass through
     gl_TexCoord[0] = gl_MultiTexCoord0;
     vertexWorldPos = gl_Vertex;

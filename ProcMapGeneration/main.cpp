@@ -47,8 +47,8 @@ int main(int argc, char** argv) {
     
     ISceneManager* smgr = device->getSceneManager();
     
-    float chunkSizeAB = 128.f;
-    auto ter2 = TerrainGenerator(irr::core::dimension2du{chunkSizeAB,chunkSizeAB}, 120.0, device);
+    float chunkSizeAB = 32.f;
+    auto ter2 = TerrainGenerator(irr::core::dimension2du{chunkSizeAB,chunkSizeAB}, 175.0, device);
     chunkSizeAB *= 6.f;
     
 	auto mainScene = smgr->addEmptySceneNode();
@@ -81,10 +81,9 @@ int main(int argc, char** argv) {
     ///
     
     auto shaderMaterialIDS = tom::setupShader(device);
-    auto myMat = shaderMaterialIDS.front();
     
-	int viewDistance = 4; // view distance as radius in chunks
-
+	int viewDistance = 8; // view distance as radius in chunks
+    
     u32 then = device->getTimer()->getTime();
 	while(device->run() && device) {
         // Work out a frame delta time.
@@ -120,11 +119,12 @@ int main(int argc, char** argv) {
 		newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
 		cam2->setPosition(newPosition);
 
-		auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / chunkSizeAB, player->getPosition().Z / chunkSizeAB);
+        auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / (chunkSizeAB-1), player->getPosition().Z / (chunkSizeAB-1));
 
 		for (auto ting : chunks) ting.second->setVisible(false);
 		for (int y = -viewDistance; y <= viewDistance; y++) {
 			for (int x = -viewDistance; x <= viewDistance; x++) {
+                if (sqrt(pow(x, 2.f)+pow(y, 2.f)) > (float)viewDistance)  continue;
 
 				auto key = irr::core::vector2di(x, y) + playerChunkLoc;
 				bool hasKey = false;
@@ -152,7 +152,7 @@ int main(int argc, char** argv) {
                                 auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
                                 
                                 // BigTreeWithLeaves.obj
-                                if (rand()%100 == 1 && vertexPos.Y > 30.f && vertexPos.Y < 80.f) {
+                                if (rand()%100 == 1 && vertexPos.Y > 10.f && vertexPos.Y < 80.f) {
                                     auto ran = rand()%3;
                                     auto meshScene = smgr->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
                                     meshScene->setPosition(vertexPos);
