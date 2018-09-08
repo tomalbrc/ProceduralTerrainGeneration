@@ -95,7 +95,6 @@
 		9A8FB8B521430D2B00050186 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		9A8FB8B721430EA400050186 /* cloud.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = cloud.frag; path = Shader/cloud.frag; sourceTree = SOURCE_ROOT; };
 		9A8FB8B821430EA500050186 /* cloud.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = cloud.vert; path = Shader/cloud.vert; sourceTree = SOURCE_ROOT; };
-		9A8FB8BC21434C0200050186 /* post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = post.h; path = Shared/post.h; sourceTree = SOURCE_ROOT; };
 		9AB696AA212F3C0100E164C0 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9AB696AC212F3C0600E164C0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9AB696B0212F3C7600E164C0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -153,7 +152,6 @@
 				9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */,
 				9AEEFC41213F58AF005B4CC6 /* Utils.h */,
 				9AEEFC43214036A8005B4CC6 /* Utils.cpp */,
-				9A8FB8BC21434C0200050186 /* post.h */,
 				9AB696B4212F3D1F00E164C0 /* External */,
 				9A8FB8AC21430A9400050186 /* Shader */,
 				9A8FB89F2142FC7900050186 /* Models */,

@@ -2,7 +2,7 @@
 //  TerrainGenerator.hpp
 //  ProcMapGeneration-macOS
 //
-//  Created by Mac ERPA on 27.08.18.
+//  Created by Tom Albrecht on 27.08.18.
 //  Copyright © 2018 Tom Albrecht. All rights reserved.
 //
 
