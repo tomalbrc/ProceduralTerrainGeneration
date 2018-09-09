@@ -6,7 +6,7 @@
 //  Copyright © 2018 Tom Albrecht. All rights reserved.
 //
 
-#include "MapControlEventReceiver.hpp"
+#include "MapControlEventReceiver.h"
 
 MapControlEventReceiver::MapControlEventReceiver() {
     for (int x = 0; x < irr::KEY_KEY_CODES_COUNT; x++) m_keys[x] = false;

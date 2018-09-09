@@ -29,7 +29,7 @@ public:
      * @param chunkLocation The offset of the chunk
      */
     irr::scene::IMeshSceneNode *getMeshAt(irr::core::vector2di chunkLocation);
-    irr::scene::IMeshSceneNode* getMeshAt(irr::core::vector2di chunkLocation, const std::function<void(irr::scene::IMeshSceneNode*)> & completion);
+    irr::scene::IMeshSceneNode* getMeshAt(irr::core::vector2di chunkLocation, const std::function<void(irr::scene::IMeshSceneNode*,irr::core::vector2di)> & completion);
 
 	irr::video::IImage *_image;
 	irr::video::IImage *_heightmap;

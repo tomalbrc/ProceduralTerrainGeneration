@@ -6,7 +6,7 @@
 //  Copyright © 2018 Tom Albrecht. All rights reserved.
 //
 
-#include "TerrainGenerator.hpp"
+#include "TerrainGenerator.h"
 #include "ColorSelector.hpp"
 #include <random>
 #include <future>
@@ -65,7 +65,7 @@ TerrainGenerator::TerrainGenerator(irr::core::dimension2du chunkSize, float terr
     m_terrainHeight = terrainHeight;
 }
 
-irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function<void(irr::scene::IMeshSceneNode*)> &completion) {
+irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function<void(irr::scene::IMeshSceneNode*, irr::core::vector2di)> &completion) {
     
     auto noiseScale = 300.f;
     auto offset = irr::core::vector2di{chunkLocation.X*((int)m_chunkSize.Width-1), chunkLocation.Y*((int)m_chunkSize.Height-1)};
@@ -78,7 +78,7 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
 //	_image = image;
 	_heightmap = imageHeightmap;
     
-    tom::threading::addMainCallback([offset = std::move(offset), m_device = m_device, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
+    tom::threading::addMainCallback([key = std::move(chunkLocation), offset = std::move(offset), m_device = m_device, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
         auto quadScale = irr::core::dimension2df{1.f,1.f}*6.f;
         auto geomentryCreator = m_device->getSceneManager()->getGeometryCreator();
         auto terrain = geomentryCreator->createTerrainMesh(imageHeightmap, imageHeightmap, quadScale, m_terrainHeight*4.f, m_device->getVideoDriver(), m_chunkSize*2.0 , false);
@@ -91,7 +91,7 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
         auto msn = m_device->getSceneManager()->addMeshSceneNode(terrain);
         msn->setPosition(irr::core::vector3df{(float)offset.X*quadScale.Width, 0,(float)offset.Y*quadScale.Height});
         
-        completion(msn);
+        completion(msn, key);
     });
     
     return nullptr;
