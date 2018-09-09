@@ -34,7 +34,8 @@ private:
     
     irr::gui::IGUIStaticText* fpsTextElement;
     irr::gui::IGUIStaticText* viewDistanceElement;
-    
+    irr::gui::IGUIStaticText* coordsElement;
+
     MapControlEventReceiver *eventReceiver;
     
     int lastFPS;

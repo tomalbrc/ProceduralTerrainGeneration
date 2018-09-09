@@ -11,6 +11,7 @@
 #include "TerrainShaderCallback.h"
 #include "TerrainGenerator.h"
 #include "Utils.h"
+#include <cmath>
 
 using namespace irr;
 using namespace irr::scene;
@@ -37,7 +38,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     
     player = smgr->addCubeSceneNode(2.5f);
     player->setScale(irr::core::vector3df{1, 1, 1});
-    player->setPosition(irr::core::vector3df{400,400,400});
+    player->setPosition(irr::core::vector3df{4000,400,4000});
     
     cam2 = smgr->addCameraSceneNode();
     cam2->setPosition(irr::core::vector3df(0, 0, -10));
@@ -51,6 +52,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     player->addChild(light);
     
     shaderMaterialIDS = tom::setupShader(device);
+    player->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
     
     eventReceiver->setPressedKeyHandler([this](irr::EKEY_CODE kc){
         if (kc == irr::KEY_KEY_N) {
@@ -87,32 +89,38 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     
     fpsTextElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25, 140, 50), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1001, true);
     viewDistanceElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25, 140, 75), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1002, true);
+    coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25+25, 140+115, 75+25), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
     lastFPS = 0;
 }
 
 
 
 void WorldScene::update(double dt) {
-    tom::threading::manageMainthreadCallbacks();
     manageInput(eventReceiver, player, cam2);
 
     updateFPSCounter();
     
-    auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / ((int)chunkSizeAB-6.f), player->getPosition().Z / ((int)chunkSizeAB-6.f));
+    // TODO: Fix this negative-chunk-no-gravity bug... Position the player far out for now...
+    bool negX = player->getPosition().X < 0.f;
+    bool negY = player->getPosition().Z < 0.f;
+    auto playerChunkLoc = irr::core::vector2di(negX ? fabs(ceil(player->getPosition().X))*-1.f : player->getPosition().X / ((int)chunkSizeAB+(-6.f)), (negX ? fabs(ceil(player->getPosition().Z))*-1.f : player->getPosition().Z) / ((int)chunkSizeAB+(-6.f)));
     bool hasKey = false;
     for (auto ting : chunks) if (playerChunkLoc.equals(ting.first)) hasKey = true;
     
+    
+        
     if (!playerChunkLoc.equals(lastCollisionLoc) && hasKey && !chunks[playerChunkLoc]->isDebugObject()) {
         lastCollisionLoc = playerChunkLoc;
         player->removeAnimators();
         ///----------
         printf("Chunks location: %d %d", playerChunkLoc.X, playerChunkLoc.Y);
         scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(chunks[playerChunkLoc]->getTriangleSelector(), player, core::vector3df(2.5f),
-                                                                                core::vector3df(0,-50.f,0), core::vector3df(0), 0.0005f);
+                                                                                core::vector3df(0,-50.f,0), core::vector3df(0), 0.02f);
         player->addAnimator(anim);
         anim->drop();
         ///----------
     }
+    
     
     for (auto ting : chunks) if (ting.second) ting.second->setVisible(false);
     for (int y = -viewDistance; y <= viewDistance; y++) {
@@ -136,10 +144,10 @@ void WorldScene::update(double dt) {
 }
 
 void WorldScene::render() {
-    m_device->getVideoDriver()->beginScene(true, true, video::SColor(255,173,241,255));
-    m_device->getSceneManager()->drawAll();
+    device()->getVideoDriver()->beginScene(true, true, video::SColor(255,173,241,255));
+    device()->getSceneManager()->drawAll();
     device()->getGUIEnvironment()->drawAll();
-    m_device->getVideoDriver()->endScene();
+    device()->getVideoDriver()->endScene();
 }
 
 
@@ -185,6 +193,14 @@ void WorldScene::updateFPSCounter() {
     core::stringw str = L"View distance: ";
     str += viewDistance;
     viewDistanceElement->setText(str.c_str());
+
+    core::stringw str2 = L"Coords: ";
+    str2 += player->getPosition().X;
+    str2 += L", ";
+    str2 += player->getPosition().Y;
+    str2 += L", ";
+    str2 += player->getPosition().Z;
+    coordsElement->setText(str2.c_str());
 }
 
 
