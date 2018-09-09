@@ -19,6 +19,11 @@ using namespace irr;
 using namespace irr::scene;
 using namespace irr::video;
 
+static const char *kTreeTexturePath = "models/TreeTexture.png";
+static const char *kBushTexturePath = "models/BushTexture.png";
+static const char *kCloudTexturePath = "models/white.png";
+static const char *kRockTexturePath = "models/rock.png";
+
 void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2) {
     auto x = eventReceiver->mouseInformation().x;
     auto screenW = (1920 * 0.75f);
@@ -27,7 +32,7 @@ void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode 
     float yVal = sin(irr::core::degToRad(angle));
     float xVal = cos(irr::core::degToRad(angle));
     
-    float value = 1.f;
+    float value = eventReceiver->keyPressed(irr::KEY_KEY_E) ? 20.f : 1.f;
     if (eventReceiver->keyPressed(irr::KEY_RIGHT) || eventReceiver->keyPressed(irr::KEY_KEY_D)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle - 90.f)), 0.f, value*sin(irr::core::degToRad(angle - 90.f))));
     if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f))));
     if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal, 0.f, value*yVal));
@@ -60,7 +65,6 @@ int main(int argc, char** argv) {
         params.DriverMultithreaded = true;
         return params;
     }();
-    
     
     
     IrrlichtDevice *device = irr::createDeviceEx(params);
@@ -148,14 +152,13 @@ int main(int argc, char** argv) {
                             chunks.get()[key]->remove();
                             chunks.get()[key] = m;
                             
-                            auto mesh = smgr->getMesh("BigTreeWithLeaves.obj");
-                            auto mesh2 = smgr->getMesh("SmallTreeWithLeave.obj");
-                            auto meshBush = smgr->getMesh("BigBush.obj");
-                            auto meshCloud1 = smgr->getMesh("Cloud1.obj");
-                            auto meshCloud2 = smgr->getMesh("Cloud2.obj");
-                            auto meshCloud3 = smgr->getMesh("Cloud3.obj");
-                            
-                            auto meshRock1 = smgr->getMesh("Rock1.obj");
+                            auto mesh = smgr->getMesh("models/BigTreeWithLeaves.obj");
+                            auto mesh2 = smgr->getMesh("models/SmallTreeWithLeave.obj");
+                            auto meshBush = smgr->getMesh("models/BigBush.obj");
+                            auto meshCloud1 = smgr->getMesh("models/Cloud1.obj");
+                            auto meshCloud2 = smgr->getMesh("models/Cloud2.obj");
+                            auto meshCloud3 = smgr->getMesh("models/Cloud3.obj");
+                            auto meshRock1 = smgr->getMesh("models/Rock1.obj");
 
                             for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
                                 auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
@@ -171,25 +174,23 @@ int main(int argc, char** argv) {
                                         meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
                                         meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
                                         
-                                        auto img = video->createImageFromFile(ran > 1 ? "BushTexture.png" : "TreeTexture.png");
-                                        meshScene->setMaterialTexture(0, video->addTexture(ran > 1 ? "BushTexture" : "TreeTexture", img));
+                                        auto img = video->createImageFromFile(ran > 1 ? kBushTexturePath : kTreeTexturePath);
+                                        meshScene->setMaterialTexture(0, video->addTexture(ran > 1 ? kBushTexturePath : kTreeTexturePath, img));
                                         
                                         m->addChild(meshScene);
                                     } else if (rand()%100 == 5) {
                                         auto ran = rand()%3;
                                         auto meshScene = smgr->addMeshSceneNode(ran == 0 ? meshRock1 : ran==1 ? meshRock1 : meshRock1);
-                                        vertexPos.Y -= 2.f;
+                                        vertexPos.Y -= 6.f;
                                         meshScene->setPosition(vertexPos);
-                                        meshScene->setScale(irr::core::vector3df{16.f});
+                                        meshScene->setScale(irr::core::vector3df{10.f});
                                         meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
-                                        meshScene->setMaterialFlag(irr::video::EMF_LIGHTING, true);
-                                        meshScene->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING, true);
-                                        meshScene->setMaterialFlag(video::EMF_BLEND_FACTOR, true);
-                                        meshScene->getMaterial(0).ColorMask = 0x0;
-                                        meshScene->getMaterial(0).BlendFactor = 0.5f;
+                                        meshScene->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING, false);
+                                        meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
+                                        auto img = video->createImageFromFile(kRockTexturePath);
+                                        meshScene->setMaterialTexture(0, video->addTexture(kRockTexturePath, img));
                                         m->addChild(meshScene);
                                     }
-                                    
                                 }
                                 
                                 if (rand()%10000 == 123) {
@@ -201,13 +202,11 @@ int main(int argc, char** argv) {
                                     meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
                                     meshScene->setMaterialFlag(video::EMF_GOURAUD_SHADING, false);
                                     meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
-                                    auto img = video->createImageFromFile("white.png");
-                                    meshScene->setMaterialTexture(0, video->addTexture("white", img));
+                                    auto img = video->createImageFromFile(kCloudTexturePath);
+                                    meshScene->setMaterialTexture(0, video->addTexture(kCloudTexturePath, img));
                                     m->addChild(meshScene);
                                 }
-                                
                             }
-                            
                         });
                     });
 				}
