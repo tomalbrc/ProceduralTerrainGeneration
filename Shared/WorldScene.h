@@ -35,6 +35,8 @@ private:
     irr::gui::IGUIStaticText* viewDistanceElement;
     irr::gui::IGUIStaticText* coordsElement;
     
+    irr::scene::IMetaTriangleSelector *metaTriangleSelector;
+    
     MapControlEventReceiver *eventReceiver;
     
     int lastFPS;
@@ -56,6 +58,12 @@ private:
     void updateFPSCounter();
 	void updateCollisionAnimator(const irr::core::vector2di & playerChunkLoc);
 
+    // RC
+    irr::video::SMaterial triangleMaterial;
+    void raycast();
+    // !RC
+    
+    
     // callback for multi-threaded terrain generation
     void terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::core::vector2di key);
     

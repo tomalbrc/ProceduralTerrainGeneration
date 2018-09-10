@@ -76,18 +76,36 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     fpsTextElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25, 140, 50), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1001, true);
     viewDistanceElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25, 140, 75), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1002, true);
     coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25+25, 140+115, 75+25), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
+
+    triangleMaterial.Lighting = false;
+    triangleMaterial.Wireframe = true;
 }
 
-void raycast() {
+void WorldScene::raycast() {
+    line3df ray;
+    ray.start = player->getPosition();
+    ray.end = player->getPosition() + vector3df(cos(degToRad(-player->getRotation().Y))*1000.f,0,sin(degToRad(-player->getRotation().Y))*1000.f);
+    
+    vector3df collisionPoint;
+    triangle3df selectedTriangle;
+    
+    auto collMan = device()->getSceneManager()->getSceneCollisionManager();
+    auto selectedScene = collMan->getSceneNodeAndCollisionPointFromRay(ray, collisionPoint, selectedTriangle);
 
+    if(selectedScene) {
+        // We need to reset the transform before doing our own rendering.
+        device()->getVideoDriver()->setTransform(video::ETS_WORLD, core::matrix4());
+        device()->getVideoDriver()->setMaterial(triangleMaterial);
+        device()->getVideoDriver()->draw3DTriangle(selectedTriangle, video::SColor(0,255,0,0));
+        device()->getVideoDriver()->draw3DLine(player->getPosition(), collisionPoint);
+    }
 }
+
 void WorldScene::update(double dt) {
     manageInput(eventReceiver, player, cam2);
 
     updateFPSCounter();
     
-	raycast();
-
     auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / ((chunkSizeAB-1)*quadScale), player->getPosition().Z / ((chunkSizeAB - 1)*quadScale));
     bool hasKey = false;
     for (auto ting : chunks) if (playerChunkLoc.equals(ting.first)) hasKey = true;
@@ -121,6 +139,7 @@ void WorldScene::render() {
     m_device->getVideoDriver()->beginScene(true, true, video::SColor(255,173,241,255));
     m_device->getSceneManager()->drawAll();
     device()->getGUIEnvironment()->drawAll();
+    raycast();
     m_device->getVideoDriver()->endScene();
 }
 
