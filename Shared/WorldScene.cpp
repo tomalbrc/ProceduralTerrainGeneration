@@ -81,7 +81,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25+25, 140+115, 75+25), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
     
     triangleMaterial.Lighting = false;
-    triangleMaterial.Wireframe = false;
+    triangleMaterial.Wireframe = true;
     
 }
 
@@ -121,7 +121,7 @@ void WorldScene::render() {
     m_device->getVideoDriver()->beginScene(true, true, video::SColor(255,173,241,255));
     m_device->getSceneManager()->drawAll();
     device()->getGUIEnvironment()->drawAll();
-    raycast();
+    if (eventReceiver->mouseInformation().clickedLeft) raycast();
     m_device->getVideoDriver()->endScene();
 }
 
@@ -203,7 +203,7 @@ void WorldScene::raycast() {
         // We need to reset the transform before doing our own rendering.
         device()->getVideoDriver()->setTransform(video::ETS_WORLD, core::matrix4());
         device()->getVideoDriver()->setMaterial(triangleMaterial);
-        device()->getVideoDriver()->draw3DTriangle(selectedTriangle, video::SColor(255,105,180,0));
+        device()->getVideoDriver()->draw3DTriangle(selectedTriangle, video::SColor(0,255,105,180));
         device()->getVideoDriver()->draw3DLine(player->getPosition(), collisionPoint);
     }
 }
@@ -257,6 +257,7 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
     
     if (ran != 2) {
         scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(meshScene->getMesh(), meshScene);
+        meshScene->setTriangleSelector(selector);
         worldTriangleSelector->addTriangleSelector(selector);
     }
 }
