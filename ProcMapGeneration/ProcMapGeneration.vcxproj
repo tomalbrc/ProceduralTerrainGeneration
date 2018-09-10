@@ -18,12 +18,34 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Shared\IrrScene.cpp" />
+    <ClCompile Include="..\Shared\main.cpp" />
+    <ClCompile Include="..\Shared\MapControlEventReceiver.cpp" />
+    <ClCompile Include="..\Shared\NoiseMapGenerator.cpp" />
+    <ClCompile Include="..\Shared\TerrainGenerator.cpp" />
+    <ClCompile Include="..\Shared\TerrainShaderCallback.cpp" />
+    <ClCompile Include="..\Shared\Utils.cpp" />
+    <ClCompile Include="..\Shared\WorldScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Shared\bitmap_image.h" />
+    <ClInclude Include="..\Shared\ColorSelector.hpp" />
+    <ClInclude Include="..\Shared\IrrScene.h" />
+    <ClInclude Include="..\Shared\MapControlEventReceiver.h" />
+    <ClInclude Include="..\Shared\NoiseMapGenerator.h" />
+    <ClInclude Include="..\Shared\PerlinNoise.hpp" />
+    <ClInclude Include="..\Shared\TerrainGenerator.h" />
+    <ClInclude Include="..\Shared\TerrainShaderCallback.h" />
+    <ClInclude Include="..\Shared\Utils.h" />
+    <ClInclude Include="..\Shared\WorldScene.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{9CC52C8A-D7AF-49DA-8C7D-F84D046585CA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ProcMapGeneration</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -116,6 +138,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <CustomBuildStep>
+      <Command>xcopy /y $(ProjectDir)..\irrlicht-1.8.4\bin\Win64-VisualStudio\Irrlicht.dll $(OutDir);
+xcopy /y $(ProjectDir)Shared\shader  $(OutDir);
+xcopy /y $(ProjectDir)Shared\models  $(OutDir);
+</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -153,33 +181,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Shared\MapControlEventReceiver.hpp" />
-    <ClInclude Include="..\Shared\NoiseMapGenerator.h" />
-    <ClInclude Include="..\Shared\PerlinNoise.hpp" />
-    <ClInclude Include="..\Shared\TerrainGenerator.hpp" />
-    <ClInclude Include="..\Shared\TerrainShaderCallback.h" />
-    <ClInclude Include="..\Shared\Utils.h" />
-    <ClInclude Include="bitmap_image.h" />
-    <ClInclude Include="ColorSelector.hpp" />
-    <ClInclude Include="Map.hpp" />
-    <ClInclude Include="Mesh.hpp" />
-    <ClInclude Include="MeshTexture.hpp" />
-    <ClInclude Include="Noise.hpp" />
-    <ClInclude Include="Perlin.h" />
-    <ClInclude Include="Types.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\Shared\MapControlEventReceiver.cpp" />
-    <ClCompile Include="..\Shared\NoiseMapGenerator.cpp" />
-    <ClCompile Include="..\Shared\TerrainGenerator.cpp" />
-    <ClCompile Include="..\Shared\TerrainShaderCallback.cpp" />
-    <ClCompile Include="..\Shared\Utils.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Perlin.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

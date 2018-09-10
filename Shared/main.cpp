@@ -31,7 +31,6 @@ int main(int argc, char** argv) {
     WorldScene ws{device};
     while(device->run() && device) {
         tom::threading::manageMainthreadCallbacks();
-
         ws.update(0);
         ws.render();
     }

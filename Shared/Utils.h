@@ -58,7 +58,7 @@ namespace tom {
     /// game utils
     ///
     
-    static std::vector<irr::s32> setupShader(irr::IrrlichtDevice *device) {
+    static std::vector<irr::s32> setupShader(irr::IrrlichtDevice *device, const irr::core::vector2df& chunkSize, const float& quadScale) {
         std::vector<irr::s32> res;
         
         irr::video::IGPUProgrammingServices *gps = device->getVideoDriver()->getGPUProgrammingServices();
@@ -66,6 +66,8 @@ namespace tom {
             const irr::video::E_GPU_SHADING_LANGUAGE shadingLanguage = EGSL_DEFAULT;
             
             auto mc = new TerrainShaderCallback{ device };
+			mc->chunkSize(chunkSize);
+			mc->quadScale(quadScale);
             
             irr::s32 matType1 = gps->addHighLevelShaderMaterialFromFiles(
                                                                      "shader/terrain.vert", "main", video::EVST_VS_1_1,

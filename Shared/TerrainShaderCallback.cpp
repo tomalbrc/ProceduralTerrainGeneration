@@ -18,6 +18,21 @@ TerrainShaderCallback::TerrainShaderCallback(irr::IrrlichtDevice *device) : irr:
     m_device = device;
 }
 
+const irr::core::vector2df& TerrainShaderCallback::chunkSize() const {
+	return m_chunkSize;
+}
+
+void TerrainShaderCallback::chunkSize(const irr::core::vector2df & chunkSize) {
+	m_chunkSize = chunkSize;
+}
+
+const float& TerrainShaderCallback::quadScale() const {
+	return m_quadScale;
+}
+void TerrainShaderCallback::quadScale(const float & quadScale) {
+	m_quadScale = quadScale;
+}
+
 void TerrainShaderCallback::OnSetMaterial(const irr::video::SMaterial &material) {
     m_material = material;
     m_material.GouraudShading = false;
@@ -28,4 +43,7 @@ void TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices
     
     float time = (float)m_device->getTimer()->getTime();
     services->setVertexShaderConstant("time", &time, 1);
+
+	services->setVertexShaderConstant("chunkSize", reinterpret_cast<f32*>(&m_chunkSize), 2);
+	services->setVertexShaderConstant("quadScale", reinterpret_cast<f32*>(&m_quadScale), 1);
 }

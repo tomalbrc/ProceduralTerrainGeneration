@@ -7,6 +7,7 @@
 //
 
 #include "IrrScene.h"
+#include <assert.h>
 
 IrrScene::IrrScene(irr::IrrlichtDevice *device) : m_device{device} {
     assert(m_device);
