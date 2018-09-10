@@ -11,6 +11,7 @@
 #include "TerrainShaderCallback.h"
 #include "TerrainGenerator.h"
 #include "Utils.h"
+#include "IMetaTriangleSelector.h"
 
 using namespace irr;
 using namespace irr::scene;
@@ -33,6 +34,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     
     terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, 175.0, device);
     
+    worldTriangleSelector = this->device()->getSceneManager()->createMetaTriangleSelector();
     mainScene = smgr->addEmptySceneNode();
     
     player = smgr->addCubeSceneNode(2.5f);
@@ -40,7 +42,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     player->setPosition(kPlayerSpawnPosition);
     
     cam2 = smgr->addCameraSceneNode();
-    cam2->setPosition(irr::core::vector3df(0, 0, -10));
+    cam2->setPosition(kPlayerSpawnPosition);
     mainScene->addChild(cam2);
     
     auto light = smgr->addLightSceneNode();
@@ -51,6 +53,9 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     player->addChild(light);
     
     shaderMaterialIDS = tom::setupShader(device, vector2df(chunkSizeAB), quadScale);
+    
+    // give player a collision animator with worldTriangleSelector as tri selector
+    setupCollisionAnimator();
     
     eventReceiver->setPressedKeyHandler([this](irr::EKEY_CODE kc){
         if (kc == irr::KEY_KEY_N) {
@@ -71,34 +76,13 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
         }
     });
     
-    lastCollisionLoc = vector2di{-101,-101};
-    
     fpsTextElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25, 140, 50), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1001, true);
     viewDistanceElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25, 140, 75), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1002, true);
     coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(25, 25+25+25, 140+115, 75+25), true, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
-
+    
     triangleMaterial.Lighting = false;
-    triangleMaterial.Wireframe = true;
-}
-
-void WorldScene::raycast() {
-    line3df ray;
-    ray.start = player->getPosition();
-    ray.end = player->getPosition() + vector3df(cos(degToRad(-player->getRotation().Y))*1000.f,0,sin(degToRad(-player->getRotation().Y))*1000.f);
+    triangleMaterial.Wireframe = false;
     
-    vector3df collisionPoint;
-    triangle3df selectedTriangle;
-    
-    auto collMan = device()->getSceneManager()->getSceneCollisionManager();
-    auto selectedScene = collMan->getSceneNodeAndCollisionPointFromRay(ray, collisionPoint, selectedTriangle);
-
-    if(selectedScene) {
-        // We need to reset the transform before doing our own rendering.
-        device()->getVideoDriver()->setTransform(video::ETS_WORLD, core::matrix4());
-        device()->getVideoDriver()->setMaterial(triangleMaterial);
-        device()->getVideoDriver()->draw3DTriangle(selectedTriangle, video::SColor(0,255,0,0));
-        device()->getVideoDriver()->draw3DLine(player->getPosition(), collisionPoint);
-    }
 }
 
 void WorldScene::update(double dt) {
@@ -108,13 +92,11 @@ void WorldScene::update(double dt) {
     
     auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / ((chunkSizeAB-1)*quadScale), player->getPosition().Z / ((chunkSizeAB - 1)*quadScale));
     bool hasKey = false;
-    for (auto ting : chunks) if (playerChunkLoc.equals(ting.first)) hasKey = true;
     
-    if (!playerChunkLoc.equals(lastCollisionLoc) && hasKey && !chunks[playerChunkLoc]->isDebugObject()) {
-		updateCollisionAnimator(playerChunkLoc);
+    for (auto ting : chunks) {
+        if (ting.second) ting.second->setVisible(false);
+        if (playerChunkLoc.equals(ting.first)) hasKey = true;
     }
-    
-    for (auto ting : chunks) if (ting.second) ting.second->setVisible(false);
     for (int y = -viewDistance; y <= viewDistance; y++) {
         for (int x = -viewDistance; x <= viewDistance; x++) {
             if (sqrt(pow(x, 2.f)+pow(y, 2.f)) > (float)viewDistance)  continue;
@@ -196,17 +178,36 @@ void WorldScene::updateFPSCounter() {
     coordsElement->setText(str2.c_str());
 }
 
-void WorldScene::updateCollisionAnimator(const irr::core::vector2di & playerChunkLoc) {
-	lastCollisionLoc = playerChunkLoc;
+void WorldScene::setupCollisionAnimator() {
 	player->removeAnimators();
 	///----------
-	printf("Chunks location: %d %d\n", playerChunkLoc.X, playerChunkLoc.Y);
-	scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(chunks[playerChunkLoc]->getTriangleSelector(), player, core::vector3df(2.5f),
+	scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(worldTriangleSelector, player, core::vector3df(2.5f),
 		core::vector3df(0, -10.f, 0), core::vector3df(0), .001f);
 	player->addAnimator(anim);
 	anim->drop();
 	///----------
 }
+
+void WorldScene::raycast() {
+    line3df ray;
+    ray.start = player->getPosition();
+    ray.end = player->getPosition() + vector3df(cos(degToRad(-player->getRotation().Y))*1000.f,0,sin(degToRad(-player->getRotation().Y))*1000.f);
+    
+    vector3df collisionPoint;
+    triangle3df selectedTriangle;
+    
+    auto collMan = device()->getSceneManager()->getSceneCollisionManager();
+    auto selectedScene = collMan->getSceneNodeAndCollisionPointFromRay(ray, collisionPoint, selectedTriangle);
+    
+    if (selectedScene) {
+        // We need to reset the transform before doing our own rendering.
+        device()->getVideoDriver()->setTransform(video::ETS_WORLD, core::matrix4());
+        device()->getVideoDriver()->setMaterial(triangleMaterial);
+        device()->getVideoDriver()->draw3DTriangle(selectedTriangle, video::SColor(255,105,180,0));
+        device()->getVideoDriver()->draw3DLine(player->getPosition(), collisionPoint);
+    }
+}
+
 
 void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::core::vector2di key) {
     mainScene->addChild(m);
@@ -214,49 +215,59 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     chunks[key]->remove();
     chunks[key] = m;
     
-    scene::ITriangleSelector* selector = m_device->getSceneManager()->createOctreeTriangleSelector(m->getMesh(), m);
+    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(m->getMesh(), m);
     m->setTriangleSelector(selector);
-    
-    auto mesh = m_device->getSceneManager()->getMesh("models/BigTreeWithLeaves.obj");
-    auto mesh2 = m_device->getSceneManager()->getMesh("models/SmallTreeWithLeave.obj");
-    auto meshBush = m_device->getSceneManager()->getMesh("models/BigBush.obj");
-    
+    worldTriangleSelector->addTriangleSelector(selector);
+    selector->drop();
+
     for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
         auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
         
         // BigTreeWithLeaves.obj
         if (rand()%100 == 1 && vertexPos.Y > 10.f) {
             if (vertexPos.Y < 80.f) {
-                auto ran = rand()%3;
-                auto meshScene = m_device->getSceneManager()->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
-                meshScene->setPosition(vertexPos);
-                meshScene->setScale(irr::core::vector3df{6.f});
-                
-                meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
-                meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
-                
-                auto img = m_device->getVideoDriver()->createImageFromFile(ran > 1 ? kBushTexturePath : kTreeTexturePath);
-                meshScene->setMaterialTexture(0, m_device->getVideoDriver()->addTexture(ran > 1 ? kBushTexturePath : kTreeTexturePath, img));
-                
-                m->addChild(meshScene);
+                addPlant(vertexPos, m);
             } else if (rand()%100 == 5) {
-                
+                addRock(vertexPos, m);
             }
         }
         
-        if (rand()%10000 == 123) {
-            addCloud(vertexPos, m);
-        } // Randcom clouds
+        if (rand()%10000 == 123) addCloud(vertexPos, m); // Random clouds
     } // Vertex for loop
 }
 
-void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::IMeshSceneNode *parent) {
-    auto meshCloud1 = m_device->getSceneManager()->getMesh("models/Cloud1.obj");
-    auto meshCloud2 = m_device->getSceneManager()->getMesh("models/Cloud2.obj");
-    auto meshCloud3 = m_device->getSceneManager()->getMesh("models/Cloud3.obj");
+
+void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
+    auto mesh = device()->getSceneManager()->getMesh("models/BigTreeWithLeaves.obj");
+    auto mesh2 = device()->getSceneManager()->getMesh("models/SmallTreeWithLeave.obj");
+    auto meshBush = device()->getSceneManager()->getMesh("models/BigBush.obj");
     
     auto ran = rand()%3;
-    auto meshScene = m_device->getSceneManager()->addMeshSceneNode(ran == 0 ? meshCloud1 : ran==1 ? meshCloud2 : meshCloud3);
+    auto meshScene = device()->getSceneManager()->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
+    meshScene->setPosition(vertexPos);
+    meshScene->setScale(irr::core::vector3df{6.f});
+    
+    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
+    meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
+    
+    auto img = device()->getVideoDriver()->createImageFromFile(ran > 1 ? kBushTexturePath : kTreeTexturePath);
+    meshScene->setMaterialTexture(0, device()->getVideoDriver()->addTexture(ran > 1 ? kBushTexturePath : kTreeTexturePath, img));
+    
+    parent->addChild(meshScene);
+    
+    if (ran != 2) {
+        scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(meshScene->getMesh(), meshScene);
+        worldTriangleSelector->addTriangleSelector(selector);
+    }
+}
+
+void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
+    auto meshCloud1 = device()->getSceneManager()->getMesh("models/Cloud1.obj");
+    auto meshCloud2 = device()->getSceneManager()->getMesh("models/Cloud2.obj");
+    auto meshCloud3 = device()->getSceneManager()->getMesh("models/Cloud3.obj");
+    
+    auto ran = rand()%3;
+    auto meshScene = device()->getSceneManager()->addMeshSceneNode(ran == 0 ? meshCloud1 : ran==1 ? meshCloud2 : meshCloud3);
     vertexPos.Y = 600.f;
     meshScene->setPosition(vertexPos);
     meshScene->setScale(irr::core::vector3df{70.f});
@@ -268,7 +279,7 @@ void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::IMeshSceneNode 
     parent->addChild(meshScene);
 }
 
-void WorldScene::addRock(core::vector3df vertexPos, irr::scene::IMeshSceneNode *parent) {
+void WorldScene::addRock(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
     auto meshRock1 = m_device->getSceneManager()->getMesh("models/Rock1.obj");
 
     auto ran = rand()%3;
@@ -282,4 +293,8 @@ void WorldScene::addRock(core::vector3df vertexPos, irr::scene::IMeshSceneNode *
     auto img = m_device->getVideoDriver()->createImageFromFile(kRockTexturePath);
     meshScene->setMaterialTexture(0, m_device->getVideoDriver()->addTexture(kRockTexturePath, img));
     parent->addChild(meshScene);
+    
+    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(meshScene->getMesh(), meshScene);
+    meshScene->setTriangleSelector(selector);
+    worldTriangleSelector->addTriangleSelector(selector);
 }

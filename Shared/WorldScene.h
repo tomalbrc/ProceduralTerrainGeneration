@@ -19,6 +19,9 @@
 class WorldScene : public IrrScene {
 public:
     WorldScene(irr::IrrlichtDevice *device);
+    ~WorldScene() {
+
+    }
     
     void update(double dt) final;
     
@@ -35,16 +38,14 @@ private:
     irr::gui::IGUIStaticText* viewDistanceElement;
     irr::gui::IGUIStaticText* coordsElement;
     
-    irr::scene::IMetaTriangleSelector *metaTriangleSelector;
+    // triangle selector collection for all the models of the terrain/world
+    irr::scene::IMetaTriangleSelector *worldTriangleSelector;
     
     MapControlEventReceiver *eventReceiver;
     
-    int lastFPS;
-    
+    int lastFPS = 0;
     float chunkSizeAB = 32.f;
 	float quadScale = 6.f;
-    
-    irr::core::vector2di lastCollisionLoc;
     
     TerrainGenerator *terrainGen;
     
@@ -52,11 +53,13 @@ private:
     std::map<irr::core::vector2di, irr::scene::IMeshSceneNode*> chunks;
 	// shader cache material id
     std::vector<irr::s32> shaderMaterialIDS; 
-    
-    
+
+    // setup collision system for the player with the world
+    void setupCollisionAnimator();
+
+    // called every frame
     void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2);
     void updateFPSCounter();
-	void updateCollisionAnimator(const irr::core::vector2di & playerChunkLoc);
 
     // RC
     irr::video::SMaterial triangleMaterial;
@@ -68,8 +71,9 @@ private:
     void terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::core::vector2di key);
     
     // adds a cloud with random rotation on position with given parent
-    void addCloud(irr::core::vector3df vertexPos, irr::scene::IMeshSceneNode *parent);
-    void addRock(irr::core::vector3df vertexPos, irr::scene::IMeshSceneNode *parent);
+    void addPlant(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
+    void addCloud(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
+    void addRock(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     
 };
 
