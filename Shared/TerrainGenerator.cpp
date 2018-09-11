@@ -57,8 +57,9 @@ irr::video::IImage *IImageFromNoiseMap(const NoiseMap & nm, irr::video::IVideoDr
 ///
 /// class TerrainGenerator
 ///
-TerrainGenerator::TerrainGenerator(irr::core::dimension2du chunkSize, float terrainHeight, irr::IrrlichtDevice *device) {
+TerrainGenerator::TerrainGenerator(irr::core::dimension2du chunkSize, float quadScale, float terrainHeight, irr::IrrlichtDevice *device) {
     m_chunkSize = chunkSize;
+	m_quadScale = quadScale;
 	srand((unsigned)time(NULL));
 	m_seed = rand();//std::default_random_engine::default_seed;
     m_device = device;
@@ -78,8 +79,8 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
 //	_image = image;
 	_heightmap = imageHeightmap;
     
-    tom::threading::addMainCallback([key = std::move(chunkLocation), offset = std::move(offset), m_device = m_device, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
-        auto quadScale = irr::core::dimension2df{1.f,1.f}*6.f;
+    tom::threading::addMainCallback([m_quadScale = m_quadScale, key = std::move(chunkLocation), offset = std::move(offset), m_device = m_device, imageHeightmap = imageHeightmap, m_terrainHeight = m_terrainHeight, m_chunkSize = m_chunkSize, completion = std::move(completion)]() mutable {
+        auto quadScale = irr::core::dimension2df{1.f,1.f}*m_quadScale;
         auto geomentryCreator = m_device->getSceneManager()->getGeometryCreator();
         auto terrain = geomentryCreator->createTerrainMesh(imageHeightmap, imageHeightmap, quadScale, m_terrainHeight*4.f, m_device->getVideoDriver(), m_chunkSize*2.0 , false);
         terrain->setMaterialFlag(irr::video::EMF_LIGHTING, true); // global lightning for heightmap display

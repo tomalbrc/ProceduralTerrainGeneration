@@ -19,21 +19,29 @@
 class WorldScene : public IrrScene {
 public:
     WorldScene(irr::IrrlichtDevice *device);
-    ~WorldScene() {
-
-    }
+	~WorldScene() = default;
     
     void update(double dt) final;
     
     void render() final;
     
 private:
+	// Used for player and enemies, basically everything that 'lives'
+	using LivingMetadata = struct {
+		int health;
+	};
+
+	// Players view distance
     int viewDistance = 8; // view distance as radius in chunks
     
+	// basic nodes definetly needed
     irr::scene::ISceneNode *mainScene;
     irr::scene::ICameraSceneNode *cam2;
     irr::scene::IMeshSceneNode *player;
-    
+
+	std::map<irr::scene::ISceneNode*, LivingMetadata> enemies;
+
+	// GUI elements
     irr::gui::IGUIStaticText* fpsTextElement;
     irr::gui::IGUIStaticText* viewDistanceElement;
     irr::gui::IGUIStaticText* coordsElement;
@@ -45,7 +53,7 @@ private:
     
     int lastFPS = 0;
     float chunkSizeAB = 32.f;
-	float quadScale = 6.f;
+	float quadScale = 3.f;
     
     TerrainGenerator *terrainGen;
     
@@ -55,7 +63,7 @@ private:
     std::vector<irr::s32> shaderMaterialIDS; 
 
     // setup collision system for the player with the world
-    void setupCollisionAnimator();
+    void setupCollisionAnimator(irr::scene::ISceneNode *target = nullptr);
 
     // called every frame
     void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2);
@@ -66,6 +74,16 @@ private:
     void raycast();
     // !RC
     
+	// called in raycast when an enemy in the ray is detected
+	// Handles a timer for shooting rounds from an automatic gun
+	void handleShot(irr::scene::ISceneNode *hitNode, irr::core::vector3df collisionPoint) {
+		// gfx effects, 
+
+		// substract from health
+
+		// check for death and despawn eventually
+
+	}
     
     // callback for multi-threaded terrain generation
     void terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::core::vector2di key);
@@ -75,6 +93,8 @@ private:
     void addCloud(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     void addRock(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     
+	// Spawns an enemy slighty above the player, with gravity and collision enabled
+	void spawnEnemies();
 };
 
 #endif /* WorldScene_h */

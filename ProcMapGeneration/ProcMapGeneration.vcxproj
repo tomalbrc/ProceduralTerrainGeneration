@@ -45,7 +45,7 @@
     <ProjectGuid>{9CC52C8A-D7AF-49DA-8C7D-F84D046585CA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ProcMapGeneration</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,11 +139,15 @@
       <AdditionalDependencies>Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>xcopy /y $(ProjectDir)..\irrlicht-1.8.4\bin\Win64-VisualStudio\Irrlicht.dll $(OutDir);
-xcopy /y $(ProjectDir)Shared\shader  $(OutDir);
-xcopy /y $(ProjectDir)Shared\models  $(OutDir);
-</Command>
+      <Command>
+      </Command>
     </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>xcopy /I /y $(ProjectDir)..\..\irrlicht-1.8.4\bin\Win64-VisualStudio\Irrlicht.dll $(OutDir)
+xcopy /I /y $(ProjectDir)..\Shared\shader  $(OutDir)shader
+xcopy /I /y $(ProjectDir)..\Shared\models  $(OutDir)models
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

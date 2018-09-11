@@ -21,7 +21,7 @@ public:
      * Terrain generator.
      * Outputs IMesh-es for offsets
      */
-    TerrainGenerator(irr::core::dimension2du chunkSize, float terrainHeight, irr::IrrlichtDevice *device);
+    TerrainGenerator(irr::core::dimension2du chunkSize, float quadScale, float terrainHeight, irr::IrrlichtDevice *device);
     
     /**
      * Generates an irrlicht IMesh
@@ -35,10 +35,11 @@ public:
 	irr::video::IImage *_heightmap;
 
 private:
-    unsigned m_seed;
+    unsigned m_seed = 1;
     irr::IrrlichtDevice* m_device;
     irr::core::dimension2du m_chunkSize;
-    float m_terrainHeight;
+	float m_quadScale = 1.f;
+    float m_terrainHeight = 100.f;
 };
 
 
