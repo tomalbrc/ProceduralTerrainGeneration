@@ -31,7 +31,7 @@ void main() {
     float depth = gl_FragCoord.z / gl_FragCoord.w;
     gl_FragColor += color + vec4(depth/(1024.f*12.f));
     
-    vec3 sun = vec3(0.5f, 15.0f, 1.5f);
+    vec3 sun = vec3(1.5f, 8.0f, 3.5f);
     vec3 light = max(vec3(0), dot(normalize(fragNormal), normalize(sun))) / vec3(4.f) + addVal;
     gl_FragColor *= vec4(light.xyz,1.f);
 }

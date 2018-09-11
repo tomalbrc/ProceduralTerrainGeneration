@@ -31,10 +31,13 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     eventReceiver = new MapControlEventReceiver();
     device->setEventReceiver(eventReceiver);
     
+    quadScale = 2.0f;
+    chunkSizeAB = 16.f;
+    
     IVideoDriver* video = device->getVideoDriver();
     ISceneManager* smgr = device->getSceneManager();
     
-    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 175.0, device);
+    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 100.0, device);
     
     worldTriangleSelector = this->device()->getSceneManager()->createMetaTriangleSelector();
     mainScene = smgr->addEmptySceneNode();
@@ -249,10 +252,10 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
         auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
         
         // BigTreeWithLeaves.obj
-        if (rand()%100 == 1 && vertexPos.Y > 10.f) {
+        if (rand()%500 == 1 && vertexPos.Y > 10.f) {
             if (vertexPos.Y < 80.f) {
                 addPlant(vertexPos, m);
-            } else if (rand()%100 == 5) {
+            } else if (rand()%200 == 5) {
                 addRock(vertexPos, m);
             }
         }
@@ -270,7 +273,7 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
     auto ran = rand()%3;
     auto meshScene = device()->getSceneManager()->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
     meshScene->setPosition(vertexPos);
-    meshScene->setScale(irr::core::vector3df{6.f});
+    meshScene->setScale(irr::core::vector3df{ran==2?4.f:6.f});
     
     meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
     meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});

@@ -68,7 +68,7 @@ TerrainGenerator::TerrainGenerator(irr::core::dimension2du chunkSize, float quad
 
 irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function<void(irr::scene::IMeshSceneNode*, irr::core::vector2di)> &completion) {
     
-    auto noiseScale = 300.f;
+    auto noiseScale = 300.f*1.5f;
     auto offset = irr::core::vector2di{chunkLocation.X*((int)m_chunkSize.Width-1), chunkLocation.Y*((int)m_chunkSize.Height-1)};
     auto nm = NoiseMapGenerator::Generate(m_chunkSize, chunkLocation, m_seed, noiseScale);
 	//auto nm2 = NoiseMapGenerator::Generate(m_chunkSize*4.f, chunkLocation, m_seed, noiseScale*4.f);

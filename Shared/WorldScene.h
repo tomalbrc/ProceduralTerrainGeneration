@@ -53,7 +53,7 @@ private:
     
     int lastFPS = 0;
     float chunkSizeAB = 32.f;
-	float quadScale = 3.f;
+	float quadScale = 1.f;
     
     TerrainGenerator *terrainGen;
     
