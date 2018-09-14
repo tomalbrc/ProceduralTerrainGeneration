@@ -29,6 +29,7 @@ private:
 	// Used for player and enemies, basically everything that 'lives'
 	using LivingMetadata = struct {
 		int health;
+        int ammo;
 	};
 
 	// Players view distance
@@ -39,12 +40,14 @@ private:
     irr::scene::ICameraSceneNode *cam2;
     irr::scene::IMeshSceneNode *player;
 
-	std::map<irr::scene::ISceneNode*, LivingMetadata> enemies;
+	std::map<irr::scene::ISceneNode*, LivingMetadata> entities;
 
 	// GUI elements
     irr::gui::IGUIStaticText* fpsTextElement;
     irr::gui::IGUIStaticText* viewDistanceElement;
     irr::gui::IGUIStaticText* coordsElement;
+    
+    irr::gui::IGUIFont *font;
     
     // triangle selector collection for all the models of the terrain/world
     irr::scene::IMetaTriangleSelector *worldTriangleSelector;
@@ -95,6 +98,10 @@ private:
     
 	// Spawns an enemy slighty above the player, with gravity and collision enabled
 	void spawnEnemies();
+    
+    // called when an emeny died, spawns loot, gives the player points/xp,
+    // shows death aninmation / effects
+    void enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata);
 };
 
 #endif /* WorldScene_h */
