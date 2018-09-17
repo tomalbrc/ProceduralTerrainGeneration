@@ -62,13 +62,13 @@ namespace tom {
         std::vector<irr::s32> res;
         
         irr::video::IGPUProgrammingServices *gps = device->getVideoDriver()->getGPUProgrammingServices();
+        
         if (gps) {
             const irr::video::E_GPU_SHADING_LANGUAGE shadingLanguage = EGSL_DEFAULT;
             
             auto mc = new TerrainShaderCallback{ device };
 			mc->chunkSize(chunkSize);
 			mc->quadScale(quadScale);
-            
 #ifdef _WIN32
 			irr::s32 matType1 = gps->addHighLevelShaderMaterialFromFiles(
 				"shader/terrain130.vert", "main", video::EVST_VS_1_1,

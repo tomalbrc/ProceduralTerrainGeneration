@@ -13,17 +13,34 @@
 #include "Utils.h"
 #include "IMetaTriangleSelector.h"
 
+#define PLAYER_PROPS entities[player]
+
 using namespace irr;
 using namespace irr::scene;
 using namespace irr::video;
 using namespace irr::core;
 
+// Paths for irrlicht fonts (generated using FontTool)
+static const char* kFontPath = "fonts/betafont.xml";
+
+// Paths for models
+static const char* kModelBigBushPath = "models/BigBush.obj";
+static const char* kModelSmallTreeWithLeavePath = "models/SmallTreeWithLeave.obj";
+static const char* kModelBigTreeWithLeavesPath = "models/BigTreeWithLeaves.obj";
+static const char* kModelRock1Path = "models/Rock1.obj";
+static const char* kModelCloud1Path = "models/Cloud1.obj";
+static const char* kModelCloud2Path = "models/Cloud2.obj";
+static const char* kModelCloud3Path = "models/Cloud3.obj";
+
+// Paths for textures
 static const char *kTreeTexturePath = "models/TreeTexture.png";
 static const char *kBushTexturePath = "models/BushTexture.png";
 static const char *kCloudTexturePath = "models/white.png";
 static const char *kRockTexturePath = "models/rock.png";
 
+// Ids for scenes
 static const irr::s32 kEnemyID = -1344;
+static const irr::s32 kItemID = -1345;
 
 static const irr::core::vector3df kPlayerSpawnPosition{5000.f, 400.f, 5000.f};
 
@@ -33,24 +50,25 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     eventReceiver = new MapControlEventReceiver();
     device->setEventReceiver(eventReceiver);
     
-    quadScale = 3.0f;
-    chunkSizeAB = 32.f;
+    quadScale = 2.0f;
+    chunkSizeAB = 128.f;
+    viewDistance = 5.f;
     
     IVideoDriver* video = device->getVideoDriver();
     ISceneManager* smgr = device->getSceneManager();
     
-    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 100.0, device);
+    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 40, device);
     
     worldTriangleSelector = this->device()->getSceneManager()->createMetaTriangleSelector();
     mainScene = smgr->addEmptySceneNode();
     
     player = smgr->addCubeSceneNode(1.f);
-    player->setScale(core::vector3df{1.5f,3.0f,1.5f}*2.f);
+    player->setScale(core::vector3df{1.5f,3.0f,1.5f}*3.f);
     player->setPosition(kPlayerSpawnPosition);
     LivingMetadata md;
     md.health = 100;
     md.ammo = kPlayerMaxAmmo;
-    entities[player] = md;
+    PLAYER_PROPS = md;
     
     cam2 = smgr->addCameraSceneNode();
     cam2->setPosition(kPlayerSpawnPosition);
@@ -93,8 +111,9 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     viewDistanceElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 5+25, 140, 45), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1002, true);
     coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 5+25+25, 140+115, 70), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
     
-    font = device->getGUIEnvironment()->getFont("fonts/betafont.xml");
+    font = device->getGUIEnvironment()->getFont(kFontPath);
     
+    // Setup the material to color a triangle in WorldScene::raycast()
     triangleMaterial.Lighting = false;
 	triangleMaterial.Wireframe = false;
 }
@@ -105,12 +124,11 @@ void WorldScene::update(double dt) {
     updateFPSCounter();
     
     auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / ((chunkSizeAB-1)*quadScale), player->getPosition().Z / ((chunkSizeAB - 1)*quadScale));
-    bool hasKey = false;
     
     for (auto ting : chunks) {
         if (ting.second) ting.second->setVisible(false);
-        if (playerChunkLoc.equals(ting.first)) hasKey = true;
     }
+    
     for (int y = -viewDistance; y <= viewDistance; y++) {
         for (int x = -viewDistance; x <= viewDistance; x++) {
             if (sqrt(pow(x, 2.f)+pow(y, 2.f)) > (float)viewDistance)  continue;
@@ -137,7 +155,7 @@ void WorldScene::render() {
     device()->getGUIEnvironment()->drawAll();
     if (eventReceiver->mouseInformation().clickedLeft) raycast();
     
-    auto str = L"AMMO: " + std::to_wstring(entities[player].ammo) + L" / " + std::to_wstring(kPlayerMaxAmmo);
+    auto str = L"AMMO: " + std::to_wstring(PLAYER_PROPS.ammo) + L" / " + std::to_wstring(kPlayerMaxAmmo);
     font->draw(str.c_str(), core::rect<s32>{static_cast<int>(device()->getVideoDriver()->getScreenSize().Width-500),0,0,0}, video::SColor{255,0,0,0});
     m_device->getVideoDriver()->endScene();
     
@@ -163,8 +181,6 @@ void WorldScene::manageInput(MapControlEventReceiver *eventReceiver, irr::scene:
     if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f))));
     if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal, 0.f, value*yVal));
     if (eventReceiver->keyPressed(irr::KEY_DOWN) || eventReceiver->keyPressed(irr::KEY_KEY_S)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 180.f)), 0.f, value*sin(irr::core::degToRad(angle + 180.f))));
-    // gets managed in the eventReceiver::keyPressed lambda with player->getAnimators.first.jump()
-    //if (eventReceiver->keyPressed(irr::KEY_SPACE)) player->setPosition(player->getPosition() + irr::core::vector3df(0,value,0));
     if (eventReceiver->keyPressed(irr::KEY_KEY_X)) player->setPosition(player->getPosition() + irr::core::vector3df(0,-value,0));
     
     cam2->setTarget(player->getPosition());
@@ -196,6 +212,40 @@ void WorldScene::updateFPSCounter() {
     str2 += L", ";
     str2 += player->getPosition().Z;
     coordsElement->setText(str2.c_str());
+    
+    // TODO: Move to update()
+    // Apply enemy/player xz velocity (gravity & collision is taken care of by ISceneCollisionAnimator)
+    float friction = 0.1f;
+    for (auto & entity : entities) {
+        auto vel = entity.second.xzVelocity;
+        vel *= friction;
+        entity.second.xzVelocity -= vel;
+        
+        auto pos = entity.first->getPosition();
+        pos.X += vel.X;
+        pos.Z += vel.Y;
+        
+        // follow player
+        if (entity.first->getID() == kEnemyID) {
+            auto diff = player->getPosition()-entity.first->getPosition();
+            auto angle = atan2(diff.X, diff.Z);
+            pos += vector3df{sin(angle), 0, cos(angle)}*0.1f;
+        } else if (entity.first->getID() == kItemID && entity.first->isVisible()) {
+            if (player->getPosition().getDistanceFrom(entity.first->getPosition()) < 10.0f /*point is inside players radius*/) {
+                entity.first->removeAnimators();
+                
+                pos = entity.first->getPosition().getInterpolated(player->getPosition(), 0.5f);
+                
+                // move item towards player
+                
+                if (player->getPosition().getDistanceFrom(entity.first->getPosition()) < 1.f) {
+                    entity.first->setVisible(false);
+                    PLAYER_PROPS.ammo += 20;
+                }
+            }
+        }
+        entity.first->setPosition(pos);
+    }
 }
 
 void WorldScene::setupCollisionAnimator(irr::scene::ISceneNode *target) {
@@ -204,7 +254,11 @@ void WorldScene::setupCollisionAnimator(irr::scene::ISceneNode *target) {
 	}
 	target->removeAnimators();
 	///----------
-	scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(worldTriangleSelector, player, core::vector3df(1.5f,3.0f,1.5f),
+    const core::aabbox3d<f32>& box = target->getBoundingBox();
+    core::vector3df radius = box.MaxEdge - box.getCenter();
+    radius.Y *= 2.f;
+    
+	scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(worldTriangleSelector, player, radius*4.f,
 		core::vector3df(0, -10.f, 0)*50, core::vector3df(0), .001f);
 	target->addAnimator(anim);
 	anim->drop();
@@ -212,8 +266,8 @@ void WorldScene::setupCollisionAnimator(irr::scene::ISceneNode *target) {
 }
 
 void WorldScene::raycast() {
-    if (entities[player].ammo <= 0) return;
-    entities[player].ammo--;
+    if (PLAYER_PROPS.ammo <= 0) return;
+    PLAYER_PROPS.ammo--;
     
     
 	auto angle = player->getRotation().Y;
@@ -234,14 +288,14 @@ void WorldScene::raycast() {
         device()->getVideoDriver()->setTransform(video::ETS_WORLD, core::matrix4());
         device()->getVideoDriver()->setMaterial(triangleMaterial);
         device()->getVideoDriver()->draw3DTriangle(selectedTriangle, video::SColor(0,255,105,180));
+        collisionPoint.Y += 0.001f;
         device()->getVideoDriver()->draw3DLine(player->getPosition(), collisionPoint);
 
 		if (selectedScene->getID() == kEnemyID) {
-			auto oldPos = selectedScene->getPosition();
-			oldPos += loc*5.f;
-			selectedScene->setPosition(oldPos);
-            
             entities[selectedScene].health--;
+            loc *= 30.f;
+            entities[selectedScene].xzVelocity = vector2df{loc.X, loc.Z};
+            
             if (entities[selectedScene].health <= 0) {
                 enemyDied(selectedScene, entities[selectedScene]);
             }
@@ -264,24 +318,23 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
         auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
         
-        // BigTreeWithLeaves.obj
-        if (rand()%500 == 1 && vertexPos.Y > 10.f) {
+        if (rand()%1500 == 1 && vertexPos.Y > 10.f) {
             if (vertexPos.Y < 80.f) {
                 addPlant(vertexPos, m);
-            } else if (rand()%200 == 5) {
+            } else if (rand()%600 == 5) {
                 addRock(vertexPos, m);
             }
         }
         
-        if (rand()%10000 == 123) addCloud(vertexPos, m); // Random clouds
+        if (rand()%30000 == 123) addCloud(vertexPos, m); // Random clouds
     } // Vertex for loop
 }
 
 
 void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
-    auto mesh = device()->getSceneManager()->getMesh("models/BigTreeWithLeaves.obj");
-    auto mesh2 = device()->getSceneManager()->getMesh("models/SmallTreeWithLeave.obj");
-    auto meshBush = device()->getSceneManager()->getMesh("models/BigBush.obj");
+    auto mesh = device()->getSceneManager()->getMesh(kModelBigTreeWithLeavesPath);
+    auto mesh2 = device()->getSceneManager()->getMesh(kModelSmallTreeWithLeavePath);
+    auto meshBush = device()->getSceneManager()->getMesh(kModelBigBushPath);
     
     auto ran = rand()%3;
     auto meshScene = device()->getSceneManager()->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
@@ -304,9 +357,9 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
 }
 
 void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
-    auto meshCloud1 = device()->getSceneManager()->getMesh("models/Cloud1.obj");
-    auto meshCloud2 = device()->getSceneManager()->getMesh("models/Cloud2.obj");
-    auto meshCloud3 = device()->getSceneManager()->getMesh("models/Cloud3.obj");
+    auto meshCloud1 = device()->getSceneManager()->getMesh(kModelCloud1Path);
+    auto meshCloud2 = device()->getSceneManager()->getMesh(kModelCloud2Path);
+    auto meshCloud3 = device()->getSceneManager()->getMesh(kModelCloud3Path);
     
     auto ran = rand()%3;
     auto meshScene = device()->getSceneManager()->addMeshSceneNode(ran == 0 ? meshCloud1 : ran==1 ? meshCloud2 : meshCloud3);
@@ -322,7 +375,7 @@ void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::ISceneNode *par
 }
 
 void WorldScene::addRock(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
-    auto meshRock1 = m_device->getSceneManager()->getMesh("models/Rock1.obj");
+    auto meshRock1 = m_device->getSceneManager()->getMesh(kModelRock1Path);
 
     auto ran = rand()%3;
     auto meshScene = m_device->getSceneManager()->addMeshSceneNode(ran == 0 ? meshRock1 : ran==1 ? meshRock1 : meshRock1);
@@ -363,13 +416,35 @@ void WorldScene::spawnEnemies() {
 }
 
 void WorldScene::enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata) {
+    auto nodePos = node->getPosition();
     
-    // apply velocitry manual if enemy was just hit
-    
-    
+    auto iter = entities.find(node) ;
+    if (iter != entities.end())
+        entities.erase(iter);
     
     worldTriangleSelector->removeTriangleSelector(node->getTriangleSelector());
     node->getTriangleSelector()->drop();
     node->setTriangleSelector(nullptr);
     node->remove();
+    
+    // spawn dropped items
+    // (if any)
+    
+    float partialAngle = degToRad(360.f / 6.f);
+    for (int i = 0; i < 5; i++) {
+        auto angle = partialAngle * i;
+        vector3df velocity{sin(angle), 0.f, cos(angle)};
+        velocity *= rand()%10+1;
+        
+        auto dropModel = device()->getSceneManager()->addSphereSceneNode(1.f, 4, mainScene, kItemID);
+        dropModel->setPosition(nodePos);
+        dropModel->getMaterial(0).DiffuseColor = SColor(255, 20, 255, 20);
+        mainScene->addChild(dropModel);
+        
+        setupCollisionAnimator(dropModel);
+        
+        LivingMetadata md;
+        md.xzVelocity = vector2df{velocity.X, velocity.Z};
+        entities[dropModel] = md;
+    }
 }

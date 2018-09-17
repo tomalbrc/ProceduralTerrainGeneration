@@ -28,8 +28,9 @@ public:
 private:
 	// Used for player and enemies, basically everything that 'lives'
 	using LivingMetadata = struct {
-		int health;
-        int ammo;
+		int health = 100;
+        int ammo = 100;
+        irr::core::vector2df xzVelocity{0,0};
 	};
 
 	// Players view distance
@@ -47,6 +48,7 @@ private:
     irr::gui::IGUIStaticText* viewDistanceElement;
     irr::gui::IGUIStaticText* coordsElement;
     
+    // font for ammo
     irr::gui::IGUIFont *font;
     
     // triangle selector collection for all the models of the terrain/world

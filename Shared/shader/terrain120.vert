@@ -17,4 +17,7 @@ void main(){
     vertexWorldPos = gl_Vertex;
     fragNormal = vec3(gl_Normal.xyz);
     gl_TexCoord[0] = gl_MultiTexCoord0;
+    gl_TexCoord[1] = gl_MultiTexCoord0;
+    gl_TexCoord[2] = gl_MultiTexCoord0;
+    gl_TexCoord[3] = gl_MultiTexCoord0;
 }

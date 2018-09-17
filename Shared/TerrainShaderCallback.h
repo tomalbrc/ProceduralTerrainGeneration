@@ -10,6 +10,7 @@
 #define TerrainShaderCallback_hpp
 
 #include <stdio.h>
+#include <vector>
 #include "irrlicht.h"
 
 class TerrainShaderCallback : public irr::video::IShaderConstantSetCallBack {
@@ -27,7 +28,7 @@ public:
 	 */
 	const float& quadScale() const;
 	void quadScale(const float & quadScale);
-
+    
     void OnSetMaterial(const irr::video::SMaterial &material) override;
     void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) override;
     
@@ -37,6 +38,8 @@ private:
 
 	irr::core::vector2df m_chunkSize;
 	float m_quadScale;
+    
+    
 };
 
 #endif /* TerrainShaderCallback_hpp */

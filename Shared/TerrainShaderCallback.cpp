@@ -46,4 +46,6 @@ void TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices
 
 	services->setVertexShaderConstant("chunkSize", reinterpret_cast<f32*>(&m_chunkSize), 2);
 	services->setVertexShaderConstant("quadScale", reinterpret_cast<f32*>(&m_quadScale), 1);
+    
+    
 }
