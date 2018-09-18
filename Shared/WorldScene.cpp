@@ -104,7 +104,9 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
             player->removeAnimators();
         } else if (kc == irr::KEY_KEY_P) {
 			spawnEnemies();
-		}
+		} else if (kc == irr::KEY_KEY_R) {
+            entities[player].ammo = 1000;
+        }
     });
     
     fpsTextElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 5, 140, 30), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1001, true);
@@ -181,13 +183,12 @@ void WorldScene::manageInput(MapControlEventReceiver *eventReceiver, irr::scene:
     if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f))));
     if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal, 0.f, value*yVal));
     if (eventReceiver->keyPressed(irr::KEY_DOWN) || eventReceiver->keyPressed(irr::KEY_KEY_S)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 180.f)), 0.f, value*sin(irr::core::degToRad(angle + 180.f))));
-    if (eventReceiver->keyPressed(irr::KEY_KEY_X)) player->setPosition(player->getPosition() + irr::core::vector3df(0,-value,0));
     
     cam2->setTarget(player->getPosition());
     
     player->setRotation(irr::core::vector3df(0,-angle,0));
     
-    auto newPosition = player->getPosition() + irr::core::vector3df(-25 * xVal, 8.f, -25 * yVal);
+    auto newPosition = player->getPosition() + irr::core::vector3df(-50 * xVal, 20.f, -50 * yVal);
     float lowpassfilterFactor = .1f;
     newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
     cam2->setPosition(newPosition);
@@ -231,7 +232,7 @@ void WorldScene::updateFPSCounter() {
             auto angle = atan2(diff.X, diff.Z);
             pos += vector3df{sin(angle), 0, cos(angle)}*0.1f;
         } else if (entity.first->getID() == kItemID && entity.first->isVisible()) {
-            if (player->getPosition().getDistanceFrom(entity.first->getPosition()) < 10.0f /*point is inside players radius*/) {
+            if (player->getPosition().getDistanceFrom(entity.first->getPosition()) < 20.0f /*point is inside players radius*/) {
                 entity.first->removeAnimators();
                 
                 pos = entity.first->getPosition().getInterpolated(player->getPosition(), 0.5f);
@@ -256,10 +257,10 @@ void WorldScene::setupCollisionAnimator(irr::scene::ISceneNode *target) {
 	///----------
     const core::aabbox3d<f32>& box = target->getBoundingBox();
     core::vector3df radius = box.MaxEdge - box.getCenter();
-    radius.Y *= 2.f;
+    radius *= target->getScale();
     
-	scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(worldTriangleSelector, player, radius*4.f,
-		core::vector3df(0, -10.f, 0)*50, core::vector3df(0), .001f);
+	scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(worldTriangleSelector, target, radius,
+		core::vector3df(0, -10.f, 0)*50, core::vector3df(0), .01f);
 	target->addAnimator(anim);
 	anim->drop();
 	///----------
@@ -350,7 +351,7 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
     parent->addChild(meshScene);
     
     if (ran != 2) {
-        scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(meshScene->getMesh(), meshScene);
+        scene::ITriangleSelector* selector = device()->getSceneManager()->createTriangleSelectorFromBoundingBox(meshScene);
         meshScene->setTriangleSelector(selector);
         worldTriangleSelector->addTriangleSelector(selector);
     }
@@ -389,7 +390,7 @@ void WorldScene::addRock(core::vector3df vertexPos, irr::scene::ISceneNode *pare
     meshScene->setMaterialTexture(0, m_device->getVideoDriver()->addTexture(kRockTexturePath, img));
     parent->addChild(meshScene);
     
-    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(meshScene->getMesh(), meshScene);
+    scene::ITriangleSelector* selector = device()->getSceneManager()->createTriangleSelectorFromBoundingBox(meshScene);
     meshScene->setTriangleSelector(selector);
     worldTriangleSelector->addTriangleSelector(selector);
 }
@@ -399,15 +400,15 @@ void WorldScene::spawnEnemies() {
 	auto spawnPos = player->getPosition();
 	spawnPos.Y += 10;
 
-	auto enemy = device()->getSceneManager()->addSphereSceneNode(5.f, 16, mainScene, kEnemyID);
+	auto enemy = device()->getSceneManager()->addSphereSceneNode(5.f, 8, mainScene, kEnemyID);
 	enemy->setPosition(spawnPos);
 	mainScene->addChild(enemy);
 
-	scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(enemy->getMesh(), enemy);
-	enemy->setTriangleSelector(selector);
-	worldTriangleSelector->addTriangleSelector(selector);
+    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(enemy->getMesh(), enemy);
+    enemy->setTriangleSelector(selector);
+    //worldTriangleSelector->addTriangleSelector(selector);
 
-	setupCollisionAnimator(enemy);
+    setupCollisionAnimator(enemy);
 
     LivingMetadata md;
     md.health = 50;

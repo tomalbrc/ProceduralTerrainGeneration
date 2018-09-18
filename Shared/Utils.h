@@ -62,7 +62,6 @@ namespace tom {
         std::vector<irr::s32> res;
         
         irr::video::IGPUProgrammingServices *gps = device->getVideoDriver()->getGPUProgrammingServices();
-        
         if (gps) {
             const irr::video::E_GPU_SHADING_LANGUAGE shadingLanguage = EGSL_DEFAULT;
             

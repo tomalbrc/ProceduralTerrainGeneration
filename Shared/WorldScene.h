@@ -53,7 +53,7 @@ private:
     
     // triangle selector collection for all the models of the terrain/world
     irr::scene::IMetaTriangleSelector *worldTriangleSelector;
-    
+
     MapControlEventReceiver *eventReceiver;
     
     int lastFPS = 0;

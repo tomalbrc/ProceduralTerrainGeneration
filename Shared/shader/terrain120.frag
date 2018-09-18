@@ -14,7 +14,7 @@ void main() {
     
     vec3 addVal = vec3(.7f);
     
-    vec4 color = texture2D(textureUnit1, gl_TexCoord[0].xy/0.05f);
+    vec4 color = texture2D(textureUnit0, gl_TexCoord[0].xy/0.05f);
 //    vec4 color = vec4(0);
 //    if (vertexWorldPos.y > 300.f) {
 //        color += vec4(vertexWorldPos.y/300.f);
