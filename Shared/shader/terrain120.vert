@@ -8,7 +8,7 @@ uniform float time;
 uniform vec2 chunkSize;
 uniform float quadScale;
 
-void main(){
+void main() {
     gl_Position = ftransform();
     // water
     if (gl_Vertex.y < 7.f) gl_Position.y += ((sin(((mod(gl_Vertex.x+gl_Vertex.z,(quadScale*(chunkSize.x-1))))+time)/200.f)-0.5f));

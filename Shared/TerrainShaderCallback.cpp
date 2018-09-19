@@ -39,7 +39,6 @@ void TerrainShaderCallback::OnSetMaterial(const irr::video::SMaterial &material)
 }
 
 void TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) {
-    video::IVideoDriver* video = services->getVideoDriver();
     
     float time = (float)m_device->getTimer()->getTime();
     services->setVertexShaderConstant("time", &time, 1);
@@ -55,5 +54,4 @@ void TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices
     services->setPixelShaderConstant("textureUnit1", &texLayer1, 1);
     services->setPixelShaderConstant("textureUnit2", &texLayer2, 1);
     services->setPixelShaderConstant("textureUnit3", &texLayer3, 1);
-
 }

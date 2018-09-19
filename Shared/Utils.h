@@ -68,40 +68,42 @@ namespace tom {
             auto mc = new TerrainShaderCallback{ device };
 			mc->chunkSize(chunkSize);
 			mc->quadScale(quadScale);
-#ifdef _WIN32
-			irr::s32 matType1 = gps->addHighLevelShaderMaterialFromFiles(
-				"shader/terrain130.vert", "main", video::EVST_VS_1_1,
-				"shader/terrain130.frag", "main", video::EPST_PS_1_1,
-				mc, video::EMT_SOLID, 0, shadingLanguage);
-
-			irr::s32 matType2 = gps->addHighLevelShaderMaterialFromFiles(
-				"shader/tree130.vert", "main", video::EVST_VS_1_1,
-				"shader/tree130.frag", "main", video::EPST_PS_1_1,
-				mc, video::EMT_SOLID, 0, shadingLanguage);
-
-			irr::s32 matType3 = gps->addHighLevelShaderMaterialFromFiles(
-				"shader/cloud130.vert", "main", video::EVST_VS_1_1,
-				"shader/cloud130.frag", "main", video::EPST_PS_1_1,
-				mc, video::EMT_SOLID, 0, shadingLanguage);
-
-#else
-			irr::s32 matType1 = gps->addHighLevelShaderMaterialFromFiles(
-				"shader/terrain120.vert", "main", video::EVST_VS_1_1,
-				"shader/terrain120.frag", "main", video::EPST_PS_1_1,
-				mc, video::EMT_SOLID, 0, shadingLanguage);
-
-			irr::s32 matType2 = gps->addHighLevelShaderMaterialFromFiles(
-				"shader/tree120.vert", "main", video::EVST_VS_1_1,
-				"shader/tree120.frag", "main", video::EPST_PS_1_1,
-				mc, video::EMT_SOLID, 0, shadingLanguage);
-
-			irr::s32 matType3 = gps->addHighLevelShaderMaterialFromFiles(
-				"shader/cloud120.vert", "main", video::EVST_VS_1_1,
-				"shader/cloud120.frag", "main", video::EPST_PS_1_1,
-				mc, video::EMT_SOLID, 0, shadingLanguage);
-
-#endif
-
+            
+            auto glslVer = device->getVideoDriver()->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion");
+            
+            irr::s32 matType1, matType2, matType3;
+            if (glslVer == 102 || glslVer == 120) {
+                matType1 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                             "shader/terrain120.vert", "main", video::EVST_VS_1_1,
+                                                                             "shader/terrain120.frag", "main", video::EPST_PS_1_1,
+                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
+                
+                matType2 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                             "shader/tree120.vert", "main", video::EVST_VS_1_1,
+                                                                             "shader/tree120.frag", "main", video::EPST_PS_1_1,
+                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
+                
+                matType3 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                             "shader/cloud120.vert", "main", video::EVST_VS_1_1,
+                                                                             "shader/cloud120.frag", "main", video::EPST_PS_1_1,
+                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
+            } else if (glslVer == 103 || glslVer == 130) {
+                matType1 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                             "shader/terrain130.vert", "main", video::EVST_VS_1_1,
+                                                                             "shader/terrain130.frag", "main", video::EPST_PS_1_1,
+                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
+                
+                matType2 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                             "shader/tree130.vert", "main", video::EVST_VS_1_1,
+                                                                             "shader/tree130.frag", "main", video::EPST_PS_1_1,
+                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
+                
+                matType3 = gps->addHighLevelShaderMaterialFromFiles(
+                                                                             "shader/cloud130.vert", "main", video::EVST_VS_1_1,
+                                                                             "shader/cloud130.frag", "main", video::EPST_PS_1_1,
+                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
+            }
+            
             //res.emplace_back(matType1, matType2);
             res.push_back(matType1);
             res.push_back(matType2);

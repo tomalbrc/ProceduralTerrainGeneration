@@ -118,6 +118,8 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     // Setup the material to color a triangle in WorldScene::raycast()
     triangleMaterial.Lighting = false;
 	triangleMaterial.Wireframe = false;
+    
+    printf("GLSL #VERSION: %d", video->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion"));
 }
 
 void WorldScene::update(double dt) {
