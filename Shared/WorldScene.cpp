@@ -130,17 +130,10 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     
     effect = new EffectHandler(device, device->getVideoDriver()->getScreenSize(), false, true);
     effect->setAmbientColor(SColor(255, 200, 200, 200));
-    
-//    auto shaderExt = ".glsl";
-//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BrightPass") + shaderExt);
-//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BlurHP") + shaderExt);
-//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BlurVP") + shaderExt);
-//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BloomP") + shaderExt);
-
-    
-    effect->addShadowLight(SShadowLight(1024, kPlayerSpawnPosition, vector3df(5, 0, 5),
-                                        SColor(255, 255, 255, 255), 1.f, 10000.0f, degToRad(180.f)));
-    effect->addShadowToNode(player, EFT_NONE, ESM_BOTH);
+    effect->setClearColour(video::SColor(255,173,241,255));
+    effect->addShadowLight(SShadowLight(512, kPlayerSpawnPosition, vector3df(5, 0, 5),
+                                        SColor(255, 255, 255, 255), 10.f, 10000.0f, degToRad(90.f)));
+    effect->addShadowToNode(player, EFT_4PCF, ESM_BOTH);
 
     printf("GLSL #VERSION: %d\n", video->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion"));
 }
@@ -178,7 +171,7 @@ void WorldScene::update(double dt) {
 }
 
 void WorldScene::render() {
-    m_device->getVideoDriver()->beginScene(true, true, video::SColor(255,173,241,255));
+    m_device->getVideoDriver()->beginScene(false, false, video::SColor(255,173,241,255));
 //    m_device->getSceneManager()->drawAll(); // disabled in favor of effect->update()
     effect->update();
 
@@ -350,7 +343,7 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     worldTriangleSelector->addTriangleSelector(selector);
     selector->drop();
 
-    effect->addShadowToNode(m, EFT_NONE, ESM_BOTH);
+    effect->addShadowToNode(m, EFT_4PCF, ESM_BOTH);
 
     
     auto str = L"waterMesh";
@@ -408,7 +401,7 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
         worldTriangleSelector->addTriangleSelector(selector);
     }
     
-    effect->addShadowToNode(meshScene, EFT_NONE, ESM_BOTH);
+    effect->addShadowToNode(meshScene, EFT_4PCF, ESM_BOTH);
 }
 
 void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
