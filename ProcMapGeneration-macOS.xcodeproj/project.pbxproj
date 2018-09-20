@@ -10,6 +10,8 @@
 		09570A75213411F0001A5FCC /* NoiseMapGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A74213411F0001A5FCC /* NoiseMapGenerator.cpp */; };
 		09570A7821341B25001A5FCC /* MapControlEventReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A7621341B25001A5FCC /* MapControlEventReceiver.cpp */; };
 		09570A7B21341E24001A5FCC /* TerrainGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A7921341E24001A5FCC /* TerrainGenerator.cpp */; };
+		099CABFB2153C91100A74C38 /* CShaderPre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF32153C91100A74C38 /* CShaderPre.cpp */; };
+		099CABFC2153C91100A74C38 /* EffectHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF62153C91100A74C38 /* EffectHandler.cpp */; };
 		9A5FD22E214AAE2E0031027B /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5FD22D214AAE270031027B /* libIrrlicht.a */; };
 		9A5FD230214B02070031027B /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9A5FD22F214B02070031027B /* fonts */; };
 		9A90497D214519F7005218A1 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 9A90497C214519F7005218A1 /* shader */; };
@@ -41,6 +43,14 @@
 		09570A7721341B25001A5FCC /* MapControlEventReceiver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MapControlEventReceiver.h; path = Shared/MapControlEventReceiver.h; sourceTree = SOURCE_ROOT; };
 		09570A7921341E24001A5FCC /* TerrainGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TerrainGenerator.cpp; path = Shared/TerrainGenerator.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		09570A7A21341E24001A5FCC /* TerrainGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TerrainGenerator.h; path = Shared/TerrainGenerator.h; sourceTree = SOURCE_ROOT; };
+		099CABF22153C91100A74C38 /* CScreenQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CScreenQuad.h; sourceTree = "<group>"; };
+		099CABF32153C91100A74C38 /* CShaderPre.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CShaderPre.cpp; sourceTree = "<group>"; };
+		099CABF42153C91100A74C38 /* CShaderPre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CShaderPre.h; sourceTree = "<group>"; };
+		099CABF52153C91100A74C38 /* EffectCB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectCB.h; sourceTree = "<group>"; };
+		099CABF62153C91100A74C38 /* EffectHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectHandler.cpp; sourceTree = "<group>"; };
+		099CABF72153C91100A74C38 /* EffectHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectHandler.h; sourceTree = "<group>"; };
+		099CABF82153C91100A74C38 /* EffectShaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectShaders.h; sourceTree = "<group>"; };
+		099CABF92153C91100A74C38 /* XEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEffects.h; sourceTree = "<group>"; };
 		09ED26C621354261007AEDFD /* PerlinNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PerlinNoise.hpp; path = Shared/PerlinNoise.hpp; sourceTree = SOURCE_ROOT; };
 		9A5FD228214AAE270031027B /* Irrlicht.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Irrlicht.xcodeproj; path = ../../external/irrlicht/source/Irrlicht/Irrlicht.xcodeproj; sourceTree = "<group>"; };
 		9A5FD22F214B02070031027B /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = Shared/fonts; sourceTree = SOURCE_ROOT; };
@@ -80,6 +90,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		099CABF12153C91100A74C38 /* XEffects */ = {
+			isa = PBXGroup;
+			children = (
+				099CABF22153C91100A74C38 /* CScreenQuad.h */,
+				099CABF32153C91100A74C38 /* CShaderPre.cpp */,
+				099CABF42153C91100A74C38 /* CShaderPre.h */,
+				099CABF52153C91100A74C38 /* EffectCB.h */,
+				099CABF62153C91100A74C38 /* EffectHandler.cpp */,
+				099CABF72153C91100A74C38 /* EffectHandler.h */,
+				099CABF82153C91100A74C38 /* EffectShaders.h */,
+				099CABF92153C91100A74C38 /* XEffects.h */,
+			);
+			path = XEffects;
+			sourceTree = "<group>";
+		};
 		9A12B9832145BA6F00B52BAC /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +150,7 @@
 		9A75F6E5212F3AD400E375B5 = {
 			isa = PBXGroup;
 			children = (
+				099CABF12153C91100A74C38 /* XEffects */,
 				9A75F6F0212F3AD400E375B5 /* ProcMapGeneration-macOS */,
 				9A75F6EF212F3AD400E375B5 /* Products */,
 				9AB696A9212F3C0100E164C0 /* Frameworks */,
@@ -284,6 +310,8 @@
 				09570A7B21341E24001A5FCC /* TerrainGenerator.cpp in Sources */,
 				9A9049832145ABF4005218A1 /* WorldScene.cpp in Sources */,
 				09570A7821341B25001A5FCC /* MapControlEventReceiver.cpp in Sources */,
+				099CABFC2153C91100A74C38 /* EffectHandler.cpp in Sources */,
+				099CABFB2153C91100A74C38 /* CShaderPre.cpp in Sources */,
 				9AEA764D213DE23400E689E7 /* TerrainShaderCallback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +441,7 @@
 				HEADER_SEARCH_PATHS = (
 					ProcMapGeneration,
 					Shared,
+					XEffects,
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -441,6 +470,7 @@
 				HEADER_SEARCH_PATHS = (
 					ProcMapGeneration,
 					Shared,
+					XEffects,
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

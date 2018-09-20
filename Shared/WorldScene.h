@@ -16,6 +16,8 @@
 #include "TerrainGenerator.h"
 #include "MapControlEventReceiver.h"
 
+class EffectHandler;
+
 class WorldScene : public IrrScene {
 public:
     WorldScene(irr::IrrlichtDevice *device);
@@ -108,6 +110,7 @@ private:
     
     
     irr::video::ITexture *currentChunkNoiseTex = 0;
+    EffectHandler* effect = nullptr;
 };
 
 #endif /* WorldScene_h */

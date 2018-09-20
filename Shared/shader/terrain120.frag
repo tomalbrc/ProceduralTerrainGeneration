@@ -15,10 +15,10 @@ void main() {
     
     vec3 addVal = vec3(.7f);
     
-    vec4 color0 = texture2D(textureUnit0, gl_TexCoord[0].xy/0.1f);
-    vec4 color1 = texture2D(textureUnit1, gl_TexCoord[0].xy/0.1f);
-    vec4 color2 = texture2D(textureUnit2, gl_TexCoord[0].xy/0.1f);
-    vec4 color3 = texture2D(textureUnit3, gl_TexCoord[0].xy/0.1f);
+    vec4 color0 = texture2D(textureUnit0, gl_TexCoord[0].xy/0.1f); // sand
+    vec4 color1 = texture2D(textureUnit1, gl_TexCoord[0].xy/0.05f); // grass
+    vec4 color2 = texture2D(textureUnit2, gl_TexCoord[0].xy/0.1f); // rock
+    vec4 color3 = texture2D(textureUnit3, gl_TexCoord[0].xy/0.05f); // snow
 
     // eper
     float perc = vertexWorldPos.y/256;
@@ -29,7 +29,7 @@ void main() {
     } else if (perc > 0.2f) {
         gl_FragColor = mix(color1,color2, smoothstep(0.5f, .8f, perc))/2.f;
     } else {
-        gl_FragColor = mix(color0,color1, smoothstep(0.0f, 0.2, perc))/2.f;
+        gl_FragColor = mix(color0,color1, smoothstep(0.0f, 0.1, perc))/2.f;
     }
 
     float depth = gl_FragCoord.z / gl_FragCoord.w;

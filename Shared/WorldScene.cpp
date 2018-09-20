@@ -13,6 +13,8 @@
 #include "Utils.h"
 #include "IMetaTriangleSelector.h"
 
+#include "XEffects.h"
+
 #define PLAYER_PROPS entities[player]
 
 using namespace irr;
@@ -126,13 +128,28 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     triangleMaterial.Lighting = false;
 	triangleMaterial.Wireframe = false;
     
-    printf("GLSL #VERSION: %d", video->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion"));
+    effect = new EffectHandler(device, device->getVideoDriver()->getScreenSize(), false, true);
+    effect->setAmbientColor(SColor(255, 200, 200, 200));
+    
+//    auto shaderExt = ".glsl";
+//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BrightPass") + shaderExt);
+//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BlurHP") + shaderExt);
+//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BlurVP") + shaderExt);
+//    effect->addPostProcessingEffectFromFile(core::stringc("shader/BloomP") + shaderExt);
+
+    
+    effect->addShadowLight(SShadowLight(1024, kPlayerSpawnPosition, vector3df(5, 0, 5),
+                                        SColor(255, 255, 255, 255), 1.f, 10000.0f, degToRad(180.f)));
+    effect->addShadowToNode(player, EFT_NONE, ESM_BOTH);
+
+    printf("GLSL #VERSION: %d\n", video->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion"));
 }
 
 void WorldScene::update(double dt) {
     manageInput(eventReceiver, player, cam2);
-
     updateFPSCounter();
+    
+    effect->getShadowLight(0).setTarget(player->getPosition());
     
     auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / ((chunkSizeAB-1)*quadScale), player->getPosition().Z / ((chunkSizeAB - 1)*quadScale));
     
@@ -162,7 +179,10 @@ void WorldScene::update(double dt) {
 
 void WorldScene::render() {
     m_device->getVideoDriver()->beginScene(true, true, video::SColor(255,173,241,255));
-    m_device->getSceneManager()->drawAll();
+//    m_device->getSceneManager()->drawAll(); // disabled in favor of effect->update()
+    effect->update();
+
+    
     device()->getGUIEnvironment()->drawAll();
     
     if (eventReceiver->mouseInformation().clickedLeft) raycast();
@@ -172,6 +192,7 @@ void WorldScene::render() {
     
     
     //if (currentChunkNoiseTex != nullptr) m_device->getVideoDriver()->draw2DImage(currentChunkNoiseTex, vector2d<s32>{5,5});
+    
     
     m_device->getVideoDriver()->endScene();
 }
@@ -324,29 +345,26 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     chunks[key]->remove();
     chunks[key] = m;
     
-    //scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(m->getMesh(), m);
-    //m->setTriangleSelector(selector);
-    //worldTriangleSelector->addTriangleSelector(selector);
-    //selector->drop();
+    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(m->getMesh(), m);
+    m->setTriangleSelector(selector);
+    worldTriangleSelector->addTriangleSelector(selector);
+    selector->drop();
+
+    effect->addShadowToNode(m, EFT_NONE, ESM_BOTH);
 
     
     auto str = L"waterMesh";
-    auto waterMesh = device()->getSceneManager()->getMesh(str);
-    if (!waterMesh) waterMesh = device()->getSceneManager()->addHillPlaneMesh(str,
+    auto waterMesh = device()->getSceneManager()->addHillPlaneMesh(str,
                                                                    dimension2d<f32>(chunkSizeAB-1,chunkSizeAB-1),
                                                                    dimension2d<u32>(2,2), 0, 0,
                                                                    dimension2d<f32>(0, 0),
                                                                    dimension2d<f32>(8, 8));
     auto node = device()->getSceneManager()->addWaterSurfaceSceneNode(waterMesh->getMesh(0), 0.1f, 258, 1.0f);
-    
+
     node->setPosition(vector3df{127,5.5f,127});
     node->setMaterialTexture(0, device()->getVideoDriver()->getTexture("models/water.png"));
     node->setMaterialType(EMT_SOLID);
-    //node->setMaterialFlag(EMF_FOG_ENABLE, true);
     m->addChild(node);
-    
-    
-    
     
     
     
@@ -376,7 +394,7 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
     meshScene->setPosition(vertexPos);
     meshScene->setScale(irr::core::vector3df{ran==2?4.f:6.f});
     
-    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
+    //meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
     meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
     
     auto img = device()->getVideoDriver()->createImageFromFile(ran > 1 ? kBushTexturePath : kTreeTexturePath);
@@ -389,6 +407,8 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
         meshScene->setTriangleSelector(selector);
         worldTriangleSelector->addTriangleSelector(selector);
     }
+    
+    effect->addShadowToNode(meshScene, EFT_NONE, ESM_BOTH);
 }
 
 void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
@@ -403,7 +423,7 @@ void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::ISceneNode *par
     meshScene->setScale(irr::core::vector3df{70.f});
     meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
     meshScene->setMaterialFlag(video::EMF_GOURAUD_SHADING, false);
-    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
+    //meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
     auto img = m_device->getVideoDriver()->createImageFromFile(kCloudTexturePath);
     meshScene->setMaterialTexture(0, m_device->getVideoDriver()->addTexture(kCloudTexturePath, img));
     parent->addChild(meshScene);
@@ -419,7 +439,7 @@ void WorldScene::addRock(core::vector3df vertexPos, irr::scene::ISceneNode *pare
     meshScene->setScale(irr::core::vector3df{10.f});
     meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
     meshScene->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING, false);
-    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
+    //meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.back());
     auto img = m_device->getVideoDriver()->createImageFromFile(kRockTexturePath);
     meshScene->setMaterialTexture(0, m_device->getVideoDriver()->addTexture(kRockTexturePath, img));
     parent->addChild(meshScene);

@@ -19,9 +19,10 @@ int main(int argc, char** argv) {
         params.WindowSize = core::dimension2d<u32>(1920*0.75, 1080*0.75);
         params.Fullscreen = false;
         params.Vsync = true;
-        params.Doublebuffer = false;
+        params.Doublebuffer = true;
         params.WindowId = nullptr;
         params.DriverMultithreaded = true;
+        params.Stencilbuffer = false;
         return params;
     }();
     

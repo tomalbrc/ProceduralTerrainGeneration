@@ -90,11 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/TerrainGenerator.cpp"
-            timestampString = "558371295.379301"
+            timestampString = "559121513.87479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
-            endingLineNumber = "100">
+            endingLineNumber = "100"
+            landmarkName = "TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function&lt;void(irr::scene::IMeshSceneNode*, irr::core::vector2di)&gt; &amp;completion)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -104,11 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/TerrainGenerator.cpp"
-            timestampString = "558371295.379667"
+            timestampString = "559121513.8753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
-            endingLineNumber = "100">
+            endingLineNumber = "100"
+            landmarkName = "TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function&lt;void(irr::scene::IMeshSceneNode*, irr::core::vector2di)&gt; &amp;completion)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -118,11 +122,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/TerrainGenerator.cpp"
-            timestampString = "558371295.379936"
+            timestampString = "559121513.875567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
-            endingLineNumber = "100">
+            endingLineNumber = "100"
+            landmarkName = "TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function&lt;void(irr::scene::IMeshSceneNode*, irr::core::vector2di)&gt; &amp;completion)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
