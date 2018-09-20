@@ -104,6 +104,10 @@ private:
     // called when an emeny died, spawns loot, gives the player points/xp,
     // shows death aninmation / effects
     void enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata);
+    
+    
+    
+    irr::video::ITexture *currentChunkNoiseTex = 0;
 };
 
 #endif /* WorldScene_h */

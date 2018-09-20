@@ -29,6 +29,12 @@ public:
 	const float& quadScale() const;
 	void quadScale(const float & quadScale);
     
+    /**
+     * Light source for the terrain
+     */
+    irr::scene::ILightSceneNode *lightSource() const;
+    void lightSource(irr::scene::ILightSceneNode *lightSource);
+    
     void OnSetMaterial(const irr::video::SMaterial &material) override;
     void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) override;
     
@@ -38,7 +44,7 @@ private:
 
 	irr::core::vector2df m_chunkSize;
 	float m_quadScale;
-    
+    irr::scene::ILightSceneNode *m_lightSource;
     
 };
 

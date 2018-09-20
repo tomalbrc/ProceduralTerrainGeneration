@@ -29,9 +29,20 @@ void TerrainShaderCallback::chunkSize(const irr::core::vector2df & chunkSize) {
 const float& TerrainShaderCallback::quadScale() const {
 	return m_quadScale;
 }
+
 void TerrainShaderCallback::quadScale(const float & quadScale) {
 	m_quadScale = quadScale;
 }
+
+
+irr::scene::ILightSceneNode *TerrainShaderCallback::lightSource() const {
+    return m_lightSource;
+}
+
+void TerrainShaderCallback::lightSource(irr::scene::ILightSceneNode *lightSource) {
+    m_lightSource = lightSource;
+}
+
 
 void TerrainShaderCallback::OnSetMaterial(const irr::video::SMaterial &material) {
     m_material = material;
@@ -54,4 +65,7 @@ void TerrainShaderCallback::OnSetConstants(irr::video::IMaterialRendererServices
     services->setPixelShaderConstant("textureUnit1", &texLayer1, 1);
     services->setPixelShaderConstant("textureUnit2", &texLayer2, 1);
     services->setPixelShaderConstant("textureUnit3", &texLayer3, 1);
+    
+    auto lpos = m_lightSource->getPosition();
+    services->setPixelShaderConstant("lightSource", reinterpret_cast<f32*>(&lpos), 3);
 }

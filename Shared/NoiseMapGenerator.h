@@ -27,7 +27,7 @@ public:
      * seed and scale
      * TODO: Scale noisemap from center instead of top right
      */
-    static NoiseMap Generate(irr::core::dimension2du size, irr::core::vector2di offset, unsigned seed, float scale = 1.f);
+    static NoiseMap Generate(irr::core::dimension2du size, irr::core::vector2di offset, unsigned seed, float scale = 1.f, float persistance = 0.1f, float lacunarity = 2.f);
 };
 
 #endif /* NoiseMap_h */

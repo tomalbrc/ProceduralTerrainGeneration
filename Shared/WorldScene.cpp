@@ -50,14 +50,14 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     eventReceiver = new MapControlEventReceiver();
     device->setEventReceiver(eventReceiver);
     
-    quadScale = 2.0f;
+    quadScale = 2.f;
     chunkSizeAB = 128.f;
-    viewDistance = 5.f;
+    viewDistance = 4.f;
     
     IVideoDriver* video = device->getVideoDriver();
     ISceneManager* smgr = device->getSceneManager();
     
-    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 40, device);
+    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 100, device);
     
     worldTriangleSelector = this->device()->getSceneManager()->createMetaTriangleSelector();
     mainScene = smgr->addEmptySceneNode();
@@ -75,12 +75,15 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     mainScene->addChild(cam2);
     
     auto light = smgr->addLightSceneNode();
-    light->setRadius(100.f);
-    light->setLightType(video::ELT_DIRECTIONAL);
-    light->setRotation(irr::core::vector3df(90, 0, 0));
+    light->setRadius(10000.f);
+    light->setLightType(video::ELT_POINT);
+    light->setPosition(vector3df{1.f,7.f,1.5f});
     player->addChild(light);
     
-    shaderMaterialIDS = tom::setupShader(device, vector2df(chunkSizeAB), quadScale);
+    //auto flyCircle = smgr->createFlyCircleAnimator(vector3df{1000.f,000.f,0.f},1000.f, 0.00005f, vector3df{1.0f,0.f,0.f});
+    //light->addAnimator(flyCircle);
+    
+    shaderMaterialIDS = tom::setupShader(device, vector2df(chunkSizeAB), quadScale, light);
     
     // give player a collision animator with worldTriangleSelector as tri selector
     setupCollisionAnimator();
@@ -90,7 +93,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
             viewDistance++;
         } else if (kc == irr::KEY_KEY_M) {
             viewDistance--;
-        } else if (kc == irr::KEY_KEY_R) {
+        } else if (kc == irr::KEY_F1) {
             player->setPosition(kPlayerSpawnPosition);
 			cam2->setPosition(kPlayerSpawnPosition);
         }  else if (kc == irr::KEY_SPACE) {
@@ -100,8 +103,12 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
                     c->jump(5*50);
                 }
             }
-        } else if (kc == irr::KEY_KEY_F) {
-            player->removeAnimators();
+        } else if (kc == irr::KEY_F2) {
+            if (player->getAnimators().size() == 0) {
+                this->setupCollisionAnimator();
+            } else {
+                player->removeAnimators();
+            }
         } else if (kc == irr::KEY_KEY_P) {
 			spawnEnemies();
 		} else if (kc == irr::KEY_KEY_R) {
@@ -157,11 +164,14 @@ void WorldScene::render() {
     m_device->getVideoDriver()->beginScene(true, true, video::SColor(255,173,241,255));
     m_device->getSceneManager()->drawAll();
     device()->getGUIEnvironment()->drawAll();
-    if (eventReceiver->mouseInformation().clickedLeft) raycast();
     
+    if (eventReceiver->mouseInformation().clickedLeft) raycast();
     auto str = L"AMMO: " + std::to_wstring(PLAYER_PROPS.ammo) + L" / " + std::to_wstring(kPlayerMaxAmmo);
     font->draw(str.c_str(), core::rect<s32>{static_cast<int>(device()->getVideoDriver()->getScreenSize().Width-500),0,0,0}, video::SColor{255,0,0,0});
     m_device->getVideoDriver()->endScene();
+    
+    
+    //if (currentChunkNoiseTex != nullptr) m_device->getVideoDriver()->draw2DImage(currentChunkNoiseTex, vector2d<s32>{5,5});
     
     m_device->getVideoDriver()->endScene();
 }
@@ -180,7 +190,7 @@ void WorldScene::manageInput(MapControlEventReceiver *eventReceiver, irr::scene:
     float yVal = sin(irr::core::degToRad(angle));
     float xVal = cos(irr::core::degToRad(angle));
     
-    float value = eventReceiver->keyPressed(irr::KEY_KEY_E) ? 10.f : 0.5f;
+    float value = eventReceiver->keyPressed(irr::KEY_SHIFT) ? 10.f : 0.5f;
     if (eventReceiver->keyPressed(irr::KEY_RIGHT) || eventReceiver->keyPressed(irr::KEY_KEY_D)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle - 90.f)), 0.f, value*sin(irr::core::degToRad(angle - 90.f))));
     if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f))));
     if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal, 0.f, value*yVal));
@@ -194,7 +204,6 @@ void WorldScene::manageInput(MapControlEventReceiver *eventReceiver, irr::scene:
     float lowpassfilterFactor = .1f;
     newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
     cam2->setPosition(newPosition);
-    
 }
 
 void WorldScene::updateFPSCounter() {
@@ -309,19 +318,42 @@ void WorldScene::raycast() {
 
 void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::core::vector2di key) {
     mainScene->addChild(m);
+    if (m->getMaterial(0).getTexture(0) != nullptr) currentChunkNoiseTex = m->getMaterial(0).getTexture(0);
+
     m->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.front());
     chunks[key]->remove();
     chunks[key] = m;
     
-    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(m->getMesh(), m);
-    m->setTriangleSelector(selector);
-    worldTriangleSelector->addTriangleSelector(selector);
-    selector->drop();
+    //scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(m->getMesh(), m);
+    //m->setTriangleSelector(selector);
+    //worldTriangleSelector->addTriangleSelector(selector);
+    //selector->drop();
 
+    
+    auto str = L"waterMesh";
+    auto waterMesh = device()->getSceneManager()->getMesh(str);
+    if (!waterMesh) waterMesh = device()->getSceneManager()->addHillPlaneMesh(str,
+                                                                   dimension2d<f32>(chunkSizeAB-1,chunkSizeAB-1),
+                                                                   dimension2d<u32>(2,2), 0, 0,
+                                                                   dimension2d<f32>(0, 0),
+                                                                   dimension2d<f32>(8, 8));
+    auto node = device()->getSceneManager()->addWaterSurfaceSceneNode(waterMesh->getMesh(0), 0.1f, 258, 1.0f);
+    
+    node->setPosition(vector3df{127,5.5f,127});
+    node->setMaterialTexture(0, device()->getVideoDriver()->getTexture("models/water.png"));
+    node->setMaterialType(EMT_SOLID);
+    //node->setMaterialFlag(EMF_FOG_ENABLE, true);
+    m->addChild(node);
+    
+    
+    
+    
+    
+    
     for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
         auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
         
-        if (rand()%1500 == 1 && vertexPos.Y > 10.f) {
+        if (rand()%500 == 1 && vertexPos.Y > 11.f) {
             if (vertexPos.Y < 80.f) {
                 addPlant(vertexPos, m);
             } else if (rand()%600 == 5) {
@@ -442,6 +474,7 @@ void WorldScene::enemyDied(irr::scene::ISceneNode *node, const WorldScene::Livin
         auto dropModel = device()->getSceneManager()->addSphereSceneNode(1.f, 4, mainScene, kItemID);
         dropModel->setPosition(nodePos);
         dropModel->getMaterial(0).DiffuseColor = SColor(255, 20, 255, 20);
+        dropModel->setMaterialType(E_MATERIAL_TYPE::EMT_SOLID);
         mainScene->addChild(dropModel);
         
         setupCollisionAnimator(dropModel);
