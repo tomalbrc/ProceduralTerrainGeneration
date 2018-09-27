@@ -73,7 +73,7 @@ private:
     void setupCollisionAnimator(irr::scene::ISceneNode *target = nullptr);
 
     // called every frame
-    void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2);
+    void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2, irr::f32 deltaTime = 1.f);
     void updateFPSCounter();
 
     // RC

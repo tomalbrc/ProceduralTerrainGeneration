@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/NoiseMapGenerator.cpp"
-            timestampString = "559084479.1129071"
+            timestampString = "559171335.068889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/NoiseMapGenerator.cpp"
-            timestampString = "559084479.113119"
+            timestampString = "559171335.0691611"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/NoiseMapGenerator.cpp"
-            timestampString = "559084479.113192"
+            timestampString = "559171335.069239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../external/irrlicht/source/Irrlicht/CIrrDeviceOSX.mm"
-            timestampString = "559084479.11331"
+            timestampString = "559171335.069345"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "699"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../external/irrlicht/source/Irrlicht/CIrrDeviceOSX.mm"
-            timestampString = "559084479.11338"
+            timestampString = "559171335.069412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "876"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../external/irrlicht/source/Irrlicht/CIrrDeviceOSX.mm"
-            timestampString = "559084479.113446"
+            timestampString = "559171335.069483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "872"
@@ -291,11 +291,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.113657"
+            timestampString = "559773137.231195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "WorldScene::setupCollisionAnimator(irr::scene::ISceneNode *target)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/WorldScene.cpp"
+            timestampString = "559773137.231833"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "WorldScene::updateFPSCounter()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/WorldScene.cpp"
+            timestampString = "559773137.232335"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "WorldScene::raycast()"
             landmarkType = "7">
          </BreakpointContent>
@@ -307,43 +339,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.116086"
+            timestampString = "559773137.232828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.118291"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "WorldScene::raycast()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.120504"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "WorldScene::updateFPSCounter()"
             landmarkType = "7">
          </BreakpointContent>
@@ -355,11 +355,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.1224639"
+            timestampString = "559773137.233315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "WorldScene::updateFPSCounter()"
             landmarkType = "7">
          </BreakpointContent>
@@ -371,11 +371,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.124343"
+            timestampString = "559773137.233815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "WorldScene::updateFPSCounter()"
             landmarkType = "7">
          </BreakpointContent>
@@ -387,11 +387,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.126245"
+            timestampString = "559773137.234292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "WorldScene::updateFPSCounter()"
             landmarkType = "7">
          </BreakpointContent>
@@ -403,11 +403,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.128105"
+            timestampString = "559773137.234762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "WorldScene::WorldScene(irr::IrrlichtDevice *device)"
             landmarkType = "7">
          </BreakpointContent>
@@ -419,12 +419,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "559084479.129545"
+            timestampString = "559773137.2352279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "WorldScene::WorldScene(irr::IrrlichtDevice *device)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../external/irrlicht-1.8.4/source/Irrlicht/MacOSX/CIrrDeviceMacOSX.mm"
+            timestampString = "559773137.235697"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "615"
+            endingLineNumber = "615"
+            landmarkName = "CIrrDeviceMacOSX::createWindow()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

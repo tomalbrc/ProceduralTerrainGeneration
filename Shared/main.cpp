@@ -14,7 +14,7 @@ using namespace irr::video;
 int main(int argc, char** argv) {
     auto params = []() -> const SIrrlichtCreationParameters {
         SIrrlichtCreationParameters params;
-        params.AntiAlias = 2;
+        params.AntiAlias = 16;
         params.DriverType = video::EDT_OPENGL;
         params.WindowSize = core::dimension2d<u32>(1920*0.75, 1080*0.75);
         params.Fullscreen = false;
@@ -23,7 +23,10 @@ int main(int argc, char** argv) {
         params.WindowId = nullptr;
         params.DriverMultithreaded = true;
         params.Stencilbuffer = false;
+        params.HandleSRGB = true;
+        params.WithAlphaChannel = true;
         return params;
+        
     }();
     
     IrrlichtDevice *device = irr::createDeviceEx(params);
@@ -32,10 +35,18 @@ int main(int argc, char** argv) {
 	device->setWindowCaption(str.c_str());
 	
     WorldScene ws{device};
+    
+    u32 then = device->getTimer()->getTime();
     while(device->run() && device) {
         tom::threading::manageMainthreadCallbacks();
-        ws.update(0);
+        
+        const u32 now = device->getTimer()->getTime();
+        const f32 frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
+        then = now;
+        
         ws.render();
+        ws.update(frameDeltaTime);
+        
     }
     
 	device->drop();

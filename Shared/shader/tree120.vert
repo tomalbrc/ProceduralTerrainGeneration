@@ -1,8 +1,8 @@
 #version 120 
 #extension GL_EXT_gpu_shader4 : require // glsl extension for flat
 
-flat varying vec4 vertexWorldPos;
-flat varying vec3 fragNormal;
+ varying vec4 vertexWorldPos;
+ varying vec3 fragNormal;
 
 uniform float time;
 

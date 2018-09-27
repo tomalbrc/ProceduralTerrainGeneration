@@ -90,10 +90,10 @@ irr::scene::IMeshSceneNode* TerrainGenerator::getMeshAt(irr::core::vector2di chu
         
         auto msn = m_device->getSceneManager()->addMeshSceneNode(terrain);
         msn->setPosition(irr::core::vector3df{(float)offset.X*quadScale.Width, 0,(float)offset.Y*quadScale.Height});
-        msn->setMaterialTexture(0, m_device->getVideoDriver()->getTexture("models/sand.png"));
-        msn->setMaterialTexture(1, m_device->getVideoDriver()->getTexture("models/grass.png"));
-        msn->setMaterialTexture(2, m_device->getVideoDriver()->getTexture("models/rock.png"));
-        msn->setMaterialTexture(3, m_device->getVideoDriver()->getTexture("models/snow.png"));
+        msn->setMaterialTexture(0, m_device->getVideoDriver()->getTexture(getResourcePath("models/sand.png")));
+        msn->setMaterialTexture(1, m_device->getVideoDriver()->getTexture(getResourcePath("models/grass.png")));
+        msn->setMaterialTexture(2, m_device->getVideoDriver()->getTexture(getResourcePath("models/rock.png")));
+        msn->setMaterialTexture(3, m_device->getVideoDriver()->getTexture(getResourcePath("models/snow.png")));
 
         completion(msn, key);
     });
