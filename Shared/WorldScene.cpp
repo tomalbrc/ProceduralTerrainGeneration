@@ -62,7 +62,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     IVideoDriver* video = device->getVideoDriver();
     ISceneManager* smgr = device->getSceneManager();
     
-    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 20, device);
+    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 30, device);
     
     worldTriangleSelector = this->device()->getSceneManager()->createMetaTriangleSelector();
     mainScene = smgr->addEmptySceneNode();
@@ -77,6 +77,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     
     cam2 = smgr->addCameraSceneNode();
     cam2->setPosition(kPlayerSpawnPosition);
+    cam2->setFOV(20.f);
     mainScene->addChild(cam2);
     
     auto light = smgr->addLightSceneNode();
@@ -112,6 +113,20 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
             } else {
                 player->removeAnimators();
             }
+        } else if (kc == irr::KEY_F4) {
+            
+            for (auto & node : chunks) {
+                auto chldr = node.second->getChildren();
+                for (auto i = chldr.begin(); i != chldr.end(); i++) {
+                    effect->removeShadowFromNode(*i);
+                    (*i)->remove();
+                }
+                
+                effect->removeShadowFromNode(node.second);
+                node.second->remove();
+            }
+            chunks.clear();
+            
         } else if (kc == irr::KEY_KEY_P) {
 			spawnEnemies();
 		} else if (kc == irr::KEY_KEY_R) {
@@ -133,9 +148,9 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     
     effect = new EffectHandler(device, device->getVideoDriver()->getScreenSize(), false, false, true);
     effect->setAmbientColor(SColor(255, 200,200,200));
-    effect->setClearColour(video::SColor(255,173,241,255));
+    effect->setClearColour(video::SColor(255,135,206,235));
     effect->addShadowLight(SShadowLight(1024*4, kPlayerSpawnPosition, vector3df{player->getPosition().X,100,player->getPosition().Z},
-                                        SColor(255,255,240,241), 10.f, 1000.0f, degToRad(130.f), false));
+                                        SColor(255,255,240,241), 1.f, 1000.0f, 1200, true));
     effect->addShadowToNode(player, EFT_16PCF, ESM_BOTH);
 
     printf("GLSL #VERSION: %d\n", video->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion"));
@@ -145,15 +160,13 @@ void WorldScene::update(double dt) {
     manageInput(eventReceiver, player, cam2, dt);
     updateFPSCounter();
     
-    
-    auto &lll = effect->getShadowLight(0);
+    auto &lll2 = effect->getShadowLight(0);
     auto pos = player->getPosition();
-    pos.Y += 100.f;
-    pos.X += 50.f;
-    pos.Z += 50.f;
-    lll.setPosition(pos);
-    lll.setTarget(player->getPosition());
-    
+    pos.Y += 90.f;
+    pos.X -= 30.f;
+    pos.Z -= 30.f;
+    lll2.setPosition(pos);
+    lll2.setTarget(player->getPosition());
     
     auto playerChunkLoc = irr::core::vector2di(player->getPosition().X / ((chunkSizeAB-1)*quadScale), player->getPosition().Z / ((chunkSizeAB - 1)*quadScale));
     
@@ -179,15 +192,38 @@ void WorldScene::update(double dt) {
             } // if (hasKey) ... ELSE
         } // viewDistance X
     } // viewDistance Y
+    
+//
+//    for (auto ting : chunks) {
+//            auto chldr = ting.second->getChildren();
+//            for (auto i = chldr.begin(); i != chldr.end(); i++) {
+//                if (!ting.second->isVisible()) {
+//                    effect->removeShadowFromNode(*i);
+//                    (*i)->setIsDebugObject(true);
+//                }
+//                else if ((*i)->isDebugObject()) {
+//                    effect->addShadowToNode(*i);
+//                    (*i)->setIsDebugObject(false);
+//                }
+//            }
+//        if (!ting.second->isVisible()) {
+//            effect->removeShadowFromNode(ting.second);
+//            ting.second->setIsDebugObject(true);
+//        }
+//        else if (ting.second->isDebugObject()) {
+//            effect->addShadowToNode(ting.second);
+//            ting.second->setIsDebugObject(false);
+//        }
+//    }
 }
 
 void WorldScene::render() {
-    m_device->getVideoDriver()->beginScene(false, true, video::SColor(255,173,241,255));
-    if (eventReceiver->mouseInformation().clickedLeft) raycast();
+    m_device->getVideoDriver()->beginScene(false, false, video::SColor(255,80,160,250));
     //m_device->getSceneManager()->drawAll(); // disabled in favor of effect->update()
     effect->update();
 
-    
+    if (eventReceiver->mouseInformation().clickedLeft) raycast();
+
     device()->getGUIEnvironment()->drawAll();
     
     auto str = L"AMMO: " + std::to_wstring(PLAYER_PROPS.ammo) + L" / " + std::to_wstring(kPlayerMaxAmmo);
@@ -222,7 +258,7 @@ void WorldScene::manageInput(MapControlEventReceiver *eventReceiver, irr::scene:
     player->setRotation(irr::core::vector3df(0,-angle,0));
     
     auto newPosition = player->getPosition() + irr::core::vector3df(-50 * xVal, 20.f, -50 * yVal);
-    float lowpassfilterFactor = irr::core::clamp(.1f*100.f*deltaTime, 0.1f, 5.f);
+    float lowpassfilterFactor = (.1f);
     newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
     cam2->setPosition(newPosition);
 }
@@ -345,7 +381,7 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     chunks[key]->remove();
     chunks[key] = m;
     
-    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(m->getMesh(), m);
+    scene::ITriangleSelector* selector = device()->getSceneManager()->createTriangleSelector(m->getMesh(), m);
     m->setTriangleSelector(selector);
     worldTriangleSelector->addTriangleSelector(selector);
     selector->drop();
@@ -371,7 +407,7 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
         auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
         
-        if (rand()%2000 == 1 && vertexPos.Y > 11.f) {
+        if (rand()%4000 == 1 && vertexPos.Y > 11.f) {
             if (vertexPos.Y < 80.f) {
                 addPlant(vertexPos, m);
             } else if (rand()%1800 == 5) {
@@ -392,7 +428,7 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
     auto ran = rand()%3;
     auto meshScene = device()->getSceneManager()->addMeshSceneNode(ran == 0 ? mesh : ran==1 ? mesh2 : meshBush);
     meshScene->setPosition(vertexPos);
-    meshScene->setScale(irr::core::vector3df{ran==2?4.f:6.f});
+    meshScene->setScale(irr::core::vector3df{ran==2?5.f:9.f});
     
     meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
     meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
@@ -458,6 +494,9 @@ void WorldScene::spawnEnemies() {
 	enemy->setPosition(spawnPos);
 	mainScene->addChild(enemy);
 
+    enemy->setMaterialFlag(EMF_LIGHTING, false);
+    effect->addShadowToNode(enemy, EFT_16PCF, ESM_BOTH);
+
     scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(enemy->getMesh(), enemy);
     enemy->setTriangleSelector(selector);
     //worldTriangleSelector->addTriangleSelector(selector);
@@ -471,6 +510,8 @@ void WorldScene::spawnEnemies() {
 }
 
 void WorldScene::enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata) {
+    effect->removeShadowFromNode(node);
+    
     auto nodePos = node->getPosition();
     
     auto iter = entities.find(node) ;
@@ -504,3 +545,6 @@ void WorldScene::enemyDied(irr::scene::ISceneNode *node, const WorldScene::Livin
         entities[dropModel] = md;
     }
 }
+
+
+

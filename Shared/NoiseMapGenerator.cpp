@@ -11,8 +11,7 @@
 #include "PerlinNoise.hpp"
 
 NoiseMap NoiseMapGenerator::Generate(irr::core::dimension2du size, irr::core::vector2di offset, unsigned seed, float scale, float persistance, float lacunarity) {
-
-    int octaves = 5;
+    int octaves = 4;
     
     float frequency = 1.f;
     float amplitude = 1.f;
