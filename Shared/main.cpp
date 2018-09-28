@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
         params.DriverType = video::EDT_OPENGL;
         params.WindowSize = core::dimension2d<u32>(1920*0.75, 1080*0.75);
         params.Fullscreen = false;
-        params.Vsync = true;
+        params.Vsync = false;
         params.Doublebuffer = true;
         params.WindowId = nullptr;
         params.DriverMultithreaded = true;
@@ -26,7 +26,6 @@ int main(int argc, char** argv) {
         params.HandleSRGB = true;
         params.WithAlphaChannel = true;
         return params;
-        
     }();
     
     IrrlichtDevice *device = irr::createDeviceEx(params);
@@ -44,9 +43,8 @@ int main(int argc, char** argv) {
         const f32 frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
         then = now;
         
-        ws.render();
         ws.update(frameDeltaTime);
-        
+        ws.render();
     }
     
 	device->drop();

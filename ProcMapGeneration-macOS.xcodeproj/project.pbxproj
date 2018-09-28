@@ -10,6 +10,7 @@
 		09570A75213411F0001A5FCC /* NoiseMapGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A74213411F0001A5FCC /* NoiseMapGenerator.cpp */; };
 		09570A7821341B25001A5FCC /* MapControlEventReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A7621341B25001A5FCC /* MapControlEventReceiver.cpp */; };
 		09570A7B21341E24001A5FCC /* TerrainGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A7921341E24001A5FCC /* TerrainGenerator.cpp */; };
+		09966B3F215E23500054AE39 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADB7A37215D38BD00A85AC4 /* libIrrlicht.a */; };
 		099CABFB2153C91100A74C38 /* CShaderPre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF32153C91100A74C38 /* CShaderPre.cpp */; };
 		099CABFC2153C91100A74C38 /* EffectHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF62153C91100A74C38 /* EffectHandler.cpp */; };
 		9A5FD230214B02070031027B /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9A5FD22F214B02070031027B /* fonts */; };
@@ -21,7 +22,6 @@
 		9AB696AB212F3C0200E164C0 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AA212F3C0100E164C0 /* OpenGL.framework */; };
 		9AB696AD212F3C0600E164C0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696AC212F3C0600E164C0 /* AppKit.framework */; };
 		9AB696B1212F3C7600E164C0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB696B0212F3C7600E164C0 /* IOKit.framework */; };
-		9ADB7A62215D38CD00A85AC4 /* libIrrlicht.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADB7A37215D38BD00A85AC4 /* libIrrlicht.a */; };
 		9AEA764D213DE23400E689E7 /* TerrainShaderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA764B213DE23400E689E7 /* TerrainShaderCallback.cpp */; };
 		9AEEFC44214036A8005B4CC6 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEFC43214036A8005B4CC6 /* Utils.cpp */; };
 /* End PBXBuildFile section */
@@ -229,7 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ADB7A62215D38CD00A85AC4 /* libIrrlicht.a in Frameworks */,
+				09966B3F215E23500054AE39 /* libIrrlicht.a in Frameworks */,
 				9AB696B1212F3C7600E164C0 /* IOKit.framework in Frameworks */,
 				9AB696AD212F3C0600E164C0 /* AppKit.framework in Frameworks */,
 				9AB696AB212F3C0200E164C0 /* OpenGL.framework in Frameworks */,
@@ -774,8 +774,8 @@
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = ../../external/irrlicht/lib/OSX;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				LIBRARY_SEARCH_PATHS = "../../external/irrlicht-1.8.4/lib/OSX";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DMACOS",
@@ -802,8 +802,8 @@
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = ../../external/irrlicht/lib/OSX;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				LIBRARY_SEARCH_PATHS = "../../external/irrlicht-1.8.4/lib/OSX";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DMACOS",

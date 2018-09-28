@@ -7,6 +7,7 @@
 //
 
 #include <unistd.h>
+#include <chrono>
 
 #include "WorldScene.h"
 #include "MapControlEventReceiver.h"
@@ -25,23 +26,23 @@ using namespace irr::video;
 using namespace irr::core;
 
 // Paths for irrlicht fonts (generated using FontTool)
-static auto kFontPath1 = getResourcePath("fonts/betafont.xml");
-static auto kFontPath = getResourcePath("fonts/betafont.xml");
+static auto kFontPath1 = ResourcePath("fonts/betafont.xml");
+static auto kFontPath = ResourcePath("fonts/betafont.xml");
 
 // Paths for models
-static auto kModelBigBushPath = getResourcePath("models/BigBush.obj");
-static auto kModelSmallTreeWithLeavePath = getResourcePath("models/SmallTreeWithLeave.obj");
-static auto kModelBigTreeWithLeavesPath = getResourcePath("models/BigTreeWithLeaves.obj");
-static auto kModelRock1Path = getResourcePath("models/Rock1.obj");
-static auto kModelCloud1Path = getResourcePath("models/Cloud1.obj");
-static auto kModelCloud2Path = getResourcePath("models/Cloud2.obj");
-static auto kModelCloud3Path = getResourcePath("models/Cloud3.obj");
+static auto kModelBigBushPath = ResourcePath("models/BigBush.obj");
+static auto kModelSmallTreeWithLeavePath = ResourcePath("models/SmallTreeWithLeave.obj");
+static auto kModelBigTreeWithLeavesPath = ResourcePath("models/BigTreeWithLeaves.obj");
+static auto kModelRock1Path = ResourcePath("models/Rock1.obj");
+static auto kModelCloud1Path = ResourcePath("models/Cloud1.obj");
+static auto kModelCloud2Path = ResourcePath("models/Cloud2.obj");
+static auto kModelCloud3Path = ResourcePath("models/Cloud3.obj");
 
 // Paths for textures
-static auto kTreeTexturePath = getResourcePath("models/TreeTexture.png");
-static auto kBushTexturePath = getResourcePath("models/BushTexture.png");
-static auto kCloudTexturePath = getResourcePath("models/white.png");
-static auto kRockTexturePath = getResourcePath("models/rock.png");
+static auto kTreeTexturePath = ResourcePath("models/TreeTexture.png");
+static auto kBushTexturePath = ResourcePath("models/BushTexture.png");
+static auto kCloudTexturePath = ResourcePath("models/white.png");
+static auto kRockTexturePath = ResourcePath("models/rock.png");
 
 // Ids for scenes
 static const irr::s32 kEnemyID = -1344;
@@ -87,10 +88,18 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     light->setName("light");
     player->addChild(light);
     
-    shaderMaterialIDS = tom::setupShader(device, vector2df(chunkSizeAB), quadScale, light);
+    shaderMaterialIDS = tom::shader::setupShader(device, vector2df(chunkSizeAB), quadScale, light);
     
     // give player a collision animator with worldTriangleSelector as tri selector
-    setupCollisionAnimator();
+    //setupCollisionAnimator();
+    
+    tom::threading::onSeparateThread([dis = this]() mutable {
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        
+        tom::threading::addMainCallback([dis = dis]() mutable {
+            dis->setupCollisionAnimator();
+        });
+    });
     
     eventReceiver->setPressedKeyHandler([this, device](irr::EKEY_CODE kc){
         if (kc == irr::KEY_KEY_N) {
@@ -398,7 +407,7 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     auto node = device()->getSceneManager()->addWaterSurfaceSceneNode(waterMesh->getMesh(0), 0.1f, 258, 1.0f);
 
     node->setPosition(vector3df{127,5.5f,127});
-    node->setMaterialTexture(0, device()->getVideoDriver()->getTexture(getResourcePath("models/water.png")));
+    node->setMaterialTexture(0, device()->getVideoDriver()->getTexture(ResourcePath("models/water.png")));
     node->setMaterialType(EMT_SOLID);
     m->addChild(node);
     
