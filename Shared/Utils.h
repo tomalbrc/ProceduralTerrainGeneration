@@ -10,16 +10,14 @@
 #ifndef Utils_h
 #define Utils_h
 #include "TerrainShaderCallback.h"
-#include <future>
 #include <functional>
 #include <mutex>
-#include <thread>
 #include <deque>
 #include <string>
 #include <vector>
 #include <unistd.h>
 
-static const irr::core::stringc getResourcePath(const char* resource) {
+static const irr::core::stringc ResourcePath(const char* resource) {
     auto cwd = getcwd(NULL, 0);
 #ifdef __APPLE__
     strcat(cwd, "/ProcMapGeneration-macOS.app/Contents/Resources/");
@@ -30,7 +28,6 @@ static const irr::core::stringc getResourcePath(const char* resource) {
     return cwd;
 }
 
-
 namespace tom {
     using namespace irr;
     using namespace video;
@@ -40,92 +37,39 @@ namespace tom {
     
     class threading {
     public:
+        /**
+         * Manages the queue of std::function.
+         * all this on the main thread in order for threading::addMainCallback to work properly
+         */
+        static void manageMainthreadCallbacks();
+        
+        /**
+         * Executes a lambda on the main thread. (preferrably a mutable c++14 one)
+         * Remember to call threading::manageMainthreadCallbacks() in your main function!
+         */
+        static void addMainCallback(const std::function<void(void)> &f);
+        
+        /**
+         * Executes a lambda on a separate thread. (preferrably a mutable c++14 one)
+         */
+        static void onSeparateThread(const std::function<void(void)> &f);
+        
+        /**
+         * Sleeps for ms milliseconds
+         */
+        static void sleep(int ms);
+    private:
         static MainCallbackQueue mainCallbackQueue;
         static std::mutex mainCallbackQueueMutex;
-        
-        static void manageMainthreadCallbacks() {
-            std::unique_lock<std::mutex> lock(mainCallbackQueueMutex);
-            if (!mainCallbackQueue.empty()) {
-                // executeon main
-                auto fun = std::move(mainCallbackQueue.front());
-                mainCallbackQueue.pop_front(); // throw away
-                lock.unlock();
-                fun();
-                lock.lock();
-                printf("executed task\n");
-            }
-        }
-        
-        static void addMainCallback(const std::function<void(void)> &f) {
-            std::packaged_task<void()> task(std::move(f)); //!!
-            std::lock_guard<std::mutex> lock{mainCallbackQueueMutex};
-            mainCallbackQueue.push_back(std::move(task));
-        }
-        
-        static void onSeparateThread(const std::function<void(void)> &f) {
-            std::thread thread{f};
-            thread.detach();
-        }
     };
     
     ///
     /// game utils
     ///
-    
-    static std::vector<irr::s32> setupShader(irr::IrrlichtDevice *device, const irr::core::vector2df& chunkSize, const float& quadScale, irr::scene::ILightSceneNode *light) {
-        std::vector<irr::s32> res;
-        
-        irr::video::IGPUProgrammingServices *gps = device->getVideoDriver()->getGPUProgrammingServices();
-        if (gps) {
-            const irr::video::E_GPU_SHADING_LANGUAGE shadingLanguage = EGSL_DEFAULT;
-            
-            auto mc = new TerrainShaderCallback{ device };
-			mc->chunkSize(chunkSize);
-			mc->quadScale(quadScale);
-            mc->lightSource(light);
-            
-            auto glslVer = device->getVideoDriver()->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion");
-            
-            irr::s32 matType1, matType2, matType3;
-            if (glslVer == 102 || glslVer == 120) {
-                matType1 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                             getResourcePath("shader/terrain120.vert"), "main", video::EVST_VS_1_1,
-                                                                             getResourcePath("shader/terrain120.frag"), "main", video::EPST_PS_1_1,
-                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
-                
-                matType2 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                             getResourcePath("shader/tree120.vert"), "main", video::EVST_VS_1_1,
-                                                                             getResourcePath("shader/tree120.frag"), "main", video::EPST_PS_1_1,
-                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
-                
-                matType3 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                             getResourcePath("shader/cloud120.vert"), "main", video::EVST_VS_1_1,
-                                                                             getResourcePath("shader/cloud120.frag"), "main", video::EPST_PS_1_1,
-                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
-            } else if (glslVer == 103 || glslVer == 130) {
-                matType1 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                             getResourcePath("shader/terrain130.vert"), "main", video::EVST_VS_1_1,
-                                                                             getResourcePath("shader/terrain130.frag"), "main", video::EPST_PS_1_1,
-                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
-                
-                matType2 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                             getResourcePath("shader/tree130.vert"), "main", video::EVST_VS_1_1,
-                                                                             getResourcePath("shader/tree130.frag"), "main", video::EPST_PS_1_1,
-                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
-                
-                matType3 = gps->addHighLevelShaderMaterialFromFiles(
-                                                                             getResourcePath("shader/cloud130.vert"), "main", video::EVST_VS_1_1,
-                                                                             getResourcePath("shader/cloud130.frag"), "main", video::EPST_PS_1_1,
-                                                                             mc, video::EMT_SOLID, 0, shadingLanguage);
-            }
-            
-            //res.emplace_back(matType1, matType2);
-            res.push_back(matType1);
-            res.push_back(matType2);
-            res.push_back(matType3);
-        }
-        return res;
-    }
+    class shader {
+    public:
+        static std::vector<irr::s32> setupShader(irr::IrrlichtDevice *device, const irr::core::vector2df& chunkSize, const float& quadScale, irr::scene::ILightSceneNode *light);
+    };
 }
 
 
