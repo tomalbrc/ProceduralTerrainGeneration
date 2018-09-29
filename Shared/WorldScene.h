@@ -16,6 +16,8 @@
 #include "TerrainGenerator.h"
 #include "MapControlEventReceiver.h"
 
+#include "btBulletDynamicsCommon.h"
+
 class EffectHandler;
 
 class WorldScene : public IrrScene {
@@ -28,6 +30,9 @@ public:
     void render() final;
     
 private:
+    // Shadow & other special effects
+    EffectHandler* effect = nullptr;
+
 	// Used for player and enemies, basically everything that 'lives'
 	using LivingMetadata = struct {
 		int health = 100;
@@ -81,17 +86,6 @@ private:
     void raycast();
     // !RC
     
-	// called in raycast when an enemy in the ray is detected
-	// Handles a timer for shooting rounds from an automatic gun
-	void handleShot(irr::scene::ISceneNode *hitNode, irr::core::vector3df collisionPoint) {
-		// gfx effects, 
-
-		// substract from health
-
-		// check for death and despawn eventually
-
-	}
-    
     // callback for multi-threaded terrain generation
     void terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::core::vector2di key);
     
@@ -103,14 +97,17 @@ private:
 	// Spawns an enemy slighty above the player, with gravity and collision enabled
 	void spawnEnemies();
     
-    // called when an emeny died, spawns loot, gives the player points/xp,
-    // shows death aninmation / effects
-    void enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata);
+    /**
+     called when an emeny died, spawns loot, gives the player points/xp,
+     * shows death aninmation / effects
+     */
+     void enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata);
     
-    
-    
-    irr::video::ITexture *currentChunkNoiseTex = 0;
-    EffectHandler* effect = nullptr;
+    /**
+     * Setup Physics
+     */
+    void setupPhysics();
+    void addBody(btAlignedObjectArray<btCollisionShape*> &collisionShapes);
 };
 
 #endif /* WorldScene_h */

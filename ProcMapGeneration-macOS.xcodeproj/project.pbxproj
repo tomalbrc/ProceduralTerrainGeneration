@@ -13,6 +13,9 @@
 		099CABFB2153C91100A74C38 /* CShaderPre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF32153C91100A74C38 /* CShaderPre.cpp */; };
 		099CABFC2153C91100A74C38 /* EffectHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF62153C91100A74C38 /* EffectHandler.cpp */; };
 		9A5FD230214B02070031027B /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9A5FD22F214B02070031027B /* fonts */; };
+		9A885044215F63670073817B /* libLinearMath_xcode4_x64_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A885038215F5F4E0073817B /* libLinearMath_xcode4_x64_debug.a */; };
+		9A885054215F646E0073817B /* libBulletCollision_xcode4_x64_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A88504D215F645D0073817B /* libBulletCollision_xcode4_x64_debug.a */; };
+		9A885055215F646E0073817B /* libBulletDynamics_xcode4_x64_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A885053215F645D0073817B /* libBulletDynamics_xcode4_x64_debug.a */; };
 		9A90497D214519F7005218A1 /* shader in Resources */ = {isa = PBXBuildFile; fileRef = 9A90497C214519F7005218A1 /* shader */; };
 		9A90497F21451A17005218A1 /* models in Resources */ = {isa = PBXBuildFile; fileRef = 9A90497E21451A17005218A1 /* models */; };
 		9A9049832145ABF4005218A1 /* WorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9049812145ABF3005218A1 /* WorldScene.cpp */; };
@@ -27,6 +30,48 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A88502B215F5F450073817B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A885027215F5F450073817B /* Bullet3Dynamics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CC770F8428134A0024C5FE7;
+			remoteInfo = Bullet3Dynamics;
+		};
+		9A885031215F5F460073817B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A88502D215F5F450073817B /* Bullet3Collision.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 169611315360748D004A2DDF;
+			remoteInfo = Bullet3Collision;
+		};
+		9A885037215F5F4E0073817B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A885033215F5F4D0073817B /* LinearMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 681B6229079D7BA8798A5E4A;
+			remoteInfo = LinearMath;
+		};
+		9A885040215F60F60073817B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A88503C215F60F60073817B /* Bullet3Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72F771A04364717342DC3598;
+			remoteInfo = Bullet3Common;
+		};
+		9A88504C215F645D0073817B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A885048215F645C0073817B /* BulletCollision.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6DEC2E6E6D4565D05CBC7174;
+			remoteInfo = BulletCollision;
+		};
+		9A885052215F645D0073817B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A88504E215F645D0073817B /* BulletDynamics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3CAE60144E5F73E812341574;
+			remoteInfo = BulletDynamics;
+		};
 		9ADB7A36215D38BD00A85AC4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9ADB7A1C215D38BC00A85AC4 /* MacOSX.xcodeproj */;
@@ -206,10 +251,16 @@
 		9A75F703212F3B5800E375B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = Shared/main.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		9A75F706212F3B5800E375B5 /* bitmap_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bitmap_image.h; path = Shared/bitmap_image.h; sourceTree = SOURCE_ROOT; };
 		9A75F709212F3B5800E375B5 /* ColorSelector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ColorSelector.hpp; path = Shared/ColorSelector.hpp; sourceTree = SOURCE_ROOT; };
+		9A885027215F5F450073817B /* Bullet3Dynamics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bullet3Dynamics.xcodeproj; path = ../../external/bullet3/build3/xcode4/Bullet3Dynamics.xcodeproj; sourceTree = "<group>"; };
+		9A88502D215F5F450073817B /* Bullet3Collision.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bullet3Collision.xcodeproj; path = ../../external/bullet3/build3/xcode4/Bullet3Collision.xcodeproj; sourceTree = "<group>"; };
+		9A885033215F5F4D0073817B /* LinearMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LinearMath.xcodeproj; path = ../../external/bullet3/build3/xcode4/LinearMath.xcodeproj; sourceTree = "<group>"; };
+		9A88503C215F60F60073817B /* Bullet3Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bullet3Common.xcodeproj; path = ../../external/bullet3/build3/xcode4/Bullet3Common.xcodeproj; sourceTree = "<group>"; };
+		9A885048215F645C0073817B /* BulletCollision.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BulletCollision.xcodeproj; path = ../../external/bullet3/build3/xcode4/BulletCollision.xcodeproj; sourceTree = "<group>"; };
+		9A88504E215F645D0073817B /* BulletDynamics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BulletDynamics.xcodeproj; path = ../../external/bullet3/build3/xcode4/BulletDynamics.xcodeproj; sourceTree = "<group>"; };
 		9A90497C214519F7005218A1 /* shader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shader; path = ../Shared/shader; sourceTree = "<group>"; };
 		9A90497E21451A17005218A1 /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = ../Shared/models; sourceTree = "<group>"; };
 		9A9049812145ABF3005218A1 /* WorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = WorldScene.cpp; path = Shared/WorldScene.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
-		9A9049822145ABF4005218A1 /* WorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WorldScene.h; path = Shared/WorldScene.h; sourceTree = SOURCE_ROOT; };
+		9A9049822145ABF4005218A1 /* WorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WorldScene.h; path = Shared/WorldScene.h; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		9A9049842145AC0A005218A1 /* IrrScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = IrrScene.cpp; path = Shared/IrrScene.cpp; sourceTree = SOURCE_ROOT; };
 		9A9049852145AC0A005218A1 /* IrrScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IrrScene.h; path = Shared/IrrScene.h; sourceTree = SOURCE_ROOT; };
 		9A9B574B2155955900C37C73 /* ProcMapGeneration_macOS_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcMapGeneration_macOS_Tests.m; sourceTree = "<group>"; };
@@ -229,6 +280,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A885054215F646E0073817B /* libBulletCollision_xcode4_x64_debug.a in Frameworks */,
+				9A885055215F646E0073817B /* libBulletDynamics_xcode4_x64_debug.a in Frameworks */,
+				9A885044215F63670073817B /* libLinearMath_xcode4_x64_debug.a in Frameworks */,
 				9ADB7A62215D38CD00A85AC4 /* libIrrlicht.a in Frameworks */,
 				9AB696B1212F3C7600E164C0 /* IOKit.framework in Frameworks */,
 				9AB696AD212F3C0600E164C0 /* AppKit.framework in Frameworks */,
@@ -322,6 +376,54 @@
 			path = "ProcMapGeneration-macOS";
 			sourceTree = "<group>";
 		};
+		9A885028215F5F450073817B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A88502C215F5F450073817B /* libBullet3Dynamics_xcode4_x64_debug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A88502E215F5F450073817B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A885032215F5F460073817B /* libBullet3Collision_xcode4_x64_debug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A885034215F5F4D0073817B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A885038215F5F4E0073817B /* libLinearMath_xcode4_x64_debug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A88503D215F60F60073817B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A885041215F60F60073817B /* libBullet3Common_xcode4_x64_debug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A885049215F645C0073817B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A88504D215F645D0073817B /* libBulletCollision_xcode4_x64_debug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A88504F215F645D0073817B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A885053215F645D0073817B /* libBulletDynamics_xcode4_x64_debug.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A8FB8BB2143102D00050186 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +448,12 @@
 		9AB696A9212F3C0100E164C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A885048215F645C0073817B /* BulletCollision.xcodeproj */,
+				9A88504E215F645D0073817B /* BulletDynamics.xcodeproj */,
+				9A88503C215F60F60073817B /* Bullet3Common.xcodeproj */,
+				9A885033215F5F4D0073817B /* LinearMath.xcodeproj */,
+				9A88502D215F5F450073817B /* Bullet3Collision.xcodeproj */,
+				9A885027215F5F450073817B /* Bullet3Dynamics.xcodeproj */,
 				9ADB7A1C215D38BC00A85AC4 /* MacOSX.xcodeproj */,
 				9AB696B0212F3C7600E164C0 /* IOKit.framework */,
 				9AB696AC212F3C0600E164C0 /* AppKit.framework */,
@@ -445,6 +553,30 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A88502E215F5F450073817B /* Products */;
+					ProjectRef = 9A88502D215F5F450073817B /* Bullet3Collision.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A88503D215F60F60073817B /* Products */;
+					ProjectRef = 9A88503C215F60F60073817B /* Bullet3Common.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A885028215F5F450073817B /* Products */;
+					ProjectRef = 9A885027215F5F450073817B /* Bullet3Dynamics.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A885049215F645C0073817B /* Products */;
+					ProjectRef = 9A885048215F645C0073817B /* BulletCollision.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A88504F215F645D0073817B /* Products */;
+					ProjectRef = 9A88504E215F645D0073817B /* BulletDynamics.xcodeproj */;
+				},
+				{
+					ProductGroup = 9A885034215F5F4D0073817B /* Products */;
+					ProjectRef = 9A885033215F5F4D0073817B /* LinearMath.xcodeproj */;
+				},
+				{
 					ProductGroup = 9ADB7A1D215D38BC00A85AC4 /* Products */;
 					ProjectRef = 9ADB7A1C215D38BC00A85AC4 /* MacOSX.xcodeproj */;
 				},
@@ -457,6 +589,48 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A88502C215F5F450073817B /* libBullet3Dynamics_xcode4_x64_debug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBullet3Dynamics_xcode4_x64_debug.a;
+			remoteRef = 9A88502B215F5F450073817B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A885032215F5F460073817B /* libBullet3Collision_xcode4_x64_debug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBullet3Collision_xcode4_x64_debug.a;
+			remoteRef = 9A885031215F5F460073817B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A885038215F5F4E0073817B /* libLinearMath_xcode4_x64_debug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLinearMath_xcode4_x64_debug.a;
+			remoteRef = 9A885037215F5F4E0073817B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A885041215F60F60073817B /* libBullet3Common_xcode4_x64_debug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBullet3Common_xcode4_x64_debug.a;
+			remoteRef = 9A885040215F60F60073817B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A88504D215F645D0073817B /* libBulletCollision_xcode4_x64_debug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBulletCollision_xcode4_x64_debug.a;
+			remoteRef = 9A88504C215F645D0073817B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A885053215F645D0073817B /* libBulletDynamics_xcode4_x64_debug.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBulletDynamics_xcode4_x64_debug.a;
+			remoteRef = 9A885052215F645D0073817B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9ADB7A37215D38BD00A85AC4 /* libIrrlicht.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -774,7 +948,10 @@
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = ../../external/irrlicht/lib/OSX;
+				LIBRARY_SEARCH_PATHS = (
+					../../external/irrlicht/lib/OSX,
+					../../external/bullet3/bin,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -783,7 +960,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.defense2000x.ProcMapGeneration-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SYSTEM_HEADER_SEARCH_PATHS = "../../external/irrlicht-1.8.4/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "../../external/irrlicht-1.8.4/include ../../external/bullet3/src";
 			};
 			name = Debug;
 		};
@@ -802,7 +979,10 @@
 				);
 				INFOPLIST_FILE = "ProcMapGeneration-macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = ../../external/irrlicht/lib/OSX;
+				LIBRARY_SEARCH_PATHS = (
+					../../external/irrlicht/lib/OSX,
+					../../external/bullet3/bin,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
@@ -811,7 +991,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.defense2000x.ProcMapGeneration-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SYSTEM_HEADER_SEARCH_PATHS = "../../external/irrlicht-1.8.4/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "../../external/irrlicht-1.8.4/include ../../external/bullet3/src";
 			};
 			name = Release;
 		};
