@@ -2,7 +2,7 @@
 #extension GL_EXT_gpu_shader4 : require
 
 varying vec4 vertexWorldPos;
-varying vec3 fragNormal;
+flat varying vec3 fragNormal;
 uniform sampler2D textureUnit0;
 uniform sampler2D textureUnit1;
 uniform sampler2D textureUnit2;
@@ -12,10 +12,10 @@ uniform vec3 lightSource;
 void main() {
     vec3 addVal = vec3(.7f);
     
-    vec4 color0 = texture2D(textureUnit0, gl_TexCoord[0].xy/0.5f); // sand
-    vec4 color1 = texture2D(textureUnit1, gl_TexCoord[0].xy/0.25f); // grass
-    vec4 color2 = texture2D(textureUnit2, gl_TexCoord[0].xy/0.5f); // rock
-    vec4 color3 = texture2D(textureUnit3, gl_TexCoord[0].xy/0.25f); // snow
+    vec4 color0 = texture2D(textureUnit0, gl_TexCoord[0].xy/0.01f); // sand
+    vec4 color1 = texture2D(textureUnit1, gl_TexCoord[0].xy/0.01f); // grass
+    vec4 color2 = texture2D(textureUnit2, gl_TexCoord[0].xy/0.01f); // rock
+    vec4 color3 = texture2D(textureUnit3, gl_TexCoord[0].xy/0.01f); // snow
 
     // eper
     float perc = vertexWorldPos.y/256;
@@ -30,10 +30,7 @@ void main() {
     }
 
     float depth = gl_FragCoord.z / gl_FragCoord.w;
-    gl_FragColor += gl_FragColor + vec4(depth/(1024.f*5.f));
+    gl_FragColor += gl_FragColor + vec4(depth/(1024.f*10.f))+vec4(0.05f);
     
-    vec3 sun = vec3(1);
-    vec3 light = max(vec3(0), dot(normalize(fragNormal), normalize(sun))) / vec3(4.f) + addVal;
-    gl_FragColor *= vec4(light.xyz,10.f);
 }
 

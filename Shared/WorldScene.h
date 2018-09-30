@@ -16,7 +16,7 @@
 #include "TerrainGenerator.h"
 #include "MapControlEventReceiver.h"
 
-#include "btBulletDynamicsCommon.h"
+#include "PhysicsManager.h"
 
 class EffectHandler;
 
@@ -74,9 +74,6 @@ private:
 	// shader cache material id
     std::vector<irr::s32> shaderMaterialIDS; 
 
-    // setup collision system for the player with the world
-    void setupCollisionAnimator(irr::scene::ISceneNode *target = nullptr);
-
     // called every frame
     void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2, irr::f32 deltaTime = 1.f);
     void updateFPSCounter();
@@ -106,8 +103,7 @@ private:
     /**
      * Setup Physics
      */
-    void setupPhysics();
-    void addBody(btAlignedObjectArray<btCollisionShape*> &collisionShapes);
+    PhysicsManager physicsManager;
 };
 
 #endif /* WorldScene_h */

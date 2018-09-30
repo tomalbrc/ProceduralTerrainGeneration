@@ -52,108 +52,24 @@ static const irr::core::vector3df kPlayerSpawnPosition{5000.f, 400.f, 5000.f};
 
 static const int kPlayerMaxAmmo = 1000.f;
 
-void setupPhysics() {
-    ///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
-    btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
-    
-    ///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
-    btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
-    
-    ///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
-    btBroadphaseInterface* overlappingPairCache = new btDbvtBroadphase();
-    
-    ///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
-    btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
-    
-    btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
-    
-    dynamicsWorld->setGravity(btVector3(0, -10, 0));
-}
-void addBody(btAlignedObjectArray<btCollisionShape*> & collisionShapes) {
-    //keep track of the shapes, we release memory at exit.
-    //make sure to re-use collision shapes among rigid bodies whenever possible!
-    
-    ///create a few basic rigid bodies
-    
-    //the ground is a cube of side 100 at position y = -56.
-    //the sphere will hit it at y = -6, with center at -5
-    {
-        btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
-        
-        collisionShapes.push_back(groundShape);
-        
-        btTransform groundTransform;
-        groundTransform.setIdentity();
-        groundTransform.setOrigin(btVector3(0, -56, 0));
-        
-        btScalar mass(0.);
-        
-        //rigidbody is dynamic if and only if mass is non zero, otherwise static
-        bool isDynamic = (mass != 0.f);
-        
-        btVector3 localInertia(0, 0, 0);
-        if (isDynamic)
-            groundShape->calculateLocalInertia(mass, localInertia);
-        
-        //using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
-        btDefaultMotionState* myMotionState = new btDefaultMotionState(groundTransform);
-        btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, groundShape, localInertia);
-        btRigidBody* body = new btRigidBody(rbInfo);
-        
-        //add the body to the dynamics world
-        dynamicsWorld->addRigidBody(body);
-    }
-    
-    {
-        //create a dynamic rigidbody
-        
-        //btCollisionShape* colShape = new btBoxShape(btVector3(1,1,1));
-        btCollisionShape* colShape = new btSphereShape(btScalar(1.));
-        collisionShapes.push_back(colShape);
-        
-        /// Create Dynamic Objects
-        btTransform startTransform;
-        startTransform.setIdentity();
-        
-        btScalar mass(1.f);
-        
-        //rigidbody is dynamic if and only if mass is non zero, otherwise static
-        bool isDynamic = (mass != 0.f);
-        
-        btVector3 localInertia(0, 0, 0);
-        if (isDynamic)
-            colShape->calculateLocalInertia(mass, localInertia);
-        
-        startTransform.setOrigin(btVector3(2, 10, 0));
-        
-        //using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-        btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
-        btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, colShape, localInertia);
-        btRigidBody* body = new btRigidBody(rbInfo);
-        
-        dynamicsWorld->addRigidBody(body);
-    }
-}
-
 WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     eventReceiver = new MapControlEventReceiver();
     device->setEventReceiver(eventReceiver);
     
-    quadScale = 1.f;
-    chunkSizeAB = 128.f;
+    quadScale = 8.f;
+    chunkSizeAB = 32.f;
     viewDistance = 3.f;
     
     IVideoDriver* video = device->getVideoDriver();
     ISceneManager* smgr = device->getSceneManager();
     
-    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 30, device);
+    terrainGen = new TerrainGenerator(irr::core::dimension2du{(unsigned)chunkSizeAB, (unsigned)chunkSizeAB}, quadScale, 100, device);
     
     worldTriangleSelector = this->device()->getSceneManager()->createMetaTriangleSelector();
     mainScene = smgr->addEmptySceneNode();
     
     player = smgr->addCubeSceneNode(1.f);
     player->setScale(core::vector3df{1.5f,3.0f,1.5f}*3.f);
-    player->setPosition(kPlayerSpawnPosition);
     LivingMetadata md;
     md.health = 100;
     md.ammo = kPlayerMaxAmmo;
@@ -180,7 +96,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
         std::this_thread::sleep_for(std::chrono::seconds(3));
         
         tom::threading::addMainCallback([dis = dis]() mutable {
-            dis->setupCollisionAnimator();
+            //dis->setupCollisionAnimator();
         });
     });
     
@@ -190,20 +106,16 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
         } else if (kc == irr::KEY_KEY_M) {
             viewDistance--;
         } else if (kc == irr::KEY_F1) {
-            player->setPosition(kPlayerSpawnPosition);
+            physicsManager.warp(kPlayerSpawnPosition);
 			cam2->setPosition(kPlayerSpawnPosition);
         }  else if (kc == irr::KEY_SPACE) {
-            if (player->getAnimators().size()) {
-                auto c = dynamic_cast<ISceneNodeAnimatorCollisionResponse*>((*player->getAnimators().begin()));
-                if (c && !c->isFalling()) {
-                    c->jump(3);
-                }
-            }
+            if (physicsManager.grounded()) physicsManager.jump(30.f);
         } else if (kc == irr::KEY_F2) {
+            // TODO: Update to use irrBullet
             if (player->getAnimators().size() == 0) {
-                this->setupCollisionAnimator();
+                //this->setupCollisionAnimator();
             } else {
-                player->removeAnimators();
+                //player->removeAnimators();
             }
         } else if (kc == irr::KEY_F4) {
             
@@ -242,22 +154,26 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     effect->setAmbientColor(SColor(255, 200,200,200));
     effect->setClearColour(video::SColor(255,135,206,235));
     effect->addShadowLight(SShadowLight(1024*4, kPlayerSpawnPosition, vector3df{player->getPosition().X,100,player->getPosition().Z},
-                                        SColor(255,255,240,241), 1.f, 1000.0f, 1200, true));
+                                        SColor(255,255,240,241), 0.f, 1000.0f, 5000, true));
     effect->addShadowToNode(player, EFT_16PCF, ESM_BOTH);
 
     printf("GLSL #VERSION: %d\n", video->getDriverAttributes().getAttributeAsInt("ShaderLanguageVersion"));
     
-    btAlignedObjectArray<btCollisionShape*> collisionShapes;
-    addBody();
+    
+    physicsManager = PhysicsManager(device, vector3df{0.f,-30.f,0.f});
+    physicsManager.setPlayer(player->getMesh(), player);
+    physicsManager.warp(kPlayerSpawnPosition);
 }
 
 void WorldScene::update(double dt) {
+    physicsManager.update(dt);
+    
     manageInput(eventReceiver, player, cam2, dt);
     updateFPSCounter();
     
     auto &lll2 = effect->getShadowLight(0);
     auto pos = player->getPosition();
-    pos.Y += 90.f;
+    pos.Y += 100.f;
     pos.X -= 30.f;
     pos.Z -= 30.f;
     lll2.setPosition(pos);
@@ -342,17 +258,20 @@ void WorldScene::manageInput(MapControlEventReceiver *eventReceiver, irr::scene:
     float yVal = sin(irr::core::degToRad(angle));
     float xVal = cos(irr::core::degToRad(angle));
     
+    vector3df moveVal{0};
     float value = (eventReceiver->keyPressed(irr::KEY_SHIFT) ? 10.f : 0.5f)*100.f * deltaTime;
-    if (eventReceiver->keyPressed(irr::KEY_RIGHT) || eventReceiver->keyPressed(irr::KEY_KEY_D)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle - 90.f)), 0.f, value*sin(irr::core::degToRad(angle - 90.f))));
-    if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f))));
-    if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) player->setPosition(player->getPosition() + irr::core::vector3df(value*xVal, 0.f, value*yVal));
-    if (eventReceiver->keyPressed(irr::KEY_DOWN) || eventReceiver->keyPressed(irr::KEY_KEY_S)) player->setPosition(player->getPosition() + irr::core::vector3df(value*cos(irr::core::degToRad(angle + 180.f)), 0.f, value*sin(irr::core::degToRad(angle + 180.f))));
+    if (eventReceiver->keyPressed(irr::KEY_RIGHT) || eventReceiver->keyPressed(irr::KEY_KEY_D)) moveVal += (irr::core::vector3df(value*cos(irr::core::degToRad(angle - 90.f)), 0.f, value*sin(irr::core::degToRad(angle - 90.f))));
+    if (eventReceiver->keyPressed(irr::KEY_LEFT) || eventReceiver->keyPressed(irr::KEY_KEY_A)) moveVal += irr::core::vector3df(value*cos(irr::core::degToRad(angle + 90.f)), 0.f, value*sin(irr::core::degToRad(angle  +90.f)));
+    if (eventReceiver->keyPressed(irr::KEY_UP) || eventReceiver->keyPressed(irr::KEY_KEY_W)) moveVal += irr::core::vector3df(value*xVal, 0.f, value*yVal);
+    if (eventReceiver->keyPressed(irr::KEY_DOWN) || eventReceiver->keyPressed(irr::KEY_KEY_S)) moveVal += irr::core::vector3df(value*cos(irr::core::degToRad(angle + 180.f)), 0.f, value*sin(irr::core::degToRad(angle + 180.f)));
+    physicsManager.move(moveVal);
+    
     
     cam2->setTarget(player->getPosition());
     
     player->setRotation(irr::core::vector3df(0,-angle,0));
     
-    auto newPosition = player->getPosition() + irr::core::vector3df(-50 * xVal, 20.f, -50 * yVal);
+    auto newPosition = player->getPosition() + irr::core::vector3df(-50 * xVal, 10.f, -50 * yVal);
     float lowpassfilterFactor = (.1f);
     newPosition = (newPosition * lowpassfilterFactor) + (cam2->getPosition() * (1.0 - lowpassfilterFactor));
     cam2->setPosition(newPosition);
@@ -412,27 +331,10 @@ void WorldScene::updateFPSCounter() {
     }
 }
 
-void WorldScene::setupCollisionAnimator(irr::scene::ISceneNode *target) {
-	if (target == nullptr) {
-		target = player;
-	}
-	target->removeAnimators();
-	///----------
-    const core::aabbox3d<f32>& box = target->getBoundingBox();
-    core::vector3df radius = box.MaxEdge - box.getCenter();
-    radius *= target->getScale();
-    
-	scene::ISceneNodeAnimator* anim = device()->getSceneManager()->createCollisionResponseAnimator(worldTriangleSelector, target, radius,
-		core::vector3df(0, -10.f, 0), core::vector3df(0), .01f);
-	target->addAnimator(anim);
-	anim->drop();
-	///----------
-}
-
+// Update to use irrBullet
 void WorldScene::raycast() {
     if (PLAYER_PROPS.ammo <= 0) return;
     PLAYER_PROPS.ammo--;
-    
     
 	auto angle = player->getRotation().Y;
 	auto loc = vector3df(cos(degToRad(-angle)), 0, sin(degToRad(-angle)));
@@ -470,16 +372,13 @@ void WorldScene::raycast() {
 
 void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::core::vector2di key) {
     mainScene->addChild(m);
-    if (m->getMaterial(0).getTexture(0) != nullptr) currentChunkNoiseTex = m->getMaterial(0).getTexture(0);
 
+    physicsManager.addGroundShape(m->getMesh(), m);
+    
+    m->setMaterialFlag(EMF_GOURAUD_SHADING, false);
     m->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.front());
     chunks[key]->remove();
     chunks[key] = m;
-    
-    scene::ITriangleSelector* selector = device()->getSceneManager()->createTriangleSelector(m->getMesh(), m);
-    m->setTriangleSelector(selector);
-    worldTriangleSelector->addTriangleSelector(selector);
-    selector->drop();
 
     effect->addShadowToNode(m, EFT_16PCF, ESM_RECEIVE);
 
@@ -487,12 +386,12 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     auto str = L"waterMesh";
     auto waterMesh = device()->getSceneManager()->addHillPlaneMesh(str,
                                                                    dimension2d<f32>(chunkSizeAB-1,chunkSizeAB-1),
-                                                                   dimension2d<u32>(2,2), 0, 0,
+                                                                   dimension2d<u32>(1,1)*8, 0, 0,
                                                                    dimension2d<f32>(0, 0),
-                                                                   dimension2d<f32>(8, 8));
-    auto node = device()->getSceneManager()->addWaterSurfaceSceneNode(waterMesh->getMesh(0), 0.1f, 258, 1.0f);
+                                                                   dimension2d<f32>(8, 8)*2);
+    auto node = device()->getSceneManager()->addWaterSurfaceSceneNode(waterMesh->getMesh(0), 0.5f, 258, 1.0f);
 
-    node->setPosition(vector3df{127,5.5f,127});
+    node->setPosition(vector3df{127,8.5f,127});
     node->setMaterialTexture(0, device()->getVideoDriver()->getTexture(ResourcePath("models/water.png")));
     node->setMaterialType(EMT_SOLID);
     m->addChild(node);
@@ -502,15 +401,15 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
     for (auto i = 0; i < m->getMesh()->getMeshBuffer(0)->getVertexCount(); i++) {
         auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
         
-        if (rand()%4000 == 1 && vertexPos.Y > 11.f) {
+        if (rand()%100 == 1 && vertexPos.Y > 11.f) {
             if (vertexPos.Y < 80.f) {
                 addPlant(vertexPos, m);
-            } else if (rand()%1800 == 5) {
+            } else if (rand()%100 == 5) {
                 addRock(vertexPos, m);
             }
         }
         
-        if (rand()%90000 == 123) addCloud(vertexPos, m); // Random clouds
+        if (rand()%1000 == 123) addCloud(vertexPos, m); // Random clouds
     } // Vertex for loop
 }
 
@@ -533,11 +432,7 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
     
     parent->addChild(meshScene);
     
-    if (ran != 2) {
-        scene::ITriangleSelector* selector = device()->getSceneManager()->createTriangleSelectorFromBoundingBox(meshScene);
-        meshScene->setTriangleSelector(selector);
-        worldTriangleSelector->addTriangleSelector(selector);
-    }
+    physicsManager.addGroundShape(meshScene->getMesh(), meshScene);
     
     effect->addShadowToNode(meshScene, EFT_16PCF, ESM_BOTH);
 }
@@ -574,10 +469,8 @@ void WorldScene::addRock(core::vector3df vertexPos, irr::scene::ISceneNode *pare
     auto img = m_device->getVideoDriver()->createImageFromFile(kRockTexturePath);
     meshScene->setMaterialTexture(0, m_device->getVideoDriver()->addTexture(kRockTexturePath, img));
     parent->addChild(meshScene);
-    
-    scene::ITriangleSelector* selector = device()->getSceneManager()->createTriangleSelectorFromBoundingBox(meshScene);
-    meshScene->setTriangleSelector(selector);
-    worldTriangleSelector->addTriangleSelector(selector);
+
+    physicsManager.addGroundShape(meshScene->getMesh(), meshScene);
 }
 
 
@@ -592,12 +485,8 @@ void WorldScene::spawnEnemies() {
     enemy->setMaterialFlag(EMF_LIGHTING, false);
     effect->addShadowToNode(enemy, EFT_16PCF, ESM_BOTH);
 
-    scene::ITriangleSelector* selector = device()->getSceneManager()->createOctreeTriangleSelector(enemy->getMesh(), enemy);
-    enemy->setTriangleSelector(selector);
-    //worldTriangleSelector->addTriangleSelector(selector);
-
-    setupCollisionAnimator(enemy);
-
+    physicsManager.addEntity(enemy->getMesh(), enemy);
+    
     LivingMetadata md;
     md.health = 50;
     
@@ -633,13 +522,10 @@ void WorldScene::enemyDied(irr::scene::ISceneNode *node, const WorldScene::Livin
         dropModel->setMaterialType(E_MATERIAL_TYPE::EMT_SOLID);
         mainScene->addChild(dropModel);
         
-        setupCollisionAnimator(dropModel);
+        physicsManager.addEntity(dropModel->getMesh(), dropModel);
         
         LivingMetadata md;
         md.xzVelocity = vector2df{velocity.X, velocity.Z};
         entities[dropModel] = md;
     }
 }
-
-
-

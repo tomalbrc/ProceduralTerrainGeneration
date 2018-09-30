@@ -2,7 +2,7 @@
 #extension GL_EXT_gpu_shader4 : require
 
 varying vec4 vertexWorldPos;
-varying vec3 fragNormal;
+flat varying vec3 fragNormal;
 
 uniform float time;
 uniform vec2 chunkSize;

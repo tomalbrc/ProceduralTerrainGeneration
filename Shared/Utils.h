@@ -15,6 +15,7 @@
 #include <deque>
 #include <string>
 #include <vector>
+#include <future>
 #include <unistd.h>
 
 static const irr::core::stringc ResourcePath(const char* resource) {
