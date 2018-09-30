@@ -1,6 +1,6 @@
 //
 //  PhysicsManager.cpp
-//  ProcMapGeneration-macOS
+//  ProcMapGeneration
 //
 //  Created by Tom Albrecht on 29.09.18.
 //  Copyright © 2018 Tom Albrecht. All rights reserved.

@@ -12,6 +12,8 @@
 		09570A7B21341E24001A5FCC /* TerrainGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09570A7921341E24001A5FCC /* TerrainGenerator.cpp */; };
 		099CABFB2153C91100A74C38 /* CShaderPre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF32153C91100A74C38 /* CShaderPre.cpp */; };
 		099CABFC2153C91100A74C38 /* EffectHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 099CABF62153C91100A74C38 /* EffectHandler.cpp */; };
+		9A3AD2B32160662300B38D80 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3AD2942160662300B38D80 /* OpenAL.framework */; };
+		9A3AD2B62160675100B38D80 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3AD2B42160675100B38D80 /* SoundManager.cpp */; };
 		9A5FD230214B02070031027B /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9A5FD22F214B02070031027B /* fonts */; };
 		9A885044215F63670073817B /* libLinearMath_xcode4_x64_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A885038215F5F4E0073817B /* libLinearMath_xcode4_x64_debug.a */; };
 		9A885054215F646E0073817B /* libBulletCollision_xcode4_x64_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A88504D215F645D0073817B /* libBulletCollision_xcode4_x64_debug.a */; };
@@ -261,6 +263,9 @@
 		099CABF82153C91100A74C38 /* EffectShaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectShaders.h; sourceTree = "<group>"; };
 		099CABF92153C91100A74C38 /* XEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEffects.h; sourceTree = "<group>"; };
 		09ED26C621354261007AEDFD /* PerlinNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PerlinNoise.hpp; path = Shared/PerlinNoise.hpp; sourceTree = SOURCE_ROOT; };
+		9A3AD2942160662300B38D80 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		9A3AD2B42160675100B38D80 /* SoundManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SoundManager.cpp; path = Shared/SoundManager.cpp; sourceTree = SOURCE_ROOT; };
+		9A3AD2B52160675100B38D80 /* SoundManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SoundManager.h; path = Shared/SoundManager.h; sourceTree = SOURCE_ROOT; };
 		9A5FD22F214B02070031027B /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = Shared/fonts; sourceTree = SOURCE_ROOT; };
 		9A75F6EE212F3AD400E375B5 /* ProcMapGeneration-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ProcMapGeneration-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A75F6F9212F3AD700E375B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -274,8 +279,8 @@
 		9A88503C215F60F60073817B /* Bullet3Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Bullet3Common.xcodeproj; path = ../../external/bullet3/build3/xcode4/Bullet3Common.xcodeproj; sourceTree = "<group>"; };
 		9A885048215F645C0073817B /* BulletCollision.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BulletCollision.xcodeproj; path = ../../external/bullet3/build3/xcode4/BulletCollision.xcodeproj; sourceTree = "<group>"; };
 		9A88504E215F645D0073817B /* BulletDynamics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BulletDynamics.xcodeproj; path = ../../external/bullet3/build3/xcode4/BulletDynamics.xcodeproj; sourceTree = "<group>"; };
-		9A885056215F6F2A0073817B /* PhysicsManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsManager.cpp; path = "ProcMapGeneration-macOS/PhysicsManager.cpp"; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
-		9A885057215F6F2A0073817B /* PhysicsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PhysicsManager.h; path = "ProcMapGeneration-macOS/PhysicsManager.h"; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
+		9A885056215F6F2A0073817B /* PhysicsManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PhysicsManager.cpp; path = Shared/PhysicsManager.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
+		9A885057215F6F2A0073817B /* PhysicsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PhysicsManager.h; path = Shared/PhysicsManager.h; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		9A88506B215F8F120073817B /* irrBullet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = irrBullet.xcodeproj; path = ../../external/irrBullet/irrBullet.xcodeproj; sourceTree = "<group>"; };
 		9A885072215F92E30073817B /* libirrBullet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirrBullet.a; path = ../../external/irrBullet/lib/libirrBullet.a; sourceTree = "<group>"; };
 		9A885074215F964B0073817B /* BulletSoftBody.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BulletSoftBody.xcodeproj; path = ../../external/bullet3/build3/xcode4/BulletSoftBody.xcodeproj; sourceTree = "<group>"; };
@@ -302,6 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3AD2B32160662300B38D80 /* OpenAL.framework in Frameworks */,
 				9A88507A215F96560073817B /* libBulletSoftBody_xcode4_x64_debug.a in Frameworks */,
 				9A885073215F92E30073817B /* libirrBullet.a in Frameworks */,
 				9A885054215F646E0073817B /* libBulletCollision_xcode4_x64_debug.a in Frameworks */,
@@ -366,6 +372,15 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		9A3AD2B72160676100B38D80 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				9A3AD2B52160675100B38D80 /* SoundManager.h */,
+				9A3AD2B42160675100B38D80 /* SoundManager.cpp */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 		9A75F6E5212F3AD400E375B5 = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				9A75F703212F3B5800E375B5 /* main.cpp */,
+				9A3AD2B72160676100B38D80 /* Sound */,
 				9A885059215F71C20073817B /* Physics */,
 				9A12B9842145BA8F00B52BAC /* WorldScene */,
 				9AEEFC41213F58AF005B4CC6 /* Utils.h */,
@@ -497,6 +513,7 @@
 		9AB696A9212F3C0100E164C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A3AD2942160662300B38D80 /* OpenAL.framework */,
 				9A885072215F92E30073817B /* libirrBullet.a */,
 				9A88506B215F8F120073817B /* irrBullet.xcodeproj */,
 				9A885048215F645C0073817B /* BulletCollision.xcodeproj */,
@@ -874,6 +891,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9049862145AC0A005218A1 /* IrrScene.cpp in Sources */,
+				9A3AD2B62160675100B38D80 /* SoundManager.cpp in Sources */,
 				09570A75213411F0001A5FCC /* NoiseMapGenerator.cpp in Sources */,
 				9AB696A6212F3B8F00E164C0 /* main.cpp in Sources */,
 				9AEEFC44214036A8005B4CC6 /* Utils.cpp in Sources */,

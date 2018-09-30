@@ -1,13 +1,13 @@
 //
-//  PhysicsManager.hpp
-//  ProcMapGeneration-macOS
+//  PhysicsManager.h
+//  ProcMapGeneration
 //
 //  Created by Tom Albrecht on 29.09.18.
 //  Copyright © 2018 Tom Albrecht. All rights reserved.
 //
 
-#ifndef PhysicsManager_hpp
-#define PhysicsManager_hpp
+#ifndef PhysicsManager_h
+#define PhysicsManager_h
 
 #include <stdio.h>
 #include <map>
@@ -16,6 +16,7 @@
 
 /**
  * Easy way to add scene nodes, meshes to a physics simulation
+ * using the irrBullet wrapper for bullet3
  */
 class PhysicsManager {
 public:
@@ -27,6 +28,9 @@ public:
      */
     void setPlayer(irr::scene::IMesh *const mesh, irr::scene::ISceneNode *const node);
     
+    /**
+     * Adds a static node
+     */
     IRigidBody* addGroundShape(irr::scene::IMesh * const mesh, irr::scene::ISceneNode * const node);
     
     /**
@@ -56,4 +60,4 @@ private:
     std::map<irr::scene::ISceneNode*, IRigidBody*> entities;
 };
 
-#endif /* PhysicsManager_hpp */
+#endif /* PhysicsManager_h */

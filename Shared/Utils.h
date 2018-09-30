@@ -1,6 +1,6 @@
 //
 //  Utils.h
-//  ProcMapGeneration-macOS
+//  ProcMapGeneration
 //
 //  Created by Tom Albrecht on 05.09.18.
 //  Copyright © 2018 Tom Albrecht. All rights reserved.
