@@ -21,7 +21,7 @@ std::mutex tom::threading::mainCallbackQueueMutex;
 
 /**
  * Manages the queue of std::function.
- * all this on the main thread in order for threading::addMainCallback to work properly
+ * Call this from the main thread in order for threading::addMainCallback(...) to work properly
  */
 void threading::manageMainthreadCallbacks() {
     std::unique_lock<std::mutex> lock(mainCallbackQueueMutex);

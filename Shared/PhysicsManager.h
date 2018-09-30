@@ -11,14 +11,14 @@
 
 #include <stdio.h>
 #include <map>
-
+#include "IrrManager.h"
 #include <irrBullet.h>
 
 /**
  * Easy way to add scene nodes, meshes to a physics simulation
  * using the irrBullet wrapper for bullet3
  */
-class PhysicsManager {
+class PhysicsManager : public IrrManager {
 public:
     PhysicsManager() = default;
     PhysicsManager(irr::IrrlichtDevice *device, irr::core::vector3df gravity);
@@ -41,7 +41,7 @@ public:
     /**
      * update/step the physics sim
      */
-    void update(double dt);
+    virtual void update(double dt) override;
     
     void jump(irr::f32 power);
     

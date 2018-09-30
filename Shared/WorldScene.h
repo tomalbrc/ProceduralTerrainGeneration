@@ -18,6 +18,9 @@
 
 #include "PhysicsManager.h"
 #include "SoundManager.h"
+#include "InputManager.h"
+
+#include "WorldInfo.h"
 
 class EffectHandler;
 
@@ -31,56 +34,13 @@ public:
     void render() final;
     
 private:
-    // Shadow & other special effects
-    EffectHandler* effect = nullptr;
+    std::shared_ptr<WorldInfo> worldInfo;
+    
 
-	// Used for player and enemies, basically everything that 'lives'
-	using LivingMetadata = struct {
-		int health = 100;
-        int ammo = 100;
-        irr::core::vector2df xzVelocity{0,0};
-	};
-
-	// Players view distance
-    int viewDistance = 8; // view distance as radius in chunks
-    
-	// basic nodes definetly needed
-    irr::scene::ISceneNode *mainScene;
-    irr::scene::ICameraSceneNode *cam2;
-    irr::scene::IMeshSceneNode *player;
-
-	std::map<irr::scene::ISceneNode*, LivingMetadata> entities;
-
-	// GUI elements
-    irr::gui::IGUIStaticText* fpsTextElement;
-    irr::gui::IGUIStaticText* viewDistanceElement;
-    irr::gui::IGUIStaticText* coordsElement;
-    
-    // font for ammo
-    irr::gui::IGUIFont *font;
-    
-    // triangle selector collection for all the models of the terrain/world
-    irr::scene::IMetaTriangleSelector *worldTriangleSelector;
-
-    MapControlEventReceiver *eventReceiver;
-    
-    int lastFPS = 0;
-    float chunkSizeAB = 32.f;
-	float quadScale = 1.f;
-    
-    TerrainGenerator *terrainGen;
-    
-    // chunk cache
-    std::map<irr::core::vector2di, irr::scene::IMeshSceneNode*> chunks;
 	// shader cache material id
     std::vector<irr::s32> shaderMaterialIDS; 
 
-    // called every frame
-    void manageInput(MapControlEventReceiver *eventReceiver, irr::scene::ISceneNode *player, irr::scene::ICameraSceneNode *cam2, irr::f32 deltaTime = 1.f);
-    void updateFPSCounter();
-
     // RC
-    irr::video::SMaterial triangleMaterial;
     void raycast();
     // !RC
     
@@ -91,25 +51,6 @@ private:
     void addPlant(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     void addCloud(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     void addRock(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
-    
-	// Spawns an enemy slighty above the player, with gravity and collision enabled
-	void spawnEnemies();
-    
-    /**
-     called when an emeny died, spawns loot, gives the player points/xp,
-     * shows death aninmation / effects
-     */
-     void enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata);
-    
-    /**
-     * Physics
-     */
-    PhysicsManager physicsManager;
-    
-    /**
-     *
-     */
-    SoundManager soundManager;
     
 };
 

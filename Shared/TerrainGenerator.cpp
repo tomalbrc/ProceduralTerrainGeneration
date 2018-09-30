@@ -7,7 +7,6 @@
 //
 
 #include "TerrainGenerator.h"
-#include "ColorSelector.hpp"
 #include <random>
 #include <future>
 #include <queue>
@@ -19,21 +18,21 @@
 /**
  * C-style functions to generate an image for the heightmap and an image for chunk-texture
  */
-irr::video::IImage *IImageColoredFromNoiseMap(const NoiseMap & cm, irr::video::IVideoDriver *video) {
-    auto image = video->createImage(irr::video::ECF_A8R8G8B8, irr::core::dimension2d<irr::u32>((irr::u32)cm.size(),(irr::u32)cm.front().size()));
-    int x = 0, y = 0;
-    for (auto row : cm) {
-        for (auto val : row) {
-            auto color = ColorSelector::ColorFromValue(val);
-            auto scol = irr::video::SColor(255, color.red,color.green,color.blue);
-            image->setPixel(x, y, scol);
-            x++;
-        }
-        x = 0;
-        y++;
-    }
-    return image;
-}
+//irr::video::IImage *IImageColoredFromNoiseMap(const NoiseMap & cm, irr::video::IVideoDriver *video) {
+//    auto image = video->createImage(irr::video::ECF_A8R8G8B8, irr::core::dimension2d<irr::u32>((irr::u32)cm.size(),(irr::u32)cm.front().size()));
+//    int x = 0, y = 0;
+//    for (auto row : cm) {
+//        for (auto val : row) {
+//            auto color = ColorSelector::ColorFromValue(val);
+//            auto scol = irr::video::SColor(255, color.red,color.green,color.blue);
+//            image->setPixel(x, y, scol);
+//            x++;
+//        }
+//        x = 0;
+//        y++;
+//    }
+//    return image;
+//}
 /**
  * C-style functions to generate an image for the heightmap and an image for chunk-texture
  */

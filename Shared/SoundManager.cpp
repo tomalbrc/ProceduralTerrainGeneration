@@ -8,12 +8,44 @@
 
 #include "SoundManager.h"
 
-#include "<#header#>"
+using namespace cAudio;
 
-void SoundManager::playBackgroundSound(const std::string &filepath) {
-    
+SoundManager::SoundManager() {
+    m_AudioManager = createAudioManager();
+    m_background = nullptr;
+    assert(m_AudioManager);
 }
 
-void SoundManager::playSoundAt(const irr::core::vector3df &origin) {
+SoundManager::~SoundManager() {
+    //m_AudioManager->shutDown();
+    //destroyAudioManager(m_AudioManager);
+}
+
+void SoundManager::playBackgroundSound(const std::string &filepath) {
+    if (m_background)
+        CAUDIO_DELETE m_background;
     
+    m_background = m_AudioManager->create(filepath.c_str(), filepath.c_str());
+    if (m_background) {
+        m_background->play2d();
+    }
+}
+
+void SoundManager::resumeBackgroundSound() {
+    m_background->play();
+}
+
+void SoundManager::pauseBackgroundSound() {
+    m_background->pause();
+}
+
+bool SoundManager::backgroundSoundPlaying() {
+    return m_background->isPlaying();
+}
+
+void SoundManager::playSoundAt(const std::string &file, const irr::core::vector3df &origin) {
+    auto source = m_AudioManager->create(file.c_str(), file.c_str());
+    if (source) {
+        source->play3d(cVector3{origin.X, origin.Y, origin.Z});
+    }
 }

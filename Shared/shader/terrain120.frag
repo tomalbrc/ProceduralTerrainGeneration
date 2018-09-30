@@ -12,10 +12,10 @@ uniform vec3 lightSource;
 void main() {
     vec3 addVal = vec3(.7f);
     
-    vec4 color0 = texture2D(textureUnit0, gl_TexCoord[0].xy/0.01f); // sand
-    vec4 color1 = texture2D(textureUnit1, gl_TexCoord[0].xy/0.01f); // grass
-    vec4 color2 = texture2D(textureUnit2, gl_TexCoord[0].xy/0.01f); // rock
-    vec4 color3 = texture2D(textureUnit3, gl_TexCoord[0].xy/0.01f); // snow
+    vec4 color0 = texture2D(textureUnit0, gl_TexCoord[0].xy/0.04f); // sand
+    vec4 color1 = texture2D(textureUnit1, gl_TexCoord[0].xy/0.04f); // grass
+    vec4 color2 = texture2D(textureUnit2, gl_TexCoord[0].xy/0.04f); // rock
+    vec4 color3 = texture2D(textureUnit3, gl_TexCoord[0].xy/0.04f); // snow
 
     // eper
     float perc = vertexWorldPos.y/256;
