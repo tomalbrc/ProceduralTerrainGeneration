@@ -41,11 +41,15 @@ Future versions may use CMake
 Raycasting currently does not work (since bullet3 intergration)
 but will be added again in future revisions
 
+### Screenshots
+
+![alt text](https://github.com/tomalbrc/ProceduralTerrainGeneration/raw/master/screenshots/screenshot-0.8.png "Early Screenshot")
+
 ### Assets:
-Clouds, trees & bushes: https://opengameart.org/content/4-trees-3-clouds-and-2-bushes
+[Clouds, trees & bushes](https://opengameart.org/content/4-trees-3-clouds-and-2-bushes)
+ (CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/)
 
-
-(CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/)
+[Low Poly Knight](https://opengameart.org/content/low-poly-knight)
 
 ### License of this Project?
 MIT! Free software, hell yeah!
