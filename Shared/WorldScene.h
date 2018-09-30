@@ -1,6 +1,6 @@
 //
 //  WorldScene.h
-//  ProcMapGeneration-macOS
+//  ProcMapGeneration
 //
 //  Created by Tom Albrecht on 09.09.18.
 //  Copyright © 2018 Tom Albrecht. All rights reserved.
@@ -17,6 +17,7 @@
 #include "MapControlEventReceiver.h"
 
 #include "PhysicsManager.h"
+#include "SoundManager.h"
 
 class EffectHandler;
 
@@ -101,9 +102,15 @@ private:
      void enemyDied(irr::scene::ISceneNode *node, const WorldScene::LivingMetadata & metadata);
     
     /**
-     * Setup Physics
+     * Physics
      */
     PhysicsManager physicsManager;
+    
+    /**
+     *
+     */
+    SoundManager soundManager;
+    
 };
 
 #endif /* WorldScene_h */

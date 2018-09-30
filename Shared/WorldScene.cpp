@@ -1,6 +1,6 @@
 //
 //  WorldScene.cpp
-//  ProcMapGeneration-macOS
+//  ProcMapGeneration
 //
 //  Created by Tom Albrecht on 09.09.18.
 //  Copyright © 2018 Tom Albrecht. All rights reserved.
@@ -163,6 +163,8 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     physicsManager = PhysicsManager(device, vector3df{0.f,-30.f,0.f});
     physicsManager.setPlayer(player->getMesh(), player);
     physicsManager.warp(kPlayerSpawnPosition);
+    
+    soundManager;
 }
 
 void WorldScene::update(double dt) {
