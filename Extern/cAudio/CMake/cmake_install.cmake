@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tomalbrecht/Desktop/TA/external/cAudio
+# Install script for directory: /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,9 +34,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/tomalbrecht/Desktop/TA/external/cAudio/CMake/DependenciesSource/libogg-1.2.2/cmake_install.cmake")
-  include("/Users/tomalbrecht/Desktop/TA/external/cAudio/CMake/DependenciesSource/libvorbis-1.3.2/cmake_install.cmake")
-  include("/Users/tomalbrecht/Desktop/TA/external/cAudio/CMake/cAudio/cmake_install.cmake")
+  include("/Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake/DependenciesSource/libogg-1.2.2/cmake_install.cmake")
+  include("/Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake/DependenciesSource/libvorbis-1.3.2/cmake_install.cmake")
+  include("/Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake/cAudio/cmake_install.cmake")
 
 endif()
 
@@ -48,5 +48,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/tomalbrecht/Desktop/TA/external/cAudio/CMake/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

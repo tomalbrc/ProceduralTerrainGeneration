@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.12.1/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/tomalbrecht/Desktop/TA/external/cAudio
+CMAKE_SOURCE_DIR = /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake
+CMAKE_BINARY_DIR = /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(CMAKE_COMMAND) -E cmake_progress_start /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake/CMakeFiles /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake/DependenciesSource/libogg-1.2.2/CMakeFiles/progress.marks
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake/CMakeFiles 0
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(CMAKE_COMMAND) -E cmake_progress_start /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake/CMakeFiles /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake/DependenciesSource/libogg-1.2.2/CMakeFiles/progress.marks
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/clean
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,22 +143,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/preinstall
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/preinstall
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/rule:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/rule
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f CMakeFiles/Makefile2 DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/rule
 .PHONY : DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/rule
 
 # Convenience name for target.
@@ -168,7 +168,7 @@ Ogg: DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/rule
 
 # fast build rule for target.
 Ogg/fast:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build
 .PHONY : Ogg/fast
 
 src/bitwise.o: src/bitwise.c.o
@@ -177,7 +177,7 @@ src/bitwise.o: src/bitwise.c.o
 
 # target to build an object file
 src/bitwise.c.o:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/bitwise.c.o
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/bitwise.c.o
 .PHONY : src/bitwise.c.o
 
 src/bitwise.i: src/bitwise.c.i
@@ -186,7 +186,7 @@ src/bitwise.i: src/bitwise.c.i
 
 # target to preprocess a source file
 src/bitwise.c.i:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/bitwise.c.i
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/bitwise.c.i
 .PHONY : src/bitwise.c.i
 
 src/bitwise.s: src/bitwise.c.s
@@ -195,7 +195,7 @@ src/bitwise.s: src/bitwise.c.s
 
 # target to generate assembly for a file
 src/bitwise.c.s:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/bitwise.c.s
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/bitwise.c.s
 .PHONY : src/bitwise.c.s
 
 src/framing.o: src/framing.c.o
@@ -204,7 +204,7 @@ src/framing.o: src/framing.c.o
 
 # target to build an object file
 src/framing.c.o:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/framing.c.o
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/framing.c.o
 .PHONY : src/framing.c.o
 
 src/framing.i: src/framing.c.i
@@ -213,7 +213,7 @@ src/framing.i: src/framing.c.i
 
 # target to preprocess a source file
 src/framing.c.i:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/framing.c.i
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/framing.c.i
 .PHONY : src/framing.c.i
 
 src/framing.s: src/framing.c.s
@@ -222,7 +222,7 @@ src/framing.s: src/framing.c.s
 
 # target to generate assembly for a file
 src/framing.c.s:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/framing.c.s
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(MAKE) -f DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/build.make DependenciesSource/libogg-1.2.2/CMakeFiles/Ogg.dir/src/framing.c.s
 .PHONY : src/framing.c.s
 
 # Help Target
@@ -255,6 +255,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/tomalbrecht/Desktop/TA/external/cAudio/CMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/CMake && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

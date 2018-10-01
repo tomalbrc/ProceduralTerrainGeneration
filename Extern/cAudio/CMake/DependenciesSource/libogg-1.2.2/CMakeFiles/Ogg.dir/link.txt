@@ -1,2 +1,0 @@
-/Applications/Xcode-beta6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libOgg.a  CMakeFiles/Ogg.dir/src/bitwise.c.o CMakeFiles/Ogg.dir/src/framing.c.o
-/Applications/Xcode-beta6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libOgg.a

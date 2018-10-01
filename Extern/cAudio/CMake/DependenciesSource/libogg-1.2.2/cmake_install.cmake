@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tomalbrecht/Desktop/TA/external/cAudio/DependenciesSource/libogg-1.2.2
+# Install script for directory: /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/DependenciesSource/libogg-1.2.2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tomalbrecht/Desktop/TA/external/cAudio/DependenciesSource/libvorbis-1.3.2
+# Install script for directory: /Users/tomalbrecht/Desktop/TA/Projects/ProceduralTerrainGeneration/Extern/cAudio/DependenciesSource/libvorbis-1.3.2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
