@@ -291,7 +291,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "560029815.583831"
+            timestampString = "560031473.883761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "201"
@@ -307,7 +307,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "560029815.584777"
+            timestampString = "560031473.884286"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "194"
@@ -323,7 +323,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "560029815.585191"
+            timestampString = "560031473.8844841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
@@ -339,7 +339,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "560029815.585591"
+            timestampString = "560031473.884585"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
@@ -355,7 +355,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "560029815.585981"
+            timestampString = "560031473.884703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
@@ -371,7 +371,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldScene.cpp"
-            timestampString = "560029815.58637"
+            timestampString = "560031473.884814"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -403,7 +403,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Shared/WorldInfo.h"
-            timestampString = "560029815.5868"
+            timestampString = "560031473.884973"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -442,6 +442,70 @@
             endingLineNumber = "70"
             landmarkName = "TerrainGenerator::getMeshAt(irr::core::vector2di chunkLocation, const std::function&lt;void(irr::scene::IMeshSceneNode*, irr::core::vector2di)&gt; &amp;completion)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/main.cpp"
+            timestampString = "560031473.885267"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "main(int argc, char** argv)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/main.cpp"
+            timestampString = "560031473.8859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "main(int argc, char** argv)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/main.cpp"
+            timestampString = "560031473.886202"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "main(int argc, char** argv)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/main.cpp"
+            timestampString = "560031473.8865"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "main(int argc, char** argv)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

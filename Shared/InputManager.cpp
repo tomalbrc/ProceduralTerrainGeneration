@@ -97,9 +97,9 @@ void InputManager::manageInput(MapControlEventReceiver *eventReceiver, irr::scen
     
     auto &lll2 = worldInfo()->effectHandler->getShadowLight(0);
     auto pos = worldInfo()->player->getPosition();
-    pos.Y += 100.f;
-    pos.X -= 30.f;
-    pos.Z -= 30.f;
+    pos.Y += 120.f;
+    pos.X -= 20.f;
+    pos.Z -= 20.f;
     lll2.setPosition(pos);
     lll2.setTarget(worldInfo()->player->getPosition());
     

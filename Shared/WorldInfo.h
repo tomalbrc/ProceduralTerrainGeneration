@@ -46,7 +46,7 @@ public:
     
     void setup(irr::IrrlichtDevice *_device, const irr::core::vector3df &gravity) {
         chunkSizeAB = 32.f;
-        quadScale = 8.f;
+        quadScale = 10.f;
         viewDistance = 3;
         
         device = _device;

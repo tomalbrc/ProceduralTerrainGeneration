@@ -86,7 +86,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     effect->setAmbientColor(SColor(255, 200,200,200));
     effect->setClearColour(video::SColor(255,135,206,235));
     effect->addShadowLight(SShadowLight(1024*4, kPlayerSpawnPosition, vector3df{worldInfo->player->getPosition().X,100,worldInfo->player->getPosition().Z},
-                                        SColor(255,255,240,241), 0.f, 1000.0f, 5000, true));
+                                        SColor(255,255,240,241), 0.f, 2048, 2048*2, true));
     effect->addShadowToNode(worldInfo->player, EFT_16PCF, ESM_BOTH);
     worldInfo->effectHandler = effect;
     

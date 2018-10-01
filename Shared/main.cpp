@@ -14,7 +14,7 @@ using namespace irr::video;
 int main(int argc, char** argv) {
     auto params = []() -> const SIrrlichtCreationParameters {
         SIrrlichtCreationParameters params;
-        params.AntiAlias = 16;
+        params.AntiAlias = 8;
         params.DriverType = video::EDT_OPENGL;
         params.WindowSize = core::dimension2d<u32>(1920*0.75, 1080*0.75);
         params.Fullscreen = false;

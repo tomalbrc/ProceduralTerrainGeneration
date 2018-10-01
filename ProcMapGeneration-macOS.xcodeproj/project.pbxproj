@@ -1121,6 +1121,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
+				GCC_OPTIMIZATION_LEVEL = 1;
 				HEADER_SEARCH_PATHS = (
 					ProcMapGeneration,
 					Shared,
