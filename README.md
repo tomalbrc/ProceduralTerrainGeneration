@@ -43,7 +43,8 @@ but will be added again in future revisions
 
 ### Screenshots
 
-![alt text](https://github.com/tomalbrc/ProceduralTerrainGeneration/raw/master/screenshots/screenshot-0.8.png "Early Screenshot")
+![v0.9](https://github.com/tomalbrc/ProceduralTerrainGeneration/raw/master/screenshots/screenshot-0.9.png "v0.9")
+![Early screenshot](https://github.com/tomalbrc/ProceduralTerrainGeneration/raw/master/screenshots/screenshot-0.8.png "Early Screenshot")
 
 ### Assets:
 [Clouds, trees & bushes](https://opengameart.org/content/4-trees-3-clouds-and-2-bushes)
