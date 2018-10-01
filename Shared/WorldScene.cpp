@@ -111,28 +111,55 @@ void WorldScene::update(double dt) {
     
     auto playerChunkLoc = irr::core::vector2di(worldInfo->player->getPosition().X / ((worldInfo->chunkSizeAB-1)*worldInfo->quadScale), worldInfo->player->getPosition().Z / ((worldInfo->chunkSizeAB - 1)*worldInfo->quadScale));
     
+    std::map<ISceneNode *, int> scn;
     for (auto ting : worldInfo->chunks) {
-        if (ting.second) ting.second->setVisible(false);
+        if (ting.second) {
+            if (ting.second->isVisible()) scn[ting.second] = 1;
+            ting.second->setVisible(false);
+        }
     }
     
     for (int y = -worldInfo->viewDistance; y <= worldInfo->viewDistance; y++) {
         for (int x = -worldInfo->viewDistance; x <= worldInfo->viewDistance; x++) {
-            if (sqrt(pow(x, 2.f)+pow(y, 2.f)) > (float)worldInfo->viewDistance)  continue;
-            
             auto key = irr::core::vector2di(x, y) + playerChunkLoc;
+
+            if (sqrt(pow(x, 2.f)+pow(y, 2.f)) > (float)worldInfo->viewDistance) {
+                continue;
+            }
+            
             bool hasKey = false;
             for (auto ting : worldInfo->chunks) if (key.equals(ting.first)) hasKey = true;
             if (hasKey) {
+                // TODO: Put into a function... (and Maybe create a TerrainManager class?)
+                if (scn[worldInfo->chunks[key]] == 0) {
+                    auto chldrn = worldInfo->chunks[key]->getChildren();
+                    for (auto c : chldrn) {
+                        worldInfo->effectHandler->addShadowToNode(c,EFT_16PCF, ESM_BOTH);
+                    }
+                    worldInfo->effectHandler->addShadowToNode(worldInfo->chunks[key],EFT_16PCF, ESM_BOTH);
+                }
                 worldInfo->chunks[key]->setVisible(true);
+                
             } else {
                 worldInfo->chunks[key] = device()->getSceneManager()->addCubeSceneNode();
-                worldInfo->chunks[key]->setIsDebugObject(true);
                 tom::threading::onSeparateThread([this, key = key]() mutable {
                     worldInfo->terrainGen->getMeshAt(key, std::bind(&WorldScene::terrainGenerationFinished, this, std::placeholders::_1, std::placeholders::_2));
                 }); // on separate thread
             } // if (hasKey) ... ELSE
         } // viewDistance X
     } // viewDistance Y
+    
+    // TODO: Put into a function... (and Maybe create a TerrainManager class?)
+    // disables non visible terrain nodes
+    for (auto pair : scn) {
+        if (!pair.first->isVisible() && pair.second == 1) {
+            auto chldrn = pair.first->getChildren();
+            for (auto c : chldrn) {
+                worldInfo->effectHandler->removeShadowFromNode(c);
+            }
+            worldInfo->effectHandler->removeShadowFromNode(pair.first);
+        }
+    }
     
     // TODO: Move to EnemyManager
     // entity velocity application
@@ -281,11 +308,11 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
                 addRock(vertexPos, m);
             }
         }
-        if (rand()%1000 == 10) {
+        if (rand()%100 == 10) {
             addGrass(vertexPos, m);
         }
         
-        if (rand()%1000 == 123) addCloud(vertexPos, m); // Random clouds
+        if (rand()%2000 == 123) addCloud(vertexPos, m); // Random clouds
     } // Vertex for loop
 }
 
@@ -317,15 +344,15 @@ void WorldScene::addGrass(irr::core::vector3df vertexPos, irr::scene::ISceneNode
     auto mesh = device()->getSceneManager()->getMesh(ResourcePath("models/big_grass.obj"));
     
     auto meshScene = device()->getSceneManager()->addMeshSceneNode(mesh);
-    vertexPos.Y += 32.f;
+    vertexPos.Y += 36.f/2.f;
     meshScene->setPosition(vertexPos);
-    meshScene->setScale(irr::core::vector3df{20.f});
+    meshScene->setScale(irr::core::vector3df{10.f});
     
     meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
     meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
     
-    auto img = device()->getVideoDriver()->createImageFromFile(kVegetationTexturePath);
-    meshScene->setMaterialTexture(0, device()->getVideoDriver()->addTexture(kVegetationTexturePath, img));
+    auto img = device()->getVideoDriver()->createImageFromFile(kBushTexturePath);
+    meshScene->setMaterialTexture(0, device()->getVideoDriver()->addTexture(kBushTexturePath, img));
     
     parent->addChild(meshScene);
     
@@ -367,4 +394,6 @@ void WorldScene::addRock(core::vector3df vertexPos, irr::scene::ISceneNode *pare
     parent->addChild(meshScene);
 
     worldInfo->physics->addGroundShape(meshScene->getMesh(), meshScene);
+    
+    worldInfo->effectHandler->addShadowToNode(meshScene, EFT_16PCF, ESM_BOTH);
 }

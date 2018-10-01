@@ -12,7 +12,7 @@
 using namespace irr;
 using namespace core;
 
-static const irr::core::vector3df kPlayerSpawnPosition;
+static const irr::core::vector3df kPlayerSpawnPosition{4000,400,4000};
 
 InputManager::InputManager(IrrlichtDevice *device) {
     m_eventReceiver = new MapControlEventReceiver();
@@ -98,7 +98,7 @@ void InputManager::manageInput(MapControlEventReceiver *eventReceiver, irr::scen
     auto &lll2 = worldInfo()->effectHandler->getShadowLight(0);
     auto pos = worldInfo()->player->getPosition();
     pos.Y += 120.f;
-    pos.X -= 20.f;
+    pos.X -= 0.f;
     pos.Z -= 20.f;
     lll2.setPosition(pos);
     lll2.setTarget(worldInfo()->player->getPosition());
