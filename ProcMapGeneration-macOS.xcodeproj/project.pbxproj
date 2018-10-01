@@ -248,7 +248,7 @@
 		9A5FD22F214B02070031027B /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = Shared/fonts; sourceTree = SOURCE_ROOT; };
 		9A6591FF21613F3A009D22C8 /* IrrManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = IrrManager.cpp; path = Shared/IrrManager.cpp; sourceTree = SOURCE_ROOT; };
 		9A65920021613F3A009D22C8 /* IrrManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IrrManager.h; path = Shared/IrrManager.h; sourceTree = SOURCE_ROOT; };
-		9A65920321614685009D22C8 /* EnemyManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyManager.cpp; path = Shared/EnemyManager.cpp; sourceTree = SOURCE_ROOT; };
+		9A65920321614685009D22C8 /* EnemyManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyManager.cpp; path = Shared/EnemyManager.cpp; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
 		9A65920421614685009D22C8 /* EnemyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EnemyManager.h; path = Shared/EnemyManager.h; sourceTree = SOURCE_ROOT; };
 		9A65920721615B98009D22C8 /* GUIManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GUIManager.cpp; path = Shared/GUIManager.cpp; sourceTree = SOURCE_ROOT; };
 		9A65920821615B98009D22C8 /* GUIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GUIManager.h; path = Shared/GUIManager.h; sourceTree = SOURCE_ROOT; };

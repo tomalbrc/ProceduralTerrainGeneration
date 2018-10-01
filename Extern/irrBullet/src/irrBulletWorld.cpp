@@ -98,7 +98,7 @@ irrBulletWorld::irrBulletWorld(std::shared_ptr<irr::IrrlichtDevice> Device, bool
 
 	world.reset(new btSoftRigidDynamicsWorld(dispatcher, pairCache,
 		constraintSolver, collisionConfiguration));
-
+    
 	// Initialize the softbody world info
 	softBodyWorldInfo.m_broadphase = pairCache;
 	softBodyWorldInfo.m_dispatcher = dispatcher;
@@ -743,3 +743,28 @@ irrBulletWorld::~irrBulletWorld()
     delete collisionConfiguration;
     printf("-- irrBullet: Finished freeing memory --\n");
 }
+
+IRigidBody* irrBulletWorld::rayTest(irr::core::vector3df rfw, irr::core::vector3df rtw) {
+    btVector3 rayFromWorld = irrlichtToBulletVector(rfw);
+    btVector3 rayToWorld = irrlichtToBulletVector(rtw);
+    btCollisionWorld::ClosestRayResultCallback rayCallback(rayFromWorld,rayToWorld);
+    
+    world->rayTest(rayFromWorld, rayToWorld, rayCallback);
+    
+    if (!rayCallback.m_collisionObject) return nullptr;
+
+    const btRigidBody* pBody = btRigidBody::upcast(rayCallback.m_collisionObject);
+    
+    if (!pBody) return nullptr;
+    
+    SCollisionObjectIdentification *d = (SCollisionObjectIdentification*)((SCollisionObjectIdentification*)pBody->getUserPointer());
+    if (d) {
+        auto rigidBody = (IRigidBody*)(d->getCollisionObject());
+        if (rigidBody) {
+            return rigidBody;
+        }
+    }
+    
+    return nullptr;
+}
+

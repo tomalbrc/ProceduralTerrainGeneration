@@ -32,9 +32,9 @@ void InputManager::setupKeyHandler() {
             } else worldInfo()->sound->pauseBackgroundSound();
         }
         else if (kc == irr::KEY_KEY_N) {
-            viewDistance++;
+            worldInfo()->viewDistance++;
         } else if (kc == irr::KEY_KEY_M) {
-            viewDistance--;
+            worldInfo()->viewDistance--;
         } else if (kc == irr::KEY_F1) {
             worldInfo()->physics->warp(kPlayerSpawnPosition);
             worldInfo()->camera->setPosition(kPlayerSpawnPosition);

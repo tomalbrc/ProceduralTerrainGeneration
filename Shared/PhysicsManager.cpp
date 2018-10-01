@@ -18,6 +18,7 @@ PhysicsManager::PhysicsManager(irr::IrrlichtDevice *device, irr::core::vector3df
     m_world = new irrBulletWorld(device, true, true);
     m_world->setGravity(gravity);
     m_gravity = gravity;
+    m_playerNode = nullptr;
 }
 
 void PhysicsManager::setPlayer(irr::scene::IMesh *const mesh, irr::scene::ISceneNode *const node) {
@@ -56,16 +57,29 @@ IRigidBody* PhysicsManager::addEntity(irr::scene::IMesh * const mesh, irr::scene
     return body;
 }
 
+void PhysicsManager::removeEntity(irr::scene::ISceneNode *node) {
+    auto rb = entities[node];
+    m_world->removeCollisionObject(rb);
+}
+
+
 void PhysicsManager::update(double dt) {
     m_world->stepSimulation(dt);
-    m_charController->playerStep(m_world, dt);
-    m_playerNode->setPosition(m_charController->getWorldTransform().getTranslation());
+    if (m_playerNode) {
+        m_charController->playerStep(m_world, dt);
+        m_playerNode->setPosition(m_charController->getWorldTransform().getTranslation());
+    }
 }
 
 void PhysicsManager::move(irr::core::vector3df mov) {
-    m_charController->setWalkDirection(mov);
+    if (m_playerNode) m_charController->setWalkDirection(mov);
 }
 
 bool PhysicsManager::grounded() {
     return m_charController->isOnGround();
 }
+
+irrBulletWorld *PhysicsManager::world() const {
+    return m_world;
+}
+

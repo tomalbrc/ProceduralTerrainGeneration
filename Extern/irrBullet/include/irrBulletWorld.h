@@ -34,6 +34,7 @@ struct btVehicleRaycaster;
 class ILiquidBody;
 class ISoftBody;
 class ICollisionShape;
+class SCollisionObjectIdentification;
 
 enum class EDPT_POSITION
 {
@@ -234,8 +235,12 @@ public:
 	/// @return Material for debugging, internal use only
 	const irr::video::SMaterial& getDebugMaterial() const { return debugMat; };
 
+    /// @return the IRigidBody hit by the rayTest
+    IRigidBody *rayTest(irr::core::vector3df rayFromWorld, irr::core::vector3df rayToWorld);
+    
 private:
 	std::shared_ptr<btSoftRigidDynamicsWorld> world;
+    
 	btDefaultCollisionConfiguration* collisionConfiguration;
 	btDispatcher* dispatcher;
 	btBroadphaseInterface* pairCache;

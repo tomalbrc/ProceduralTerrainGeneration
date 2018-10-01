@@ -39,17 +39,39 @@ public:
     IRigidBody* addEntity(irr::scene::IMesh * const mesh, irr::scene::ISceneNode * const node);
     
     /**
+     * Removes a node from the phys sim
+     */
+    void removeEntity(irr::scene::ISceneNode *node);
+    
+    /**
      * update/step the physics sim
      */
     virtual void update(double dt) override;
     
+    /**
+     * Makes the player('s character controller) jump
+     */
     void jump(irr::f32 power);
     
+    /**
+     * "Teleports" the player in the physics sim
+     */
     void warp(irr::core::vector3df origin);
     
+    /**
+     * Moves the player in the given direction vector
+     */
     void move(irr::core::vector3df mov);
     
+    /**
+     * @return true if player is grounded
+     */
     bool grounded();
+    
+    /**
+     * The irrBullet world
+     */
+    irrBulletWorld * world() const;
     
 private:
     irrBulletWorld *m_world;

@@ -49,6 +49,7 @@ private:
     
     // adds a cloud with random rotation on position with given parent
     void addPlant(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
+    void addGrass(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     void addCloud(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     void addRock(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent);
     

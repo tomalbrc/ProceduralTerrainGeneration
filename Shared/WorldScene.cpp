@@ -42,6 +42,7 @@ static auto kTreeTexturePath = ResourcePath("models/TreeTexture.png");
 static auto kBushTexturePath = ResourcePath("models/BushTexture.png");
 static auto kCloudTexturePath = ResourcePath("models/white.png");
 static auto kRockTexturePath = ResourcePath("models/rock.png");
+static auto kVegetationTexturePath = ResourcePath("models/vegetation.png");
 
 static const irr::core::vector3df kPlayerSpawnPosition{5000.f, 400.f, 5000.f};
 
@@ -55,6 +56,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     worldInfo->setup(device, vector3df{0,-50,0});
     
     worldInfo->player = smgr->addCubeSceneNode(1.f);
+    worldInfo->player->setPosition(kPlayerSpawnPosition);
     worldInfo->player->setScale(core::vector3df{1.5f,3.0f,1.5f}*3.f);
     LivingMetadata md;
     md.health = 100;
@@ -78,7 +80,9 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     threading::onSeparateThread([dis = this]() mutable {
         threading::sleep(3000);
         threading::addMainCallback([dis = dis]() mutable {
-            //dis->setupCollisionAnimator();
+            dis->worldInfo->physics->setPlayer(dis->worldInfo->player->getMesh(), dis->worldInfo->player);
+            dis->worldInfo->physics->warp(kPlayerSpawnPosition);
+            
         });
     });
     
@@ -90,9 +94,7 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     effect->addShadowToNode(worldInfo->player, EFT_16PCF, ESM_BOTH);
     worldInfo->effectHandler = effect;
     
-    worldInfo->physics->setPlayer(worldInfo->player->getMesh(), worldInfo->player);
-    worldInfo->physics->warp(kPlayerSpawnPosition);
-    
+
     worldInfo->sound->playBackgroundSound(ResourcePath("sounds/bg.ogg").c_str());
     worldInfo->sound->pauseBackgroundSound();
     
@@ -208,8 +210,9 @@ void WorldScene::render() {
 /// PRIVATE
 ///
 
-// Update to use irrBullet
+// TODO: Update to use irrBullet
 void WorldScene::raycast() {
+    
     if (PLAYER_PROPS.ammo <= 0) return;
     PLAYER_PROPS.ammo--;
     
@@ -220,21 +223,15 @@ void WorldScene::raycast() {
     ray.start = worldInfo->player->getPosition();
     ray.end = worldInfo->player->getPosition() + loc*1000.f;
     
-    vector3df collisionPoint;
-    triangle3df selectedTriangle;
+    auto body = worldInfo->physics->world()->rayTest(ray.start, ray.end);
+    if (!body) return;
     
-    auto collMan = device()->getSceneManager()->getSceneCollisionManager();
-    auto selectedScene = collMan->getSceneNodeAndCollisionPointFromRay(ray, collisionPoint, selectedTriangle);
+    auto selectedScene = body->getCollisionShape()->getSceneNode();
     
     if (selectedScene) {
         // We need to reset the transform before doing our own rendering.
-        device()->getVideoDriver()->setTransform(video::ETS_WORLD, core::matrix4());
-        device()->getVideoDriver()->draw3DTriangle(selectedTriangle, video::SColor(0,255,105,180));
-        collisionPoint.Y += 0.001f;
-        device()->getVideoDriver()->draw3DLine(worldInfo->player->getPosition(), collisionPoint);
-
 		if (selectedScene->getID() == kEnemyID) {
-            worldInfo->entity->entities()[selectedScene].health--;
+            worldInfo->entity->entities()[selectedScene].health-=100;
             loc *= 30.f;
             worldInfo->entity->entities()[selectedScene].xzVelocity = vector2df{loc.X, loc.Z};
             
@@ -277,11 +274,15 @@ void WorldScene::terrainGenerationFinished(irr::scene::IMeshSceneNode* m, irr::c
         auto vertexPos = m->getMesh()->getMeshBuffer(0)->getPosition(i);
         
         if (rand()%100 == 1 && vertexPos.Y > 11.f) {
+            
             if (vertexPos.Y < 80.f) {
                 addPlant(vertexPos, m);
             } else if (rand()%100 == 5) {
                 addRock(vertexPos, m);
             }
+        }
+        if (rand()%1000 == 10) {
+            addGrass(vertexPos, m);
         }
         
         if (rand()%1000 == 123) addCloud(vertexPos, m); // Random clouds
@@ -307,10 +308,30 @@ void WorldScene::addPlant(core::vector3df vertexPos, irr::scene::ISceneNode *par
     
     parent->addChild(meshScene);
     
-    worldInfo->physics->addGroundShape(meshScene->getMesh(), meshScene);
+    //worldInfo->physics->addGroundShape(meshScene->getMesh(), meshScene);
     
     worldInfo->effectHandler->addShadowToNode(meshScene, EFT_16PCF, ESM_BOTH);
 }
+
+void WorldScene::addGrass(irr::core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
+    auto mesh = device()->getSceneManager()->getMesh(ResourcePath("models/big_grass.obj"));
+    
+    auto meshScene = device()->getSceneManager()->addMeshSceneNode(mesh);
+    vertexPos.Y += 32.f;
+    meshScene->setPosition(vertexPos);
+    meshScene->setScale(irr::core::vector3df{20.f});
+    
+    meshScene->setMaterialType((video::E_MATERIAL_TYPE)shaderMaterialIDS.at(1));
+    meshScene->setRotation(irr::core::vector3df{0.f,(float)(rand()%360),0.f});
+    
+    auto img = device()->getVideoDriver()->createImageFromFile(kVegetationTexturePath);
+    meshScene->setMaterialTexture(0, device()->getVideoDriver()->addTexture(kVegetationTexturePath, img));
+    
+    parent->addChild(meshScene);
+    
+    worldInfo->effectHandler->excludeNodeFromLightingCalculations(meshScene);
+}
+
 
 void WorldScene::addCloud(core::vector3df vertexPos, irr::scene::ISceneNode *parent) {
     auto meshCloud1 = device()->getSceneManager()->getMesh(kModelCloud1Path);

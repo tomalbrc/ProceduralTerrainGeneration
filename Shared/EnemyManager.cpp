@@ -47,7 +47,11 @@ void EnemyManager::enemyDied(irr::scene::ISceneNode *node, const LivingMetadata 
     worldInfo()->effectHandler->removeShadowFromNode(node);
     
     worldInfo()->sound->playSoundAt(ResourcePath("sounds/death.ogg").c_str(), node->getPosition() - worldInfo()->camera->getPosition());
+
+    node->grab();
     
+    worldInfo()->physics->removeEntity(node);
+
     auto nodePos = node->getPosition();
     
     auto iter = m_entities.find(node) ;
@@ -56,6 +60,7 @@ void EnemyManager::enemyDied(irr::scene::ISceneNode *node, const LivingMetadata 
     
     // TODO: remove from physics sim
     node->remove();
+    
     
     // spawn dropped items
     // (if any)

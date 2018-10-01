@@ -51,6 +51,8 @@ but will be added again in future revisions
 
 [Low Poly Knight](https://opengameart.org/content/low-poly-knight)
 
+[Low Poly Vegetation Pack](https://opengameart.org/content/low-poly-vegetation-pack)
+
 ### License of this Project?
 MIT! Free software, hell yeah!
 
