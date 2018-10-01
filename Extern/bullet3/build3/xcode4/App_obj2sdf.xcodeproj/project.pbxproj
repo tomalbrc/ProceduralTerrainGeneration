@@ -1,0 +1,343 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		014450457EB81C6C156F4643 /* obj2sdf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073815565061410A0DC27713 /* obj2sdf.cpp */; };
+		691E7117278C733C056F7B19 /* tiny_obj_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 770D039C7BA51A9128D0741A /* tiny_obj_loader.cpp */; };
+		006A5D640F9473F7198A5164 /* b3ResourcePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2706191D491076C37CA41662 /* b3ResourcePath.cpp */; };
+		30776D1D33344EE202417E3C /* libBullet3Common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CD2E3B52E3448F329172D9 /* libBullet3Common.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		150B07387B4501E2542D03FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6642122C339852251CCC175B /* Bullet3Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72F771A04364717342DC3598;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+		29D2588F435A770D76FC3AA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6642122C339852251CCC175B /* Bullet3Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E5B0539716272AC105E2EDB;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		073815565061410A0DC27713 /* obj2sdf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "obj2sdf.cpp"; path = "../../Extras/obj2sdf/obj2sdf.cpp"; sourceTree = "<group>"; };
+		770D039C7BA51A9128D0741A /* tiny_obj_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "tiny_obj_loader.cpp"; path = "../../examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp"; sourceTree = "<group>"; };
+		2706191D491076C37CA41662 /* b3ResourcePath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3ResourcePath.cpp"; path = "../../examples/Utils/b3ResourcePath.cpp"; sourceTree = "<group>"; };
+		1AFB07B731A2170D5D1D2DCD /* b3ResourcePath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3ResourcePath.h"; path = "../../examples/Utils/b3ResourcePath.h"; sourceTree = "<group>"; };
+		37F67D0373247F534AD0301D /* App_obj2sdf_xcode4_x64_release */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "App_obj2sdf_xcode4_x64_release"; path = "App_obj2sdf_xcode4_x64_release"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6642122C339852251CCC175B /* Bullet3Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Bullet3Common.xcodeproj"; path = "Bullet3Common.xcodeproj"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10CC7DA64199301D7D0A473B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30776D1D33344EE202417E3C /* libBullet3Common.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B0A7D1839DC35BE4F4572E8 /* App_obj2sdf */ = {
+			isa = PBXGroup;
+			children = (
+				015F0AAF0842266763462559 /* Extras */,
+				0A901CD9243412B15DEA3255 /* examples */,
+				269805E509EA12836DD21C24 /* Products */,
+				21907D1B370E08EA6BC97125 /* Projects */,
+			);
+			name = "App_obj2sdf";
+			sourceTree = "<group>";
+		};
+		015F0AAF0842266763462559 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				17F179B43D764957171F2566 /* obj2sdf */,
+			);
+			name = "Extras";
+			sourceTree = "<group>";
+		};
+		17F179B43D764957171F2566 /* obj2sdf */ = {
+			isa = PBXGroup;
+			children = (
+				073815565061410A0DC27713 /* obj2sdf.cpp */,
+			);
+			name = "obj2sdf";
+			sourceTree = "<group>";
+		};
+		0A901CD9243412B15DEA3255 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				245D76B053D34D5C5CA2176B /* ThirdPartyLibs */,
+				4AF34E8B453B57236AF51BE4 /* Utils */,
+			);
+			name = "examples";
+			sourceTree = "<group>";
+		};
+		245D76B053D34D5C5CA2176B /* ThirdPartyLibs */ = {
+			isa = PBXGroup;
+			children = (
+				054129DB7E5059DC21B03EC3 /* Wavefront */,
+			);
+			name = "ThirdPartyLibs";
+			sourceTree = "<group>";
+		};
+		054129DB7E5059DC21B03EC3 /* Wavefront */ = {
+			isa = PBXGroup;
+			children = (
+				770D039C7BA51A9128D0741A /* tiny_obj_loader.cpp */,
+			);
+			name = "Wavefront";
+			sourceTree = "<group>";
+		};
+		4AF34E8B453B57236AF51BE4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2706191D491076C37CA41662 /* b3ResourcePath.cpp */,
+				1AFB07B731A2170D5D1D2DCD /* b3ResourcePath.h */,
+			);
+			name = "Utils";
+			sourceTree = "<group>";
+		};
+		269805E509EA12836DD21C24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37F67D0373247F534AD0301D /* App_obj2sdf_xcode4_x64_release */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		21907D1B370E08EA6BC97125 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				6642122C339852251CCC175B /* Bullet3Common.xcodeproj */,
+			);
+			name = "Projects";
+			sourceTree = "<group>";
+		};
+		0A4974EF268860C467497B39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66CD2E3B52E3448F329172D9 /* libBullet3Common.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		586E30305CFC31B767652E5E /* App_obj2sdf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40105D5D24B92E72767E79B9 /* Build configuration list for PBXNativeTarget "App_obj2sdf" */;
+			buildPhases = (
+				20C42BF31DA1536D56CA6DFB /* Resources */,
+				049F685142DC2A1E3AB8090A /* Sources */,
+				10CC7DA64199301D7D0A473B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				69956F2C40E85BB7098377A3 /* PBXTargetDependency */,
+			);
+			name = "App_obj2sdf";
+			productInstallPath = "$(HOME)/bin";
+			productName = "App_obj2sdf";
+			productReference = 37F67D0373247F534AD0301D /* App_obj2sdf_xcode4_x64_release */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "App_obj2sdf" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 0B0A7D1839DC35BE4F4572E8 /* App_obj2sdf */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0A4974EF268860C467497B39 /* Products */;
+					ProjectRef = 6642122C339852251CCC175B /* Bullet3Common.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				586E30305CFC31B767652E5E /* App_obj2sdf_xcode4_x64_release */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		66CD2E3B52E3448F329172D9 /* libBullet3Common.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libBullet3Common.a";
+			remoteRef = 150B07387B4501E2542D03FA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20C42BF31DA1536D56CA6DFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		049F685142DC2A1E3AB8090A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				014450457EB81C6C156F4643 /* obj2sdf.cpp in Sources */,
+				691E7117278C733C056F7B19 /* tiny_obj_loader.cpp in Sources */,
+				006A5D640F9473F7198A5164 /* b3ResourcePath.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin PBXTargetDependency section */
+		69956F2C40E85BB7098377A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libBullet3Common.a";
+			targetProxy = 29D2588F435A770D76FC3AA9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4C2A7ED017BD2DA46EF54120 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "App_obj2sdf_xcode4_x64_release";
+			};
+			name = "Release";
+		};
+		5E534CA8473465236D12700D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "App_obj2sdf_xcode4_x64_debug";
+			};
+			name = "Debug";
+		};
+		2D8315E05E0607164C564AB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../src",
+					"../../examples/ThirdPartyLibs",
+				);
+				OBJROOT = "obj/x64/Release/App_obj2sdf";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Release";
+		};
+		7AE43B87332149941C4438FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../src",
+					"../../examples/ThirdPartyLibs",
+				);
+				OBJROOT = "obj/x64/Debug/App_obj2sdf";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Debug";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40105D5D24B92E72767E79B9 /* Build configuration list for PBXNativeTarget "App_obj2sdf_xcode4_x64_release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C2A7ED017BD2DA46EF54120 /* Release */,
+				5E534CA8473465236D12700D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "App_obj2sdf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D8315E05E0607164C564AB3 /* Release */,
+				7AE43B87332149941C4438FF /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

@@ -1,0 +1,384 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C3014083EA43D8E3E4C0D6A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A71BC15E84D9A55746597 /* main.cpp */; };
+		0B3D65737D272A5544E114E0 /* gl.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D290A07AB705513B84C6E /* gl.c */; };
+		4402097C685B34C84B027CE3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E0C7CEB4F886A3166271A76 /* OpenGL.framework */; };
+		7AD1329223B54DD63D641CE1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BEE7B160B7F40CA425F6BF8 /* Cocoa.framework */; };
+		0A4F5F2668281E9C27D11B03 /* libOpenGL_Window.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 278A63753CEF7CC119C565A8 /* libOpenGL_Window.a */; };
+		23FD4ECC6D7F2FB745A97E41 /* libBullet3Common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 219E29986F181B5F1BD97A2F /* libBullet3Common.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		45E2049162103E602FC53100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23A2102A36437FDB03000EA1 /* OpenGL_Window.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77B6516B7B80111468464C3D;
+			remoteInfo = "libOpenGL_Window_xcode4_x64_release.a";
+		};
+		1047550607A925172CE70A6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23A2102A36437FDB03000EA1 /* OpenGL_Window.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 431F353E7A8B586164DC4E68;
+			remoteInfo = "libOpenGL_Window_xcode4_x64_release.a";
+		};
+		6A03790C348D3D7423886AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72770F490EC220852FA1038D /* Bullet3Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72F771A04364717342DC3598;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+		043604EC5D75689A7B963F12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72770F490EC220852FA1038D /* Bullet3Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E5B0539716272AC105E2EDB;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6C3A71BC15E84D9A55746597 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "main.cpp"; path = "../../examples/SimpleOpenGL3/main.cpp"; sourceTree = "<group>"; };
+		5E4D290A07AB705513B84C6E /* gl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = "gl.c"; path = "../../examples/ThirdPartyLibs/glad/gl.c"; sourceTree = "<group>"; };
+		4E0C7CEB4F886A3166271A76 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OpenGL.framework"; path = "/System/Library/Frameworks/OpenGL.framework"; sourceTree = "<absolute>"; };
+		5BEE7B160B7F40CA425F6BF8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cocoa.framework"; path = "/System/Library/Frameworks/Cocoa.framework"; sourceTree = "<absolute>"; };
+		4E696644127632997C3A7067 /* App_SimpleOpenGL3_xcode4_x64_release */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "App_SimpleOpenGL3_xcode4_x64_release"; path = "App_SimpleOpenGL3_xcode4_x64_release"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23A2102A36437FDB03000EA1 /* OpenGL_Window.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "OpenGL_Window.xcodeproj"; path = "OpenGL_Window.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		72770F490EC220852FA1038D /* Bullet3Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Bullet3Common.xcodeproj"; path = "Bullet3Common.xcodeproj"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5B0353F060EF04522E1D7EBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4402097C685B34C84B027CE3 /* OpenGL.framework in Frameworks */,
+				7AD1329223B54DD63D641CE1 /* Cocoa.framework in Frameworks */,
+				0A4F5F2668281E9C27D11B03 /* libOpenGL_Window.a in Frameworks */,
+				23FD4ECC6D7F2FB745A97E41 /* libBullet3Common.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		732F24724D9910083E77342C /* App_SimpleOpenGL3 */ = {
+			isa = PBXGroup;
+			children = (
+				4F516487060A31C7119E5127 /* examples */,
+				0D8A6607018816451D202392 /* Frameworks */,
+				1A867023331934AF58E218DA /* Products */,
+				124430D97B1E2FAA5C421EAB /* Projects */,
+			);
+			name = "App_SimpleOpenGL3";
+			sourceTree = "<group>";
+		};
+		4F516487060A31C7119E5127 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				5A5F26234E02103A6E17688E /* SimpleOpenGL3 */,
+				421706F41CC910062E8151B1 /* ThirdPartyLibs */,
+			);
+			name = "examples";
+			sourceTree = "<group>";
+		};
+		5A5F26234E02103A6E17688E /* SimpleOpenGL3 */ = {
+			isa = PBXGroup;
+			children = (
+				6C3A71BC15E84D9A55746597 /* main.cpp */,
+			);
+			name = "SimpleOpenGL3";
+			sourceTree = "<group>";
+		};
+		421706F41CC910062E8151B1 /* ThirdPartyLibs */ = {
+			isa = PBXGroup;
+			children = (
+				4CF50138196B51ED45A359BA /* glad */,
+			);
+			name = "ThirdPartyLibs";
+			sourceTree = "<group>";
+		};
+		4CF50138196B51ED45A359BA /* glad */ = {
+			isa = PBXGroup;
+			children = (
+				5E4D290A07AB705513B84C6E /* gl.c */,
+			);
+			name = "glad";
+			sourceTree = "<group>";
+		};
+		0D8A6607018816451D202392 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E0C7CEB4F886A3166271A76 /* OpenGL.framework */,
+				5BEE7B160B7F40CA425F6BF8 /* Cocoa.framework */,
+			);
+			name = "Frameworks";
+			sourceTree = "<group>";
+		};
+		1A867023331934AF58E218DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E696644127632997C3A7067 /* App_SimpleOpenGL3_xcode4_x64_release */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		124430D97B1E2FAA5C421EAB /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				23A2102A36437FDB03000EA1 /* OpenGL_Window.xcodeproj */,
+				72770F490EC220852FA1038D /* Bullet3Common.xcodeproj */,
+			);
+			name = "Projects";
+			sourceTree = "<group>";
+		};
+		458E211A53AB31642F4B7F4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				278A63753CEF7CC119C565A8 /* libOpenGL_Window.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29437A6052FA2EF442166322 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				219E29986F181B5F1BD97A2F /* libBullet3Common.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		35D013C57E9235E14BC504B2 /* App_SimpleOpenGL3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66860A0955E1387C07B7043F /* Build configuration list for PBXNativeTarget "App_SimpleOpenGL3" */;
+			buildPhases = (
+				4C7B423125ED1BB054C35043 /* Resources */,
+				69137CE40B5E777F63D2710C /* Sources */,
+				5B0353F060EF04522E1D7EBE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				702D529B7A0567A1012E1AE2 /* PBXTargetDependency */,
+				6EB61FFD5506278069717FE4 /* PBXTargetDependency */,
+			);
+			name = "App_SimpleOpenGL3";
+			productInstallPath = "$(HOME)/bin";
+			productName = "App_SimpleOpenGL3";
+			productReference = 4E696644127632997C3A7067 /* App_SimpleOpenGL3_xcode4_x64_release */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "App_SimpleOpenGL3" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 732F24724D9910083E77342C /* App_SimpleOpenGL3 */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 458E211A53AB31642F4B7F4B /* Products */;
+					ProjectRef = 23A2102A36437FDB03000EA1 /* OpenGL_Window.xcodeproj */;
+				},
+				{
+					ProductGroup = 29437A6052FA2EF442166322 /* Products */;
+					ProjectRef = 72770F490EC220852FA1038D /* Bullet3Common.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				35D013C57E9235E14BC504B2 /* App_SimpleOpenGL3_xcode4_x64_release */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		278A63753CEF7CC119C565A8 /* libOpenGL_Window.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libOpenGL_Window.a";
+			remoteRef = 45E2049162103E602FC53100 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		219E29986F181B5F1BD97A2F /* libBullet3Common.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libBullet3Common.a";
+			remoteRef = 6A03790C348D3D7423886AE7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C7B423125ED1BB054C35043 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		69137CE40B5E777F63D2710C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C3014083EA43D8E3E4C0D6A /* main.cpp in Sources */,
+				0B3D65737D272A5544E114E0 /* gl.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin PBXTargetDependency section */
+		702D529B7A0567A1012E1AE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libOpenGL_Window.a";
+			targetProxy = 1047550607A925172CE70A6A /* PBXContainerItemProxy */;
+		};
+		6EB61FFD5506278069717FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libBullet3Common.a";
+			targetProxy = 043604EC5D75689A7B963F12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4BC107CE71120BD700852C98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "App_SimpleOpenGL3_xcode4_x64_release";
+			};
+			name = "Release";
+		};
+		315E2EDA75EF5890004E3D3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "App_SimpleOpenGL3_xcode4_x64_debug";
+			};
+			name = "Debug";
+		};
+		6F27271E5B8B2EA51403071D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/SimpleOpenGL3",
+					"../../src",
+					"../../examples",
+					"../../examples/ThirdPartyLibs/glad",
+				);
+				OBJROOT = "obj/x64/Release/App_SimpleOpenGL3";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Release";
+		};
+		3ED93DFB4A4454607DED75A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/SimpleOpenGL3",
+					"../../src",
+					"../../examples",
+					"../../examples/ThirdPartyLibs/glad",
+				);
+				OBJROOT = "obj/x64/Debug/App_SimpleOpenGL3";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Debug";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		66860A0955E1387C07B7043F /* Build configuration list for PBXNativeTarget "App_SimpleOpenGL3_xcode4_x64_release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BC107CE71120BD700852C98 /* Release */,
+				315E2EDA75EF5890004E3D3A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "App_SimpleOpenGL3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F27271E5B8B2EA51403071D /* Release */,
+				3ED93DFB4A4454607DED75A5 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

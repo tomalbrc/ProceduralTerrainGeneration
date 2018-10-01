@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		64026E91210024063CB066F4 /* PhysicsClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36C75E9915B405430E4F08F8 /* PhysicsClient.cpp */; };
+		408E53FB3849609E36B270C2 /* PhysicsClientC_API.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68DB2129119443B2002F1B46 /* PhysicsClientC_API.cpp */; };
+		38F436C836ED41CC452B4B28 /* PhysicsClientSharedMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 523A60247DD01CEF433D1A52 /* PhysicsClientSharedMemory.cpp */; };
+		54554DAA778F79CF2D6617B9 /* PhysicsClientSharedMemory_C_API.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CCD6FAF79FE2DB966050A20 /* PhysicsClientSharedMemory_C_API.cpp */; };
+		280058FF54133D1F7948219D /* PosixSharedMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FE623D372075E8731271F53 /* PosixSharedMemory.cpp */; };
+		63F5015D07F25CDC038451EF /* Win32SharedMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D3D6FA75ABD4C9D6A671EC6 /* Win32SharedMemory.cpp */; };
+		32D633E940EE7FF616952F04 /* vrSyncPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 137A3BE01B9038AB224D050F /* vrSyncPlugin.cpp */; };
+		35860F086F4538203FE85449 /* b3Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 571C1A3D1DC521A16352394E /* b3Clock.cpp */; };
+		391749B94536033C775E49CA /* b3ResourcePath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01DE2DBC38E167BC1F5F4A36 /* b3ResourcePath.cpp */; };
+		5115575005AE6FAE32CB3861 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E7339931576EE50B727980 /* Cocoa.framework */; };
+		5144502A0F8032B46EDD0EE6 /* libBulletFileLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3147CE317C6D09187B4553 /* libBulletFileLoader.a */; };
+		7F86482659481F3B670A5E37 /* libBullet3Common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B8914725E9D1DA5592F5B3E /* libBullet3Common.a */; };
+		23D57943467D48D1215C58B3 /* libLinearMath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 616747CA42FA679053AD244C /* libLinearMath.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30F4106D6F696F50164C7F10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 036E68FE2D2B11CA00E27F25 /* BulletFileLoader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D912D6F59110B1719CC5536;
+			remoteInfo = "libBulletFileLoader_xcode4_x64_release.a";
+		};
+		32EA40F14BC501B31FB52CF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 036E68FE2D2B11CA00E27F25 /* BulletFileLoader.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6644289E3E15780B31360CE2;
+			remoteInfo = "libBulletFileLoader_xcode4_x64_release.a";
+		};
+		6334046A68D3247F41492F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A47100958E879F847153D65 /* Bullet3Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 72F771A04364717342DC3598;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+		67BC290A64D924110BA91B1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A47100958E879F847153D65 /* Bullet3Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E5B0539716272AC105E2EDB;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+		680D367601545D24095935E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12A6636E6301726E51493B20 /* LinearMath.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 681B6229079D7BA8798A5E4A;
+			remoteInfo = "libLinearMath_xcode4_x64_release.a";
+		};
+		52F5607A247A00582C5102D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12A6636E6301726E51493B20 /* LinearMath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 03A4200A132867437F99325B;
+			remoteInfo = "libLinearMath_xcode4_x64_release.a";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		36C75E9915B405430E4F08F8 /* PhysicsClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "PhysicsClient.cpp"; path = "../../examples/SharedMemory/PhysicsClient.cpp"; sourceTree = "<group>"; };
+		2ABE4AB67B0E68A061DD07ED /* PhysicsClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PhysicsClient.h"; path = "../../examples/SharedMemory/PhysicsClient.h"; sourceTree = "<group>"; };
+		68DB2129119443B2002F1B46 /* PhysicsClientC_API.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "PhysicsClientC_API.cpp"; path = "../../examples/SharedMemory/PhysicsClientC_API.cpp"; sourceTree = "<group>"; };
+		664C2D0276934BAF07D6256B /* PhysicsClientC_API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PhysicsClientC_API.h"; path = "../../examples/SharedMemory/PhysicsClientC_API.h"; sourceTree = "<group>"; };
+		523A60247DD01CEF433D1A52 /* PhysicsClientSharedMemory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "PhysicsClientSharedMemory.cpp"; path = "../../examples/SharedMemory/PhysicsClientSharedMemory.cpp"; sourceTree = "<group>"; };
+		691E40F802EC13BE1EFB0297 /* PhysicsClientSharedMemory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PhysicsClientSharedMemory.h"; path = "../../examples/SharedMemory/PhysicsClientSharedMemory.h"; sourceTree = "<group>"; };
+		0CCD6FAF79FE2DB966050A20 /* PhysicsClientSharedMemory_C_API.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "PhysicsClientSharedMemory_C_API.cpp"; path = "../../examples/SharedMemory/PhysicsClientSharedMemory_C_API.cpp"; sourceTree = "<group>"; };
+		1D425F0235FA313E61295DAC /* PhysicsClientSharedMemory_C_API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PhysicsClientSharedMemory_C_API.h"; path = "../../examples/SharedMemory/PhysicsClientSharedMemory_C_API.h"; sourceTree = "<group>"; };
+		4FE623D372075E8731271F53 /* PosixSharedMemory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "PosixSharedMemory.cpp"; path = "../../examples/SharedMemory/PosixSharedMemory.cpp"; sourceTree = "<group>"; };
+		6E00688101214A39150A4F1F /* PosixSharedMemory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PosixSharedMemory.h"; path = "../../examples/SharedMemory/PosixSharedMemory.h"; sourceTree = "<group>"; };
+		7D3D6FA75ABD4C9D6A671EC6 /* Win32SharedMemory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "Win32SharedMemory.cpp"; path = "../../examples/SharedMemory/Win32SharedMemory.cpp"; sourceTree = "<group>"; };
+		4071758F32531EC27F6D0AC9 /* Win32SharedMemory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Win32SharedMemory.h"; path = "../../examples/SharedMemory/Win32SharedMemory.h"; sourceTree = "<group>"; };
+		137A3BE01B9038AB224D050F /* vrSyncPlugin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "vrSyncPlugin.cpp"; path = "../../examples/SharedMemory/plugins/vrSyncPlugin/vrSyncPlugin.cpp"; sourceTree = "<group>"; };
+		571C1A3D1DC521A16352394E /* b3Clock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3Clock.cpp"; path = "../../examples/Utils/b3Clock.cpp"; sourceTree = "<group>"; };
+		1AC86F265E6742645D6719D9 /* b3Clock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3Clock.h"; path = "../../examples/Utils/b3Clock.h"; sourceTree = "<group>"; };
+		01DE2DBC38E167BC1F5F4A36 /* b3ResourcePath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3ResourcePath.cpp"; path = "../../examples/Utils/b3ResourcePath.cpp"; sourceTree = "<group>"; };
+		6DA05EB13FFE523D3F8C1CCF /* b3ResourcePath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3ResourcePath.h"; path = "../../examples/Utils/b3ResourcePath.h"; sourceTree = "<group>"; };
+		33E7339931576EE50B727980 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cocoa.framework"; path = "/System/Library/Frameworks/Cocoa.framework"; sourceTree = "<absolute>"; };
+		6E3760DA0C5530B621B039AD /* libpybullet_vrSyncPlugin_xcode4_x64_release.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = "libpybullet_vrSyncPlugin_xcode4_x64_release.dylib"; path = "libpybullet_vrSyncPlugin_xcode4_x64_release.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
+		036E68FE2D2B11CA00E27F25 /* BulletFileLoader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BulletFileLoader.xcodeproj"; path = "BulletFileLoader.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		4A47100958E879F847153D65 /* Bullet3Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Bullet3Common.xcodeproj"; path = "Bullet3Common.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		12A6636E6301726E51493B20 /* LinearMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "LinearMath.xcodeproj"; path = "LinearMath.xcodeproj"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D6A41F579745E32636475D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5115575005AE6FAE32CB3861 /* Cocoa.framework in Frameworks */,
+				5144502A0F8032B46EDD0EE6 /* libBulletFileLoader.a in Frameworks */,
+				7F86482659481F3B670A5E37 /* libBullet3Common.a in Frameworks */,
+				23D57943467D48D1215C58B3 /* libLinearMath.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37804EA9767847E47CD670A8 /* pybullet_vrSyncPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				2F752BA22B2143C8154B7F86 /* examples */,
+				626D0BAE504A443C6C86065A /* Frameworks */,
+				73C27D64614F2699247B290E /* Products */,
+				055E694619D85F1C32011A6F /* Projects */,
+			);
+			name = "pybullet_vrSyncPlugin";
+			sourceTree = "<group>";
+		};
+		2F752BA22B2143C8154B7F86 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				56CB315376A7726E18EE5608 /* SharedMemory */,
+				68866AAC6A5451742F1C5EB7 /* Utils */,
+			);
+			name = "examples";
+			sourceTree = "<group>";
+		};
+		56CB315376A7726E18EE5608 /* SharedMemory */ = {
+			isa = PBXGroup;
+			children = (
+				36C75E9915B405430E4F08F8 /* PhysicsClient.cpp */,
+				2ABE4AB67B0E68A061DD07ED /* PhysicsClient.h */,
+				68DB2129119443B2002F1B46 /* PhysicsClientC_API.cpp */,
+				664C2D0276934BAF07D6256B /* PhysicsClientC_API.h */,
+				523A60247DD01CEF433D1A52 /* PhysicsClientSharedMemory.cpp */,
+				691E40F802EC13BE1EFB0297 /* PhysicsClientSharedMemory.h */,
+				0CCD6FAF79FE2DB966050A20 /* PhysicsClientSharedMemory_C_API.cpp */,
+				1D425F0235FA313E61295DAC /* PhysicsClientSharedMemory_C_API.h */,
+				4FE623D372075E8731271F53 /* PosixSharedMemory.cpp */,
+				6E00688101214A39150A4F1F /* PosixSharedMemory.h */,
+				7D3D6FA75ABD4C9D6A671EC6 /* Win32SharedMemory.cpp */,
+				4071758F32531EC27F6D0AC9 /* Win32SharedMemory.h */,
+				2D424FB7046065B83FAC4AB9 /* plugins */,
+			);
+			name = "SharedMemory";
+			sourceTree = "<group>";
+		};
+		2D424FB7046065B83FAC4AB9 /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				4A3A2DD67BDA5F351B837283 /* vrSyncPlugin */,
+			);
+			name = "plugins";
+			sourceTree = "<group>";
+		};
+		4A3A2DD67BDA5F351B837283 /* vrSyncPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				137A3BE01B9038AB224D050F /* vrSyncPlugin.cpp */,
+			);
+			name = "vrSyncPlugin";
+			sourceTree = "<group>";
+		};
+		68866AAC6A5451742F1C5EB7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				571C1A3D1DC521A16352394E /* b3Clock.cpp */,
+				1AC86F265E6742645D6719D9 /* b3Clock.h */,
+				01DE2DBC38E167BC1F5F4A36 /* b3ResourcePath.cpp */,
+				6DA05EB13FFE523D3F8C1CCF /* b3ResourcePath.h */,
+			);
+			name = "Utils";
+			sourceTree = "<group>";
+		};
+		626D0BAE504A443C6C86065A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33E7339931576EE50B727980 /* Cocoa.framework */,
+			);
+			name = "Frameworks";
+			sourceTree = "<group>";
+		};
+		73C27D64614F2699247B290E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E3760DA0C5530B621B039AD /* libpybullet_vrSyncPlugin_xcode4_x64_release.dylib */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		055E694619D85F1C32011A6F /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				036E68FE2D2B11CA00E27F25 /* BulletFileLoader.xcodeproj */,
+				4A47100958E879F847153D65 /* Bullet3Common.xcodeproj */,
+				12A6636E6301726E51493B20 /* LinearMath.xcodeproj */,
+			);
+			name = "Projects";
+			sourceTree = "<group>";
+		};
+		371436527E910A9C2BF257F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E3147CE317C6D09187B4553 /* libBulletFileLoader.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		159635396B552AB1007266DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6B8914725E9D1DA5592F5B3E /* libBullet3Common.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EDB3D9467DA4F65158E461A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				616747CA42FA679053AD244C /* libLinearMath.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F4449AC6DCF70C670E60DE5 /* pybullet_vrSyncPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F9332E91210717A19032B5F /* Build configuration list for PBXNativeTarget "pybullet_vrSyncPlugin" */;
+			buildPhases = (
+				74802C214DBE15087BA60F27 /* Resources */,
+				0A6642B87324776937CD0C03 /* Sources */,
+				2D6A41F579745E32636475D8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				192F19C5567256F170321B11 /* PBXTargetDependency */,
+				61986EDB789731994BB774AB /* PBXTargetDependency */,
+				548D0A8F71D6281A7B7C1B6F /* PBXTargetDependency */,
+			);
+			name = "pybullet_vrSyncPlugin";
+			productName = "pybullet_vrSyncPlugin";
+			productReference = 6E3760DA0C5530B621B039AD /* libpybullet_vrSyncPlugin_xcode4_x64_release.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "pybullet_vrSyncPlugin" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 37804EA9767847E47CD670A8 /* pybullet_vrSyncPlugin */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 371436527E910A9C2BF257F7 /* Products */;
+					ProjectRef = 036E68FE2D2B11CA00E27F25 /* BulletFileLoader.xcodeproj */;
+				},
+				{
+					ProductGroup = 159635396B552AB1007266DF /* Products */;
+					ProjectRef = 4A47100958E879F847153D65 /* Bullet3Common.xcodeproj */;
+				},
+				{
+					ProductGroup = 3EDB3D9467DA4F65158E461A /* Products */;
+					ProjectRef = 12A6636E6301726E51493B20 /* LinearMath.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1F4449AC6DCF70C670E60DE5 /* libpybullet_vrSyncPlugin_xcode4_x64_release.dylib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7E3147CE317C6D09187B4553 /* libBulletFileLoader.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libBulletFileLoader.a";
+			remoteRef = 30F4106D6F696F50164C7F10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6B8914725E9D1DA5592F5B3E /* libBullet3Common.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libBullet3Common.a";
+			remoteRef = 6334046A68D3247F41492F6C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		616747CA42FA679053AD244C /* libLinearMath.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libLinearMath.a";
+			remoteRef = 680D367601545D24095935E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74802C214DBE15087BA60F27 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A6642B87324776937CD0C03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64026E91210024063CB066F4 /* PhysicsClient.cpp in Sources */,
+				408E53FB3849609E36B270C2 /* PhysicsClientC_API.cpp in Sources */,
+				38F436C836ED41CC452B4B28 /* PhysicsClientSharedMemory.cpp in Sources */,
+				54554DAA778F79CF2D6617B9 /* PhysicsClientSharedMemory_C_API.cpp in Sources */,
+				280058FF54133D1F7948219D /* PosixSharedMemory.cpp in Sources */,
+				63F5015D07F25CDC038451EF /* Win32SharedMemory.cpp in Sources */,
+				32D633E940EE7FF616952F04 /* vrSyncPlugin.cpp in Sources */,
+				35860F086F4538203FE85449 /* b3Clock.cpp in Sources */,
+				391749B94536033C775E49CA /* b3ResourcePath.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin PBXTargetDependency section */
+		192F19C5567256F170321B11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libBulletFileLoader.a";
+			targetProxy = 32EA40F14BC501B31FB52CF9 /* PBXContainerItemProxy */;
+		};
+		61986EDB789731994BB774AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libBullet3Common.a";
+			targetProxy = 67BC290A64D924110BA91B1C /* PBXContainerItemProxy */;
+		};
+		548D0A8F71D6281A7B7C1B6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libLinearMath.a";
+			targetProxy = 52F5607A247A00582C5102D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		12977D45496E65DD280A396F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_PREFIX = lib;
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = "pybullet_vrSyncPlugin_xcode4_x64_release";
+			};
+			name = "Release";
+		};
+		7B275CB3169269651CE0686E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				EXECUTABLE_PREFIX = lib;
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = "pybullet_vrSyncPlugin_xcode4_x64_debug";
+			};
+			name = "Debug";
+		};
+		4A29573F133D2700109B70D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PHYSICS_IN_PROCESS_EXAMPLE_BROWSER",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/SharedMemory/plugins/vrSyncPlugin",
+					"../../src",
+					"../../examples",
+					"../../examples/ThirdPartyLibs",
+				);
+				OBJROOT = "obj/x64/Release/pybullet_vrSyncPlugin";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				OTHER_LDFLAGS = (
+					"-lPython",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Release";
+		};
+		3AF20E2A090219CA2DF35CA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"PHYSICS_IN_PROCESS_EXAMPLE_BROWSER",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/SharedMemory/plugins/vrSyncPlugin",
+					"../../src",
+					"../../examples",
+					"../../examples/ThirdPartyLibs",
+				);
+				OBJROOT = "obj/x64/Debug/pybullet_vrSyncPlugin";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				OTHER_LDFLAGS = (
+					"-lPython",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Debug";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F9332E91210717A19032B5F /* Build configuration list for PBXNativeTarget "libpybullet_vrSyncPlugin_xcode4_x64_release.dylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12977D45496E65DD280A396F /* Release */,
+				7B275CB3169269651CE0686E /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "pybullet_vrSyncPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A29573F133D2700109B70D8 /* Release */,
+				3AF20E2A090219CA2DF35CA2 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

@@ -1,0 +1,165 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		9A885060215F8E830073817B /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9A885061215F8E830073817B /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		9A885062215F8E830073817B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9A885063215F8E830073817B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		9A885064215F8E830073817B /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		9A885065215F8E830073817B /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		9A885066215F8E830073817B /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		9A885071215F92D40073817B /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		9A88505A215F8E830073817B = {
+			isa = PBXGroup;
+			children = (
+				9A885071215F92D40073817B /* lib */,
+				9A885060215F8E830073817B /* Makefile */,
+				9A885061215F8E830073817B /* include */,
+				9A885062215F8E830073817B /* README.md */,
+				9A885063215F8E830073817B /* .gitignore */,
+				9A885064215F8E830073817B /* License.txt */,
+				9A885065215F8E830073817B /* .travis.yml */,
+				9A885066215F8E830073817B /* src */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		9A88505F215F8E830073817B /* irrBullet */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-j8 $(ACTION)";
+			buildConfigurationList = 9A885067215F8E830073817B /* Build configuration list for PBXLegacyTarget "irrBullet" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/tomalbrecht/Desktop/TA/external/irrBullet;
+			dependencies = (
+			);
+			name = irrBullet;
+			passBuildSettingsInEnvironment = 1;
+			productName = irrBullet;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		9A88505B215F8E830073817B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 9A88505E215F8E830073817B /* Build configuration list for PBXProject "irrBullet" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9A88505A215F8E830073817B;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A88505F215F8E830073817B /* irrBullet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		9A88505C215F8E830073817B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		9A88505D215F8E830073817B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		9A885068215F8E830073817B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				CXX_FLAGS = "-I$(PROJECT_DIR)/../irrlicht-1.8.4/include -I$(PROJECT_DIR)/../bullet3/src";
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = (
+					"-I$(PROJECT_DIR)/../irrlicht-1.8.4/include",
+					"-I$(PROJECT_DIR)/../bullet3/src",
+				);
+				OTHER_CXXFLAGS = "-I$(PROJECT_DIR)/../irrlicht-1.8.4/include -I$(PROJECT_DIR)/../bullet3/src";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = irrBullet;
+				SDKROOT = macosx10.14;
+			};
+			name = Debug;
+		};
+		9A885069215F8E830073817B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				CXX_FLAGS = "-I$(PROJECT_DIR)/../irrlicht-1.8.4/include -I$(PROJECT_DIR)/../bullet3/src";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				OTHER_CFLAGS = (
+					"-I$(PROJECT_DIR)/../irrlicht-1.8.4/include",
+					"-I$(PROJECT_DIR)/../bullet3/src",
+				);
+				OTHER_CXXFLAGS = "-I$(PROJECT_DIR)/../irrlicht-1.8.4/include -I$(PROJECT_DIR)/../bullet3/src";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = irrBullet;
+				SDKROOT = macosx10.14;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A88505E215F8E830073817B /* Build configuration list for PBXProject "irrBullet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A88505C215F8E830073817B /* Debug */,
+				9A88505D215F8E830073817B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A885067215F8E830073817B /* Build configuration list for PBXLegacyTarget "irrBullet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A885068215F8E830073817B /* Debug */,
+				9A885069215F8E830073817B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A88505B215F8E830073817B /* Project object */;
+}

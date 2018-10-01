@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		267E4F8A20EB25334F0A285E /* b3GpuGridBroadphase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34744A5D47F20CDE6D816524 /* b3GpuGridBroadphase.cpp */; };
+		057836CD4FB8407B556C4665 /* b3GpuParallelLinearBvh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5ECA516B4AEB3C591F74232B /* b3GpuParallelLinearBvh.cpp */; };
+		3B232C63230725E62AAE0A8D /* b3GpuParallelLinearBvhBroadphase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5508102A7228525555346721 /* b3GpuParallelLinearBvhBroadphase.cpp */; };
+		168B0FBE17D8248A66326278 /* b3GpuSapBroadphase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 753D326D44BF602F6DE41588 /* b3GpuSapBroadphase.cpp */; };
+		0B5E08C216857B3F205C1E1D /* b3OpenCLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EA542163EAA18F711252052 /* b3OpenCLUtils.cpp */; };
+		086B3F1E4E0D5C6316160228 /* b3ContactCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 775525A433BB7175592D54F8 /* b3ContactCache.cpp */; };
+		7935309D4C5F740B2C0E02BF /* b3ConvexHullContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68D45CA10C9A7AC467ED3333 /* b3ConvexHullContact.cpp */; };
+		663E75C62CF3281724C058F0 /* b3GjkEpa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0B626BEE00054A782BEF6E4C /* b3GjkEpa.cpp */; };
+		021347A8058361E0732C6B43 /* b3OptimizedBvh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12FA0EAA4211093520312E2A /* b3OptimizedBvh.cpp */; };
+		5FAA361D4CF369C465121A3E /* b3QuantizedBvh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A612FAD461A7CAA3C902F18 /* b3QuantizedBvh.cpp */; };
+		2C0B0EAB21B03E20447F7CB9 /* b3StridingMeshInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 458A1C09524E10581D2864B8 /* b3StridingMeshInterface.cpp */; };
+		1416422109DC5A3F77173642 /* b3TriangleCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0016067A3C10F176A4414A /* b3TriangleCallback.cpp */; };
+		39F442D075E606CE513A7512 /* b3TriangleIndexVertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25CB4088504021EB5E5F5D3A /* b3TriangleIndexVertexArray.cpp */; };
+		110B0AE76B0E20137CE86C66 /* b3VoronoiSimplexSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44480C817FA62C71416C42FD /* b3VoronoiSimplexSolver.cpp */; };
+		5F9C2FC6207E71B6228838C8 /* b3BoundSearchCL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 346C21231B4A2A01591A573E /* b3BoundSearchCL.cpp */; };
+		682108B955F750023A3B7975 /* b3FillCL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23D1269264A1159970EB139A /* b3FillCL.cpp */; };
+		67F331912BCE6E986C91624B /* b3LauncherCL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CE277A630D0F1162E55A25 /* b3LauncherCL.cpp */; };
+		64DE4E0E1852685C2F9F234B /* b3PrefixScanCL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC425D57C041D6B739B7307 /* b3PrefixScanCL.cpp */; };
+		73DC14F572F630D72FA91417 /* b3PrefixScanFloat4CL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71675EDE7A171899738C6CD0 /* b3PrefixScanFloat4CL.cpp */; };
+		133A4C780A806F5552BD23F0 /* b3RadixSort32CL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BD337F750D21C14171665DE /* b3RadixSort32CL.cpp */; };
+		20B0078E361534987BF456BE /* b3GpuRaycast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210752F03A13378258163496 /* b3GpuRaycast.cpp */; };
+		5CBA465314E367667D2123C3 /* b3GpuGenericConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03A4434720925E19775E45F5 /* b3GpuGenericConstraint.cpp */; };
+		7B1F662E11C204B73D156D11 /* b3GpuJacobiContactSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 156674C824205C28526A3132 /* b3GpuJacobiContactSolver.cpp */; };
+		60DC0D17775B1B8D6043689D /* b3GpuNarrowPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5135784A53381D6B72872E97 /* b3GpuNarrowPhase.cpp */; };
+		05202BE6381529AB1E335AE5 /* b3GpuPgsConstraintSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 585A192014631DAF72C9173E /* b3GpuPgsConstraintSolver.cpp */; };
+		5D41147000170EBD27F61E80 /* b3GpuPgsContactSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65A13F1B225452A5082B55BE /* b3GpuPgsContactSolver.cpp */; };
+		10E41A645C8A7D02174F43FA /* b3GpuRigidBodyPipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186861D96F427044287010A0 /* b3GpuRigidBodyPipeline.cpp */; };
+		3C7F577828457A2F52E743DF /* b3Solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BDB6DF0561A497E76D00243 /* b3Solver.cpp */; };
+		21E01BCE2475386314D75D6A /* clew.c in Sources */ = {isa = PBXBuildFile; fileRef = 2A8A4F7061734DD2415D689F /* clew.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		50E57EA87A74623045E97C58 /* b3GpuBroadphaseInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuBroadphaseInterface.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuBroadphaseInterface.h"; sourceTree = "<group>"; };
+		34744A5D47F20CDE6D816524 /* b3GpuGridBroadphase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuGridBroadphase.cpp"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuGridBroadphase.cpp"; sourceTree = "<group>"; };
+		68BB7C452CD8415351EF59E9 /* b3GpuGridBroadphase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuGridBroadphase.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuGridBroadphase.h"; sourceTree = "<group>"; };
+		5ECA516B4AEB3C591F74232B /* b3GpuParallelLinearBvh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuParallelLinearBvh.cpp"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuParallelLinearBvh.cpp"; sourceTree = "<group>"; };
+		1B9D0207204F40714B8C7B0F /* b3GpuParallelLinearBvh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuParallelLinearBvh.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuParallelLinearBvh.h"; sourceTree = "<group>"; };
+		5508102A7228525555346721 /* b3GpuParallelLinearBvhBroadphase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuParallelLinearBvhBroadphase.cpp"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuParallelLinearBvhBroadphase.cpp"; sourceTree = "<group>"; };
+		55BA52FA1DAA271E64207E28 /* b3GpuParallelLinearBvhBroadphase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuParallelLinearBvhBroadphase.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuParallelLinearBvhBroadphase.h"; sourceTree = "<group>"; };
+		753D326D44BF602F6DE41588 /* b3GpuSapBroadphase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuSapBroadphase.cpp"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuSapBroadphase.cpp"; sourceTree = "<group>"; };
+		70FC6690780C18C74DEA71DF /* b3GpuSapBroadphase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuSapBroadphase.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3GpuSapBroadphase.h"; sourceTree = "<group>"; };
+		118419F410C11CB417C050EF /* b3SapAabb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3SapAabb.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/b3SapAabb.h"; sourceTree = "<group>"; };
+		215E4EB635787C5B40553B92 /* gridBroadphaseKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "gridBroadphaseKernels.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/kernels/gridBroadphaseKernels.h"; sourceTree = "<group>"; };
+		1F492AFA1AEE3FE81E076E06 /* parallelLinearBvhKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "parallelLinearBvhKernels.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/kernels/parallelLinearBvhKernels.h"; sourceTree = "<group>"; };
+		62EE2A1F63C93B2B15F12C01 /* sapKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "sapKernels.h"; path = "../../src/Bullet3OpenCL/BroadphaseCollision/kernels/sapKernels.h"; sourceTree = "<group>"; };
+		7E52759D1DBD7DE0024D460A /* b3OpenCLInclude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3OpenCLInclude.h"; path = "../../src/Bullet3OpenCL/Initialize/b3OpenCLInclude.h"; sourceTree = "<group>"; };
+		6EA542163EAA18F711252052 /* b3OpenCLUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3OpenCLUtils.cpp"; path = "../../src/Bullet3OpenCL/Initialize/b3OpenCLUtils.cpp"; sourceTree = "<group>"; };
+		36484E66198322357D5376E0 /* b3OpenCLUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3OpenCLUtils.h"; path = "../../src/Bullet3OpenCL/Initialize/b3OpenCLUtils.h"; sourceTree = "<group>"; };
+		371D794559D9638566DA104E /* b3BvhInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3BvhInfo.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3BvhInfo.h"; sourceTree = "<group>"; };
+		775525A433BB7175592D54F8 /* b3ContactCache.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3ContactCache.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3ContactCache.cpp"; sourceTree = "<group>"; };
+		13EC76542BBF36884FB72E0F /* b3ContactCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3ContactCache.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3ContactCache.h"; sourceTree = "<group>"; };
+		68D45CA10C9A7AC467ED3333 /* b3ConvexHullContact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3ConvexHullContact.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3ConvexHullContact.cpp"; sourceTree = "<group>"; };
+		75A5598F670F4A565B195535 /* b3ConvexHullContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3ConvexHullContact.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3ConvexHullContact.h"; sourceTree = "<group>"; };
+		15F477684D9C7A7737B01243 /* b3ConvexPolyhedronCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3ConvexPolyhedronCL.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3ConvexPolyhedronCL.h"; sourceTree = "<group>"; };
+		0B626BEE00054A782BEF6E4C /* b3GjkEpa.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GjkEpa.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3GjkEpa.cpp"; sourceTree = "<group>"; };
+		153E4A9A55BF0068690C1882 /* b3GjkEpa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GjkEpa.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3GjkEpa.h"; sourceTree = "<group>"; };
+		12FA0EAA4211093520312E2A /* b3OptimizedBvh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3OptimizedBvh.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3OptimizedBvh.cpp"; sourceTree = "<group>"; };
+		07477952212F17F559A42724 /* b3OptimizedBvh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3OptimizedBvh.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3OptimizedBvh.h"; sourceTree = "<group>"; };
+		6A612FAD461A7CAA3C902F18 /* b3QuantizedBvh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3QuantizedBvh.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.cpp"; sourceTree = "<group>"; };
+		7DC268D44E3876B449CC109D /* b3QuantizedBvh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3QuantizedBvh.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3QuantizedBvh.h"; sourceTree = "<group>"; };
+		458A1C09524E10581D2864B8 /* b3StridingMeshInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3StridingMeshInterface.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3StridingMeshInterface.cpp"; sourceTree = "<group>"; };
+		174537703FD60A5635E41AD4 /* b3StridingMeshInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3StridingMeshInterface.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3StridingMeshInterface.h"; sourceTree = "<group>"; };
+		5B5961465DC21099555B5C07 /* b3SupportMappings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3SupportMappings.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3SupportMappings.h"; sourceTree = "<group>"; };
+		5B0016067A3C10F176A4414A /* b3TriangleCallback.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3TriangleCallback.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleCallback.cpp"; sourceTree = "<group>"; };
+		44BF14C952853F097D165521 /* b3TriangleCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3TriangleCallback.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleCallback.h"; sourceTree = "<group>"; };
+		25CB4088504021EB5E5F5D3A /* b3TriangleIndexVertexArray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3TriangleIndexVertexArray.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleIndexVertexArray.cpp"; sourceTree = "<group>"; };
+		2C734E7F78087E300E991797 /* b3TriangleIndexVertexArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3TriangleIndexVertexArray.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3TriangleIndexVertexArray.h"; sourceTree = "<group>"; };
+		42B47246778E34481E68745F /* b3VectorFloat4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3VectorFloat4.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3VectorFloat4.h"; sourceTree = "<group>"; };
+		44480C817FA62C71416C42FD /* b3VoronoiSimplexSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3VoronoiSimplexSolver.cpp"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3VoronoiSimplexSolver.cpp"; sourceTree = "<group>"; };
+		43D77511309723FB72A73DE4 /* b3VoronoiSimplexSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3VoronoiSimplexSolver.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/b3VoronoiSimplexSolver.h"; sourceTree = "<group>"; };
+		0536226C7D314D0C00171B8F /* bvhTraversal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bvhTraversal.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/kernels/bvhTraversal.h"; sourceTree = "<group>"; };
+		4CF65C1C4FA15B006F6C5612 /* mprKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "mprKernels.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/kernels/mprKernels.h"; sourceTree = "<group>"; };
+		73AC56DE3A5338636B965ECC /* primitiveContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "primitiveContacts.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/kernels/primitiveContacts.h"; sourceTree = "<group>"; };
+		5E1C23A35A4973D21E4A45FA /* satClipHullContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "satClipHullContacts.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/kernels/satClipHullContacts.h"; sourceTree = "<group>"; };
+		47F60CAF4DD856950ED01079 /* satConcaveKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "satConcaveKernels.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/kernels/satConcaveKernels.h"; sourceTree = "<group>"; };
+		0E7359556F4666EF6EC96A08 /* satKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "satKernels.h"; path = "../../src/Bullet3OpenCL/NarrowphaseCollision/kernels/satKernels.h"; sourceTree = "<group>"; };
+		346C21231B4A2A01591A573E /* b3BoundSearchCL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3BoundSearchCL.cpp"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3BoundSearchCL.cpp"; sourceTree = "<group>"; };
+		57AE6CF900C53DCC26133BF8 /* b3BoundSearchCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3BoundSearchCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3BoundSearchCL.h"; sourceTree = "<group>"; };
+		385C3F2114800C1A09AF5868 /* b3BufferInfoCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3BufferInfoCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3BufferInfoCL.h"; sourceTree = "<group>"; };
+		23D1269264A1159970EB139A /* b3FillCL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3FillCL.cpp"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3FillCL.cpp"; sourceTree = "<group>"; };
+		261830033C301C2E3D89293F /* b3FillCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3FillCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3FillCL.h"; sourceTree = "<group>"; };
+		01CE277A630D0F1162E55A25 /* b3LauncherCL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3LauncherCL.cpp"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3LauncherCL.cpp"; sourceTree = "<group>"; };
+		3814318737B37E3D6F015C60 /* b3LauncherCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3LauncherCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3LauncherCL.h"; sourceTree = "<group>"; };
+		5A9D155677334C7868284FBA /* b3OpenCLArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3OpenCLArray.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3OpenCLArray.h"; sourceTree = "<group>"; };
+		5EC425D57C041D6B739B7307 /* b3PrefixScanCL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3PrefixScanCL.cpp"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanCL.cpp"; sourceTree = "<group>"; };
+		294F1DB101735EDB27115012 /* b3PrefixScanCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3PrefixScanCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanCL.h"; sourceTree = "<group>"; };
+		71675EDE7A171899738C6CD0 /* b3PrefixScanFloat4CL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3PrefixScanFloat4CL.cpp"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanFloat4CL.cpp"; sourceTree = "<group>"; };
+		7F447ADA06D8673F5EDE6AE8 /* b3PrefixScanFloat4CL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3PrefixScanFloat4CL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3PrefixScanFloat4CL.h"; sourceTree = "<group>"; };
+		2BD337F750D21C14171665DE /* b3RadixSort32CL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3RadixSort32CL.cpp"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3RadixSort32CL.cpp"; sourceTree = "<group>"; };
+		619B2F5251E007AE5FC26892 /* b3RadixSort32CL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3RadixSort32CL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/b3RadixSort32CL.h"; sourceTree = "<group>"; };
+		5779524016AC05AB5C807F8E /* BoundSearchKernelsCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BoundSearchKernelsCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/kernels/BoundSearchKernelsCL.h"; sourceTree = "<group>"; };
+		54C03E292CC83F6D46DB1470 /* CopyKernelsCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CopyKernelsCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/kernels/CopyKernelsCL.h"; sourceTree = "<group>"; };
+		62D472BB0A5508B2129B0B9E /* FillKernelsCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FillKernelsCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/kernels/FillKernelsCL.h"; sourceTree = "<group>"; };
+		569900861CA92BE90C284E5C /* PrefixScanKernelsCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PrefixScanKernelsCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/kernels/PrefixScanKernelsCL.h"; sourceTree = "<group>"; };
+		2F8B034B59CD4B2A6DE22BCC /* PrefixScanKernelsFloat4CL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PrefixScanKernelsFloat4CL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/kernels/PrefixScanKernelsFloat4CL.h"; sourceTree = "<group>"; };
+		136E41E7355973387C2A3F05 /* RadixSort32KernelsCL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "RadixSort32KernelsCL.h"; path = "../../src/Bullet3OpenCL/ParallelPrimitives/kernels/RadixSort32KernelsCL.h"; sourceTree = "<group>"; };
+		210752F03A13378258163496 /* b3GpuRaycast.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuRaycast.cpp"; path = "../../src/Bullet3OpenCL/Raycast/b3GpuRaycast.cpp"; sourceTree = "<group>"; };
+		0B7E22E118EE5E2105714826 /* b3GpuRaycast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuRaycast.h"; path = "../../src/Bullet3OpenCL/Raycast/b3GpuRaycast.h"; sourceTree = "<group>"; };
+		17A023BE3CCA7EBC71276FEE /* rayCastKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "rayCastKernels.h"; path = "../../src/Bullet3OpenCL/Raycast/kernels/rayCastKernels.h"; sourceTree = "<group>"; };
+		30D57F3C416628C6200E2461 /* b3GpuConstraint4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuConstraint4.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuConstraint4.h"; sourceTree = "<group>"; };
+		03A4434720925E19775E45F5 /* b3GpuGenericConstraint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuGenericConstraint.cpp"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuGenericConstraint.cpp"; sourceTree = "<group>"; };
+		0E43642836A6519E0A454DB8 /* b3GpuGenericConstraint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuGenericConstraint.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuGenericConstraint.h"; sourceTree = "<group>"; };
+		156674C824205C28526A3132 /* b3GpuJacobiContactSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuJacobiContactSolver.cpp"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuJacobiContactSolver.cpp"; sourceTree = "<group>"; };
+		336E1B6242960D501D912BFA /* b3GpuJacobiContactSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuJacobiContactSolver.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuJacobiContactSolver.h"; sourceTree = "<group>"; };
+		5135784A53381D6B72872E97 /* b3GpuNarrowPhase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuNarrowPhase.cpp"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuNarrowPhase.cpp"; sourceTree = "<group>"; };
+		332C404F2E7A6CAE17DF3686 /* b3GpuNarrowPhase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuNarrowPhase.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuNarrowPhase.h"; sourceTree = "<group>"; };
+		2E3D6452660774572C7976C4 /* b3GpuNarrowPhaseInternalData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuNarrowPhaseInternalData.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuNarrowPhaseInternalData.h"; sourceTree = "<group>"; };
+		585A192014631DAF72C9173E /* b3GpuPgsConstraintSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuPgsConstraintSolver.cpp"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuPgsConstraintSolver.cpp"; sourceTree = "<group>"; };
+		78B22EC64DBC05093B0B72F7 /* b3GpuPgsConstraintSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuPgsConstraintSolver.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuPgsConstraintSolver.h"; sourceTree = "<group>"; };
+		65A13F1B225452A5082B55BE /* b3GpuPgsContactSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuPgsContactSolver.cpp"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuPgsContactSolver.cpp"; sourceTree = "<group>"; };
+		235F71BD6CC6523D3C685C7D /* b3GpuPgsContactSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuPgsContactSolver.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuPgsContactSolver.h"; sourceTree = "<group>"; };
+		186861D96F427044287010A0 /* b3GpuRigidBodyPipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3GpuRigidBodyPipeline.cpp"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.cpp"; sourceTree = "<group>"; };
+		7D27456B28F25D9100AF695E /* b3GpuRigidBodyPipeline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuRigidBodyPipeline.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.h"; sourceTree = "<group>"; };
+		558D21555D5F39F25A526FA1 /* b3GpuRigidBodyPipelineInternalData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuRigidBodyPipelineInternalData.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipelineInternalData.h"; sourceTree = "<group>"; };
+		51EC10F9506067984FF17A0B /* b3GpuSolverBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuSolverBody.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuSolverBody.h"; sourceTree = "<group>"; };
+		7CB37C5C000365F206B371ED /* b3GpuSolverConstraint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3GpuSolverConstraint.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3GpuSolverConstraint.h"; sourceTree = "<group>"; };
+		0BDB6DF0561A497E76D00243 /* b3Solver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3Solver.cpp"; path = "../../src/Bullet3OpenCL/RigidBody/b3Solver.cpp"; sourceTree = "<group>"; };
+		6D247AAF04586C2A733E2813 /* b3Solver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3Solver.h"; path = "../../src/Bullet3OpenCL/RigidBody/b3Solver.h"; sourceTree = "<group>"; };
+		73CC09C64B3E11091681194E /* batchingKernels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "batchingKernels.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/batchingKernels.h"; sourceTree = "<group>"; };
+		7A7F3FF6472C1CB35A6F5D7E /* batchingKernelsNew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "batchingKernelsNew.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/batchingKernelsNew.h"; sourceTree = "<group>"; };
+		3C8F07854E195F7445C27608 /* integrateKernel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "integrateKernel.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/integrateKernel.h"; sourceTree = "<group>"; };
+		1F5866996511495A380438EF /* jointSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "jointSolver.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/jointSolver.h"; sourceTree = "<group>"; };
+		092A40BB6BAC297B72B95B56 /* solveContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "solveContact.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/solveContact.h"; sourceTree = "<group>"; };
+		102C5BF5700515445722120D /* solveFriction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "solveFriction.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/solveFriction.h"; sourceTree = "<group>"; };
+		404A6C00750745A35E756DD8 /* solverSetup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "solverSetup.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/solverSetup.h"; sourceTree = "<group>"; };
+		24FD67254D600A285EF357EF /* solverSetup2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "solverSetup2.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/solverSetup2.h"; sourceTree = "<group>"; };
+		37114C7E1D1F1C717DA02D79 /* solverUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "solverUtils.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/solverUtils.h"; sourceTree = "<group>"; };
+		1F1820CD2BB24A08621F1E90 /* updateAabbsKernel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "updateAabbsKernel.h"; path = "../../src/Bullet3OpenCL/RigidBody/kernels/updateAabbsKernel.h"; sourceTree = "<group>"; };
+		2A8A4F7061734DD2415D689F /* clew.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = "clew.c"; path = "../../src/clew/clew.c"; sourceTree = "<group>"; };
+		096C343E10170A81506346D8 /* clew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "clew.h"; path = "../../src/clew/clew.h"; sourceTree = "<group>"; };
+		37E333A147E60119140B14EA /* libBullet3OpenCL_clew_xcode4_x64_release.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libBullet3OpenCL_clew_xcode4_x64_release.a"; path = "libBullet3OpenCL_clew_xcode4_x64_release.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0B07074749FD1D7A4BAF7859 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		231570C8612F061B7976346D /* Bullet3OpenCL_clew */ = {
+			isa = PBXGroup;
+			children = (
+				13CD147A55A01FDA604D0467 /* src */,
+				2C634F9B7ED02407771E704D /* Products */,
+			);
+			name = "Bullet3OpenCL_clew";
+			sourceTree = "<group>";
+		};
+		13CD147A55A01FDA604D0467 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				12D364E46ACA13A13CC94D1A /* Bullet3OpenCL */,
+				2C1F47F27D1928DB67445831 /* clew */,
+			);
+			name = "src";
+			sourceTree = "<group>";
+		};
+		12D364E46ACA13A13CC94D1A /* Bullet3OpenCL */ = {
+			isa = PBXGroup;
+			children = (
+				7CE8150A60A327D872F74A8C /* BroadphaseCollision */,
+				27164DCA49144ECA6AD779C7 /* Initialize */,
+				0EC14920604E410D5A9A52A4 /* NarrowphaseCollision */,
+				46E83DD5058E62E0054A57B1 /* ParallelPrimitives */,
+				647C12195AFE6CD729E03DD7 /* Raycast */,
+				0EFE5D9B018C2E31271B067B /* RigidBody */,
+			);
+			name = "Bullet3OpenCL";
+			sourceTree = "<group>";
+		};
+		7CE8150A60A327D872F74A8C /* BroadphaseCollision */ = {
+			isa = PBXGroup;
+			children = (
+				50E57EA87A74623045E97C58 /* b3GpuBroadphaseInterface.h */,
+				34744A5D47F20CDE6D816524 /* b3GpuGridBroadphase.cpp */,
+				68BB7C452CD8415351EF59E9 /* b3GpuGridBroadphase.h */,
+				5ECA516B4AEB3C591F74232B /* b3GpuParallelLinearBvh.cpp */,
+				1B9D0207204F40714B8C7B0F /* b3GpuParallelLinearBvh.h */,
+				5508102A7228525555346721 /* b3GpuParallelLinearBvhBroadphase.cpp */,
+				55BA52FA1DAA271E64207E28 /* b3GpuParallelLinearBvhBroadphase.h */,
+				753D326D44BF602F6DE41588 /* b3GpuSapBroadphase.cpp */,
+				70FC6690780C18C74DEA71DF /* b3GpuSapBroadphase.h */,
+				118419F410C11CB417C050EF /* b3SapAabb.h */,
+				06B7197014B12E4B7A98420B /* kernels */,
+			);
+			name = "BroadphaseCollision";
+			sourceTree = "<group>";
+		};
+		06B7197014B12E4B7A98420B /* kernels */ = {
+			isa = PBXGroup;
+			children = (
+				215E4EB635787C5B40553B92 /* gridBroadphaseKernels.h */,
+				1F492AFA1AEE3FE81E076E06 /* parallelLinearBvhKernels.h */,
+				62EE2A1F63C93B2B15F12C01 /* sapKernels.h */,
+			);
+			name = "kernels";
+			sourceTree = "<group>";
+		};
+		27164DCA49144ECA6AD779C7 /* Initialize */ = {
+			isa = PBXGroup;
+			children = (
+				7E52759D1DBD7DE0024D460A /* b3OpenCLInclude.h */,
+				6EA542163EAA18F711252052 /* b3OpenCLUtils.cpp */,
+				36484E66198322357D5376E0 /* b3OpenCLUtils.h */,
+			);
+			name = "Initialize";
+			sourceTree = "<group>";
+		};
+		0EC14920604E410D5A9A52A4 /* NarrowphaseCollision */ = {
+			isa = PBXGroup;
+			children = (
+				371D794559D9638566DA104E /* b3BvhInfo.h */,
+				775525A433BB7175592D54F8 /* b3ContactCache.cpp */,
+				13EC76542BBF36884FB72E0F /* b3ContactCache.h */,
+				68D45CA10C9A7AC467ED3333 /* b3ConvexHullContact.cpp */,
+				75A5598F670F4A565B195535 /* b3ConvexHullContact.h */,
+				15F477684D9C7A7737B01243 /* b3ConvexPolyhedronCL.h */,
+				0B626BEE00054A782BEF6E4C /* b3GjkEpa.cpp */,
+				153E4A9A55BF0068690C1882 /* b3GjkEpa.h */,
+				12FA0EAA4211093520312E2A /* b3OptimizedBvh.cpp */,
+				07477952212F17F559A42724 /* b3OptimizedBvh.h */,
+				6A612FAD461A7CAA3C902F18 /* b3QuantizedBvh.cpp */,
+				7DC268D44E3876B449CC109D /* b3QuantizedBvh.h */,
+				458A1C09524E10581D2864B8 /* b3StridingMeshInterface.cpp */,
+				174537703FD60A5635E41AD4 /* b3StridingMeshInterface.h */,
+				5B5961465DC21099555B5C07 /* b3SupportMappings.h */,
+				5B0016067A3C10F176A4414A /* b3TriangleCallback.cpp */,
+				44BF14C952853F097D165521 /* b3TriangleCallback.h */,
+				25CB4088504021EB5E5F5D3A /* b3TriangleIndexVertexArray.cpp */,
+				2C734E7F78087E300E991797 /* b3TriangleIndexVertexArray.h */,
+				42B47246778E34481E68745F /* b3VectorFloat4.h */,
+				44480C817FA62C71416C42FD /* b3VoronoiSimplexSolver.cpp */,
+				43D77511309723FB72A73DE4 /* b3VoronoiSimplexSolver.h */,
+				62EC0906765F07935CFB7D49 /* kernels */,
+			);
+			name = "NarrowphaseCollision";
+			sourceTree = "<group>";
+		};
+		62EC0906765F07935CFB7D49 /* kernels */ = {
+			isa = PBXGroup;
+			children = (
+				0536226C7D314D0C00171B8F /* bvhTraversal.h */,
+				4CF65C1C4FA15B006F6C5612 /* mprKernels.h */,
+				73AC56DE3A5338636B965ECC /* primitiveContacts.h */,
+				5E1C23A35A4973D21E4A45FA /* satClipHullContacts.h */,
+				47F60CAF4DD856950ED01079 /* satConcaveKernels.h */,
+				0E7359556F4666EF6EC96A08 /* satKernels.h */,
+			);
+			name = "kernels";
+			sourceTree = "<group>";
+		};
+		46E83DD5058E62E0054A57B1 /* ParallelPrimitives */ = {
+			isa = PBXGroup;
+			children = (
+				346C21231B4A2A01591A573E /* b3BoundSearchCL.cpp */,
+				57AE6CF900C53DCC26133BF8 /* b3BoundSearchCL.h */,
+				385C3F2114800C1A09AF5868 /* b3BufferInfoCL.h */,
+				23D1269264A1159970EB139A /* b3FillCL.cpp */,
+				261830033C301C2E3D89293F /* b3FillCL.h */,
+				01CE277A630D0F1162E55A25 /* b3LauncherCL.cpp */,
+				3814318737B37E3D6F015C60 /* b3LauncherCL.h */,
+				5A9D155677334C7868284FBA /* b3OpenCLArray.h */,
+				5EC425D57C041D6B739B7307 /* b3PrefixScanCL.cpp */,
+				294F1DB101735EDB27115012 /* b3PrefixScanCL.h */,
+				71675EDE7A171899738C6CD0 /* b3PrefixScanFloat4CL.cpp */,
+				7F447ADA06D8673F5EDE6AE8 /* b3PrefixScanFloat4CL.h */,
+				2BD337F750D21C14171665DE /* b3RadixSort32CL.cpp */,
+				619B2F5251E007AE5FC26892 /* b3RadixSort32CL.h */,
+				032A76C858F8389B05417131 /* kernels */,
+			);
+			name = "ParallelPrimitives";
+			sourceTree = "<group>";
+		};
+		032A76C858F8389B05417131 /* kernels */ = {
+			isa = PBXGroup;
+			children = (
+				5779524016AC05AB5C807F8E /* BoundSearchKernelsCL.h */,
+				54C03E292CC83F6D46DB1470 /* CopyKernelsCL.h */,
+				62D472BB0A5508B2129B0B9E /* FillKernelsCL.h */,
+				569900861CA92BE90C284E5C /* PrefixScanKernelsCL.h */,
+				2F8B034B59CD4B2A6DE22BCC /* PrefixScanKernelsFloat4CL.h */,
+				136E41E7355973387C2A3F05 /* RadixSort32KernelsCL.h */,
+			);
+			name = "kernels";
+			sourceTree = "<group>";
+		};
+		647C12195AFE6CD729E03DD7 /* Raycast */ = {
+			isa = PBXGroup;
+			children = (
+				210752F03A13378258163496 /* b3GpuRaycast.cpp */,
+				0B7E22E118EE5E2105714826 /* b3GpuRaycast.h */,
+				68427F9D4ED13C860A6C53C8 /* kernels */,
+			);
+			name = "Raycast";
+			sourceTree = "<group>";
+		};
+		68427F9D4ED13C860A6C53C8 /* kernels */ = {
+			isa = PBXGroup;
+			children = (
+				17A023BE3CCA7EBC71276FEE /* rayCastKernels.h */,
+			);
+			name = "kernels";
+			sourceTree = "<group>";
+		};
+		0EFE5D9B018C2E31271B067B /* RigidBody */ = {
+			isa = PBXGroup;
+			children = (
+				30D57F3C416628C6200E2461 /* b3GpuConstraint4.h */,
+				03A4434720925E19775E45F5 /* b3GpuGenericConstraint.cpp */,
+				0E43642836A6519E0A454DB8 /* b3GpuGenericConstraint.h */,
+				156674C824205C28526A3132 /* b3GpuJacobiContactSolver.cpp */,
+				336E1B6242960D501D912BFA /* b3GpuJacobiContactSolver.h */,
+				5135784A53381D6B72872E97 /* b3GpuNarrowPhase.cpp */,
+				332C404F2E7A6CAE17DF3686 /* b3GpuNarrowPhase.h */,
+				2E3D6452660774572C7976C4 /* b3GpuNarrowPhaseInternalData.h */,
+				585A192014631DAF72C9173E /* b3GpuPgsConstraintSolver.cpp */,
+				78B22EC64DBC05093B0B72F7 /* b3GpuPgsConstraintSolver.h */,
+				65A13F1B225452A5082B55BE /* b3GpuPgsContactSolver.cpp */,
+				235F71BD6CC6523D3C685C7D /* b3GpuPgsContactSolver.h */,
+				186861D96F427044287010A0 /* b3GpuRigidBodyPipeline.cpp */,
+				7D27456B28F25D9100AF695E /* b3GpuRigidBodyPipeline.h */,
+				558D21555D5F39F25A526FA1 /* b3GpuRigidBodyPipelineInternalData.h */,
+				51EC10F9506067984FF17A0B /* b3GpuSolverBody.h */,
+				7CB37C5C000365F206B371ED /* b3GpuSolverConstraint.h */,
+				0BDB6DF0561A497E76D00243 /* b3Solver.cpp */,
+				6D247AAF04586C2A733E2813 /* b3Solver.h */,
+				0F910E083B3526A45A3243B8 /* kernels */,
+			);
+			name = "RigidBody";
+			sourceTree = "<group>";
+		};
+		0F910E083B3526A45A3243B8 /* kernels */ = {
+			isa = PBXGroup;
+			children = (
+				73CC09C64B3E11091681194E /* batchingKernels.h */,
+				7A7F3FF6472C1CB35A6F5D7E /* batchingKernelsNew.h */,
+				3C8F07854E195F7445C27608 /* integrateKernel.h */,
+				1F5866996511495A380438EF /* jointSolver.h */,
+				092A40BB6BAC297B72B95B56 /* solveContact.h */,
+				102C5BF5700515445722120D /* solveFriction.h */,
+				404A6C00750745A35E756DD8 /* solverSetup.h */,
+				24FD67254D600A285EF357EF /* solverSetup2.h */,
+				37114C7E1D1F1C717DA02D79 /* solverUtils.h */,
+				1F1820CD2BB24A08621F1E90 /* updateAabbsKernel.h */,
+			);
+			name = "kernels";
+			sourceTree = "<group>";
+		};
+		2C1F47F27D1928DB67445831 /* clew */ = {
+			isa = PBXGroup;
+			children = (
+				2A8A4F7061734DD2415D689F /* clew.c */,
+				096C343E10170A81506346D8 /* clew.h */,
+			);
+			name = "clew";
+			sourceTree = "<group>";
+		};
+		2C634F9B7ED02407771E704D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37E333A147E60119140B14EA /* libBullet3OpenCL_clew_xcode4_x64_release.a */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4FF1773B4EDD1DAC0E26649D /* Bullet3OpenCL_clew */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 628E67D712566A5A582C4340 /* Build configuration list for PBXNativeTarget "Bullet3OpenCL_clew" */;
+			buildPhases = (
+				3B0D141523C7010C716F553F /* Resources */,
+				5A95798C7309612E43A742B9 /* Sources */,
+				0B07074749FD1D7A4BAF7859 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bullet3OpenCL_clew";
+			productName = "Bullet3OpenCL_clew";
+			productReference = 37E333A147E60119140B14EA /* libBullet3OpenCL_clew_xcode4_x64_release.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "Bullet3OpenCL_clew" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 231570C8612F061B7976346D /* Bullet3OpenCL_clew */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4FF1773B4EDD1DAC0E26649D /* libBullet3OpenCL_clew_xcode4_x64_release.a */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B0D141523C7010C716F553F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A95798C7309612E43A742B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				267E4F8A20EB25334F0A285E /* b3GpuGridBroadphase.cpp in Sources */,
+				057836CD4FB8407B556C4665 /* b3GpuParallelLinearBvh.cpp in Sources */,
+				3B232C63230725E62AAE0A8D /* b3GpuParallelLinearBvhBroadphase.cpp in Sources */,
+				168B0FBE17D8248A66326278 /* b3GpuSapBroadphase.cpp in Sources */,
+				0B5E08C216857B3F205C1E1D /* b3OpenCLUtils.cpp in Sources */,
+				086B3F1E4E0D5C6316160228 /* b3ContactCache.cpp in Sources */,
+				7935309D4C5F740B2C0E02BF /* b3ConvexHullContact.cpp in Sources */,
+				663E75C62CF3281724C058F0 /* b3GjkEpa.cpp in Sources */,
+				021347A8058361E0732C6B43 /* b3OptimizedBvh.cpp in Sources */,
+				5FAA361D4CF369C465121A3E /* b3QuantizedBvh.cpp in Sources */,
+				2C0B0EAB21B03E20447F7CB9 /* b3StridingMeshInterface.cpp in Sources */,
+				1416422109DC5A3F77173642 /* b3TriangleCallback.cpp in Sources */,
+				39F442D075E606CE513A7512 /* b3TriangleIndexVertexArray.cpp in Sources */,
+				110B0AE76B0E20137CE86C66 /* b3VoronoiSimplexSolver.cpp in Sources */,
+				5F9C2FC6207E71B6228838C8 /* b3BoundSearchCL.cpp in Sources */,
+				682108B955F750023A3B7975 /* b3FillCL.cpp in Sources */,
+				67F331912BCE6E986C91624B /* b3LauncherCL.cpp in Sources */,
+				64DE4E0E1852685C2F9F234B /* b3PrefixScanCL.cpp in Sources */,
+				73DC14F572F630D72FA91417 /* b3PrefixScanFloat4CL.cpp in Sources */,
+				133A4C780A806F5552BD23F0 /* b3RadixSort32CL.cpp in Sources */,
+				20B0078E361534987BF456BE /* b3GpuRaycast.cpp in Sources */,
+				5CBA465314E367667D2123C3 /* b3GpuGenericConstraint.cpp in Sources */,
+				7B1F662E11C204B73D156D11 /* b3GpuJacobiContactSolver.cpp in Sources */,
+				60DC0D17775B1B8D6043689D /* b3GpuNarrowPhase.cpp in Sources */,
+				05202BE6381529AB1E335AE5 /* b3GpuPgsConstraintSolver.cpp in Sources */,
+				5D41147000170EBD27F61E80 /* b3GpuPgsContactSolver.cpp in Sources */,
+				10E41A645C8A7D02174F43FA /* b3GpuRigidBodyPipeline.cpp in Sources */,
+				3C7F577828457A2F52E743DF /* b3Solver.cpp in Sources */,
+				21E01BCE2475386314D75D6A /* clew.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7CF40837673E47C02B381E82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = "Bullet3OpenCL_clew_xcode4_x64_release";
+			};
+			name = "Release";
+		};
+		58400096262A3AC43AE603A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = "Bullet3OpenCL_clew_xcode4_x64_debug";
+			};
+			name = "Debug";
+		};
+		15857B1E262C441151410376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"B3_USE_CLEW",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../src/clew",
+					"../../src/Bullet3OpenCL",
+					"../../src",
+				);
+				OBJROOT = "obj/x64/Release/Bullet3OpenCL_clew";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Release";
+		};
+		3D3A433E34595523263A59B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"B3_USE_CLEW",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../src/clew",
+					"../../src/Bullet3OpenCL",
+					"../../src",
+				);
+				OBJROOT = "obj/x64/Debug/Bullet3OpenCL_clew";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Debug";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		628E67D712566A5A582C4340 /* Build configuration list for PBXNativeTarget "libBullet3OpenCL_clew_xcode4_x64_release.a" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CF40837673E47C02B381E82 /* Release */,
+				58400096262A3AC43AE603A2 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "Bullet3OpenCL_clew" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15857B1E262C441151410376 /* Release */,
+				3D3A433E34595523263A59B7 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
