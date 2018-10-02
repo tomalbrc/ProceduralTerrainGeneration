@@ -27,7 +27,7 @@ public:
     /**
      * Returns the current device
      */
-    virtual irr::IrrlichtDevice *device() const;
+    virtual irr::IrrlichtDevice *device();
     
     /**
      * Sets a new device

@@ -35,7 +35,6 @@ public:
     
 private:
     std::shared_ptr<WorldInfo> worldInfo;
-    
 
 	// shader cache material id
     std::vector<irr::s32> shaderMaterialIDS; 

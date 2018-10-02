@@ -194,29 +194,6 @@ void WorldScene::update(double dt) {
         }
         entity.first->setPosition(pos);
     }
-    
-    // TODO: Cleanup shadow of invisible chunks
-//    for (auto ting : chunks) {
-//            auto chldr = ting.second->getChildren();
-//            for (auto i = chldr.begin(); i != chldr.end(); i++) {
-//                if (!ting.second->isVisible()) {
-//                    effect->removeShadowFromNode(*i);
-//                    (*i)->setIsDebugObject(true);
-//                }
-//                else if ((*i)->isDebugObject()) {
-//                    effect->addShadowToNode(*i);
-//                    (*i)->setIsDebugObject(false);
-//                }
-//            }
-//        if (!ting.second->isVisible()) {
-//            effect->removeShadowFromNode(ting.second);
-//            ting.second->setIsDebugObject(true);
-//        }
-//        else if (ting.second->isDebugObject()) {
-//            effect->addShadowToNode(ting.second);
-//            ting.second->setIsDebugObject(false);
-//        }
-//    }
 }
 
 void WorldScene::render() {

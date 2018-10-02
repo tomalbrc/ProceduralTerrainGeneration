@@ -13,7 +13,7 @@ IrrScene::IrrScene(irr::IrrlichtDevice *device) : m_device{device} {
     assert(m_device);
 }
 
-irr::IrrlichtDevice *IrrScene::device() const {
+irr::IrrlichtDevice *IrrScene::device() {
     return m_device;
 }
 
