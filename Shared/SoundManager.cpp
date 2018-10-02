@@ -7,6 +7,7 @@
 //
 
 #include "SoundManager.h"
+#include <cassert>
 
 using namespace cAudio;
 
@@ -32,11 +33,11 @@ void SoundManager::playBackgroundSound(const std::string &filepath) {
 }
 
 void SoundManager::resumeBackgroundSound() {
-    m_background->play();
+	if (m_background) m_background->play();
 }
 
 void SoundManager::pauseBackgroundSound() {
-    m_background->pause();
+    if (m_background) m_background->pause();
 }
 
 bool SoundManager::backgroundSoundPlaying() {

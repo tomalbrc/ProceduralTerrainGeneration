@@ -19,33 +19,101 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBullet.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletBoxShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletBvhTriangleMeshShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCapsuleShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionCallBackInformation.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObject.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObjectAffector.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObjectAffectorAttract.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObjectAffectorDelete.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletcommon.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletConvexHullShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCylinderShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletGImpactMeshShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletKinematicCharacterController.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletLiquidBody.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletMotionState.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletPhysicsDebug.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletRayCastVehicle.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletRigidBody.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletSoftBody.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletSphereShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletTriangleMeshShape.cpp" />
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletWorld.cpp" />
+    <ClCompile Include="..\Shared\EnemyManager.cpp" />
+    <ClCompile Include="..\Shared\GUIManager.cpp" />
+    <ClCompile Include="..\Shared\InputManager.cpp" />
+    <ClCompile Include="..\Shared\IrrManager.cpp" />
     <ClCompile Include="..\Shared\IrrScene.cpp" />
     <ClCompile Include="..\Shared\main.cpp" />
     <ClCompile Include="..\Shared\MapControlEventReceiver.cpp" />
     <ClCompile Include="..\Shared\NoiseMapGenerator.cpp" />
+    <ClCompile Include="..\Shared\PhysicsManager.cpp" />
+    <ClCompile Include="..\Shared\SoundManager.cpp" />
     <ClCompile Include="..\Shared\TerrainGenerator.cpp" />
     <ClCompile Include="..\Shared\TerrainShaderCallback.cpp" />
     <ClCompile Include="..\Shared\Utils.cpp" />
     <ClCompile Include="..\Shared\WorldScene.cpp" />
+    <ClCompile Include="..\XEffects\CShaderPre.cpp" />
+    <ClCompile Include="..\XEffects\EffectHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Shared\bitmap_image.h" />
-    <ClInclude Include="..\Shared\ColorSelector.hpp" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBullet.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletBoxShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletBvhTriangleMeshShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCapsuleShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionCallBackInformation.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObject.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObjectAffector.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObjectAffectorAttract.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObjectAffectorDelete.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCommon.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCompileConfig.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletConvexHullShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCylinderShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletGImpactMeshShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletKinematicCharacterController.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletLiquidBody.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletMotionState.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletPhysicsDebug.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletRayCastVehicle.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletRigidBody.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletSoftBody.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletSphereShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletTriangleMeshShape.h" />
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletWorld.h" />
+    <ClInclude Include="..\Shared\EnemyManager.h" />
+    <ClInclude Include="..\Shared\GUIManager.h" />
+    <ClInclude Include="..\Shared\InputManager.h" />
+    <ClInclude Include="..\Shared\IrrManager.h" />
     <ClInclude Include="..\Shared\IrrScene.h" />
     <ClInclude Include="..\Shared\MapControlEventReceiver.h" />
     <ClInclude Include="..\Shared\NoiseMapGenerator.h" />
     <ClInclude Include="..\Shared\PerlinNoise.hpp" />
+    <ClInclude Include="..\Shared\PhysicsManager.h" />
+    <ClInclude Include="..\Shared\SoundManager.h" />
     <ClInclude Include="..\Shared\TerrainGenerator.h" />
     <ClInclude Include="..\Shared\TerrainShaderCallback.h" />
     <ClInclude Include="..\Shared\Utils.h" />
+    <ClInclude Include="..\Shared\WorldInfo.h" />
     <ClInclude Include="..\Shared\WorldScene.h" />
+    <ClInclude Include="..\XEffects\CScreenQuad.h" />
+    <ClInclude Include="..\XEffects\CShaderPre.h" />
+    <ClInclude Include="..\XEffects\EffectCB.h" />
+    <ClInclude Include="..\XEffects\EffectHandler.h" />
+    <ClInclude Include="..\XEffects\EffectShaders.h" />
+    <ClInclude Include="..\XEffects\XEffects.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{9CC52C8A-D7AF-49DA-8C7D-F84D046585CA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ProcMapGeneration</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -94,17 +162,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\..\irrlicht-1.8.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\..\irrlicht-1.8.4\lib\Win64-visualStudio;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -112,13 +183,25 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_SCL_SECURE_NO_WARNINGS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Extern\irrlicht-1.8.4\include;$(ProjectDir)..\Shared;$(ProjectDir)..\Extern\cAudio\cAudio\include;$(ProjectDir)..\Extern\irrBullet\include;$(ProjectDir)..\XEffects;$(ProjectDir)..\Extern\bullet3\src;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Extern\bullet3\build3\build$(PlatformArchitecture)\lib\$(Configuration);$(ProjectDir)..\Extern\irrlicht-1.8.4\lib\Win$(PlatformArchitecture)-visualStudio;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\cAudio\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Irrlicht.lib;cAudio_d.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;vcruntimed.lib;ucrtd.lib;msvcrtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I /y $(ProjectDir)..\..\irrlicht-1.8.4\bin\Win32-VisualStudio\Irrlicht.dll $(OutDir)
+xcopy /I /y $(ProjectDir)..\Shared\shader  $(OutDir)shader
+xcopy /I /y $(ProjectDir)..\Shared\models  $(OutDir)models
+xcopy /I /y $(ProjectDir)..\Shared\fonts $(OutDir)fonts
+xcopy /I /y $(ProjectDir)..\Shared\sounds  $(OutDir)sounds
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -126,17 +209,21 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile />
       <PrecompiledHeaderOutputFile />
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Shared;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Extern\irrlicht-1.8.4\include;$(ProjectDir)..\Shared;$(ProjectDir)..\Extern\cAudio\cAudio\include;$(ProjectDir)..\Extern\irrBullet\include;$(ProjectDir)..\XEffects;$(ProjectDir)..\Extern\bullet3\src;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Irrlicht.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Irrlicht.lib;cAudio_d.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;BulletSoftBody_Debug.lib;LinearMath_Debug.lib;vcruntimed.lib;ucrtd.lib;msvcrtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Extern\bullet3\build3\build$(PlatformArchitecture)\lib\$(Configuration);$(ProjectDir)..\Extern\irrlicht-1.8.4\lib\Win$(PlatformArchitecture)-visualStudio;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\cAudio\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
     <CustomBuildStep>
       <Command>
@@ -146,6 +233,8 @@
       <Command>xcopy /I /y $(ProjectDir)..\..\irrlicht-1.8.4\bin\Win64-VisualStudio\Irrlicht.dll $(OutDir)
 xcopy /I /y $(ProjectDir)..\Shared\shader  $(OutDir)shader
 xcopy /I /y $(ProjectDir)..\Shared\models  $(OutDir)models
+xcopy /I /y $(ProjectDir)..\Shared\fonts $(OutDir)fonts
+xcopy /I /y $(ProjectDir)..\Shared\sounds  $(OutDir)sounds
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -159,13 +248,23 @@ xcopy /I /y $(ProjectDir)..\Shared\models  $(OutDir)models
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Extern\irrlicht-1.8.4\include;$(ProjectDir)..\Shared;$(ProjectDir)..\Extern\cAudio\cAudio\include;$(ProjectDir)..\Extern\irrBullet\include;$(ProjectDir)..\XEffects;$(ProjectDir)..\Extern\bullet3\src;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Extern\irrlicht-1.8.4\lib\Win$(PlatformArchitecture)-visualStudio;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\cAudio\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I /y $(ProjectDir)..\..\irrlicht-1.8.4\bin\Win32-VisualStudio\Irrlicht.dll $(OutDir)
+xcopy /I /y $(ProjectDir)..\Shared\shader  $(OutDir)shader
+xcopy /I /y $(ProjectDir)..\Shared\models  $(OutDir)models
+xcopy /I /y $(ProjectDir)..\Shared\fonts $(OutDir)fonts
+xcopy /I /y $(ProjectDir)..\Shared\sounds  $(OutDir)sounds
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -177,13 +276,23 @@ xcopy /I /y $(ProjectDir)..\Shared\models  $(OutDir)models
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Extern\irrlicht-1.8.4\include;$(ProjectDir)..\Shared;$(ProjectDir)..\Extern\cAudio\cAudio\include;$(ProjectDir)..\Extern\irrBullet\include;$(ProjectDir)..\XEffects;$(ProjectDir)..\Extern\bullet3\src;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\Extern\irrlicht-1.8.4\lib\Win$(PlatformArchitecture)-visualStudio;$(ProjectDir)..\Extern\cAudio\CMake\build$(PlatformArchitecture)\cAudio\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I /y $(ProjectDir)..\..\irrlicht-1.8.4\bin\Win64-VisualStudio\Irrlicht.dll $(OutDir)
+xcopy /I /y $(ProjectDir)..\Shared\shader  $(OutDir)shader
+xcopy /I /y $(ProjectDir)..\Shared\models  $(OutDir)models
+xcopy /I /y $(ProjectDir)..\Shared\fonts $(OutDir)fonts
+xcopy /I /y $(ProjectDir)..\Shared\sounds  $(OutDir)sounds
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

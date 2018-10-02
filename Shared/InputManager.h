@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <map>
+#include <memory>
 #include "irrlicht.h"
 #include "IrrManager.h"
 #include "MapControlEventReceiver.h"

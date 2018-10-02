@@ -16,16 +16,29 @@
 #include <string>
 #include <vector>
 #include <future>
+#include <algorithm>
+
+#ifdef _WIN32
+#include <direct.h>
+#define getcwd _getcwd
+#else
 #include <unistd.h>
+#endif
 
 static const irr::core::stringc ResourcePath(const char* resource) {
-    auto cwd = getcwd(NULL, 0);
+	char buff[1024];
+	auto cwd = getcwd(buff, 1024);
 #ifdef __APPLE__
     strcat(cwd, "/ProcMapGeneration-macOS.app/Contents/Resources/");
+#elif defined(_WIN32)
+	strcat(cwd, "\\");
 #else
     strcat(cwd, "/");
 #endif
-    strcat(cwd, resource);
+	std::string res{ resource };
+	std::replace(res.begin(), res.end(), '/', '\\');
+
+    strcat(cwd, res.c_str());
     return cwd;
 }
 

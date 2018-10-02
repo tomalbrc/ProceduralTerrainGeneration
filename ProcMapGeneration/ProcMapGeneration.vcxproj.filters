@@ -14,6 +14,12 @@
       <Extensions>
       </Extensions>
     </Filter>
+    <Filter Include="irrBullet">
+      <UniqueIdentifier>{6d9cf62e-1f38-4275-a677-2500993fe771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XEffects">
+      <UniqueIdentifier>{f4a32852-62e9-4f01-9911-912b6017c385}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Shared\main.cpp">
@@ -40,6 +46,102 @@
     <ClCompile Include="..\Shared\IrrScene.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObjectAffector.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObjectAffectorAttract.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObjectAffectorDelete.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletcommon.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletConvexHullShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCylinderShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletGImpactMeshShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletKinematicCharacterController.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletLiquidBody.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletMotionState.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletPhysicsDebug.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletRayCastVehicle.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletRigidBody.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletSoftBody.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletSphereShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletTriangleMeshShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletWorld.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBullet.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletBoxShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletBvhTriangleMeshShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCapsuleShape.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionCallBackInformation.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\irrBullet\src\irrBulletCollisionObject.cpp">
+      <Filter>irrBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\PhysicsManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\EnemyManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\GUIManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\InputManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\IrrManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\XEffects\EffectHandler.cpp">
+      <Filter>XEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\XEffects\CShaderPre.cpp">
+      <Filter>XEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shared\SoundManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shared\MapControlEventReceiver.h">
@@ -63,13 +165,121 @@
     <ClInclude Include="..\Shared\WorldScene.h">
       <Filter>Quelldateien</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shared\bitmap_image.h">
-      <Filter>Quelldateien</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Shared\ColorSelector.hpp">
-      <Filter>Quelldateien</Filter>
-    </ClInclude>
     <ClInclude Include="..\Shared\IrrScene.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCommon.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCompileConfig.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletConvexHullShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCylinderShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletGImpactMeshShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletKinematicCharacterController.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletLiquidBody.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletMotionState.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletPhysicsDebug.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletRayCastVehicle.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletRigidBody.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletSoftBody.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletSphereShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletTriangleMeshShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletWorld.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBullet.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletBoxShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletBvhTriangleMeshShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCapsuleShape.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionCallBackInformation.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObject.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObjectAffector.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObjectAffectorAttract.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\irrBullet\include\irrBulletCollisionObjectAffectorDelete.h">
+      <Filter>irrBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\PhysicsManager.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\EnemyManager.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\GUIManager.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\InputManager.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\IrrManager.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\WorldInfo.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XEffects\EffectHandler.h">
+      <Filter>XEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XEffects\EffectShaders.h">
+      <Filter>XEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XEffects\XEffects.h">
+      <Filter>XEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XEffects\CScreenQuad.h">
+      <Filter>XEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XEffects\CShaderPre.h">
+      <Filter>XEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\XEffects\EffectCB.h">
+      <Filter>XEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\SoundManager.h">
       <Filter>Quelldateien</Filter>
     </ClInclude>
   </ItemGroup>
