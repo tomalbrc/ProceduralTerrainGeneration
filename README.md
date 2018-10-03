@@ -45,6 +45,7 @@ but will be added again in future revisions
 
 ### Screenshots
 
+![v0.9.1](https://github.com/tomalbrc/ProceduralTerrainGeneration/raw/master/screenshots/screenshot-0.9.1.png "v091")
 ![v0.9](https://github.com/tomalbrc/ProceduralTerrainGeneration/raw/master/screenshots/screenshot-0.9.png "v0.9")
 ![Early screenshot](https://github.com/tomalbrc/ProceduralTerrainGeneration/raw/master/screenshots/screenshot-0.8.png "Early Screenshot")
 
