@@ -1,6 +1,8 @@
 # Procedural Terrain Generation
 Procedural Terrain Generation in irrlicht using the C++ STL for multithreading
 
+[Check out release 0.9](https://github.com/tomalbrc/ProceduralTerrainGeneration/releases/tag/0.9)
+
 Controls - Press:
  - WASD or Arrow Keys to move
  - SHIFT for accelerated movement
