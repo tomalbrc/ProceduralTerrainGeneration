@@ -47,6 +47,7 @@ bool SoundManager::backgroundSoundPlaying() {
 void SoundManager::playSoundAt(const std::string &file, const irr::core::vector3df &origin) {
     auto source = m_AudioManager->create(file.c_str(), file.c_str());
     if (source) {
+        source->setVolume(0.5f);
         source->play3d(cVector3{origin.X, origin.Y, origin.Z});
     }
 }

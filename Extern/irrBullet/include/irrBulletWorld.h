@@ -236,8 +236,8 @@ public:
 	const irr::video::SMaterial& getDebugMaterial() const { return debugMat; };
 
     /// @return the IRigidBody hit by the rayTest
-    IRigidBody *rayTest(irr::core::vector3df rayFromWorld, irr::core::vector3df rayToWorld);
-    
+    IRigidBody* rayTest(const irr::core::vector3df &rfw, const irr::core::vector3df &rtw, irr::core::vector3df &hitNormalWorld, irr::core::vector3df &hitPointWorld);
+
 private:
 	std::shared_ptr<btSoftRigidDynamicsWorld> world;
     

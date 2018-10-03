@@ -73,6 +73,11 @@ public:
      */
     irrBulletWorld * world() const;
     
+    /**
+     * @return the rigid body of the node (if any)
+     */
+    IRigidBody *rigidBody(irr::scene::ISceneNode *node);
+    
 private:
     irrBulletWorld *m_world;
     irr::core::vector3df m_gravity;

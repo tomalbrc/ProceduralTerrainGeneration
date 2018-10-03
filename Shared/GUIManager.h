@@ -25,7 +25,6 @@ private:
     irr::IrrlichtDevice *m_device;
     
     // GUI elements
-    irr::gui::IGUIStaticText* fpsTextElement;
     irr::gui::IGUIStaticText* viewDistanceElement;
     irr::gui::IGUIStaticText* coordsElement;
     
@@ -33,6 +32,8 @@ private:
     irr::gui::IGUIFont *font;
     
     int lastFPS = 0;
+    
+    irr::u32 startTime;
 };
 
 #endif /* GUIManager_h */

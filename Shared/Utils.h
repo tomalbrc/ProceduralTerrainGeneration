@@ -28,7 +28,6 @@
 static const irr::core::stringc ResourcePath(const char* resource) {
 	char buff[1024];
 	auto cwd = getcwd(buff, 1024);
-    
     std::string res{ resource };
 #ifdef __APPLE__
     strcat(cwd, "/ProcMapGeneration-macOS.app/Contents/Resources/");
@@ -38,7 +37,6 @@ static const irr::core::stringc ResourcePath(const char* resource) {
 #else
     strcat(cwd, "/");
 #endif
-
     strcat(cwd, res.c_str());
     return cwd;
 }
@@ -86,6 +84,5 @@ namespace tom {
         static std::vector<irr::s32> setupShader(irr::IrrlichtDevice *device, const irr::core::vector2df& chunkSize, const float& quadScale, irr::scene::ILightSceneNode *light);
     };
 }
-
 
 #endif /* Utils_h */

@@ -138,8 +138,9 @@ void WorldScene::update(double dt) {
                     worldInfo->effectHandler->addShadowToNode(worldInfo->chunks[key],EFT_16PCF, ESM_BOTH);
                 }
                 worldInfo->chunks[key]->setVisible(true);
-                
-            } else {
+            }
+            else
+            {
                 worldInfo->chunks[key] = device()->getSceneManager()->addCubeSceneNode();
                 tom::threading::onSeparateThread([this, key = key]() mutable {
                     worldInfo->terrainGen->getMeshAt(key, std::bind(&WorldScene::terrainGenerationFinished, this, std::placeholders::_1, std::placeholders::_2));
@@ -226,7 +227,8 @@ void WorldScene::raycast() {
     ray.start = worldInfo->player->getPosition();
     ray.end = worldInfo->player->getPosition() + loc*1000.f;
     
-    auto body = worldInfo->physics->world()->rayTest(ray.start, ray.end);
+    vector3df hn, hp;
+    auto body = worldInfo->physics->world()->rayTest(ray.start, ray.end, hn, hp);
     if (!body) return;
     
     auto selectedScene = body->getCollisionShape()->getSceneNode();
@@ -234,8 +236,12 @@ void WorldScene::raycast() {
     if (selectedScene) {
         // We need to reset the transform before doing our own rendering.
 		if (selectedScene->getID() == kEnemyID) {
-            worldInfo->entity->entities()[selectedScene].health-=100;
+            worldInfo->entity->entities()[selectedScene].health-=2; // they have a default life of 50pts
             loc *= 30.f;
+            
+            auto rb = worldInfo->physics->rigidBody(selectedScene);
+            rb->applyForce(hn*-10000.f, hp-selectedScene->getPosition());
+            
             worldInfo->entity->entities()[selectedScene].xzVelocity = vector2df{loc.X, loc.Z};
             
             if (worldInfo->entity->entities()[selectedScene].health <= 0) {

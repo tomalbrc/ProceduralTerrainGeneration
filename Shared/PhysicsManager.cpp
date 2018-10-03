@@ -11,9 +11,6 @@
 using namespace irr;
 using namespace irr::core;
 
-// func prototype
-btTriangleMesh *createTriangleMesh(irr::scene::IMesh* const mesh, irr::scene::ISceneNode *node);
-
 PhysicsManager::PhysicsManager(irr::IrrlichtDevice *device, irr::core::vector3df gravity) {
     m_world = new irrBulletWorld(device, true, true);
     m_world->setGravity(gravity);
@@ -82,5 +79,9 @@ bool PhysicsManager::grounded() {
 
 irrBulletWorld *PhysicsManager::world() const {
     return m_world;
+}
+
+IRigidBody *PhysicsManager::rigidBody(irr::scene::ISceneNode *node) {
+    return entities[node];
 }
 

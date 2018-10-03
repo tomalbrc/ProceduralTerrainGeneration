@@ -25,25 +25,14 @@ static int kPlayerMaxAmmo = 1000.f;
 GUIManager::GUIManager(irr::IrrlichtDevice *device) {
     m_device = device;
     
-    fpsTextElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 5, 140, 30), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1001, true);
-    viewDistanceElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 5+25, 140, 45), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1002, true);
-    coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 5+25+25, 140+115, 70), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
+    coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 150, 140+115, 170), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
     
     font = device->getGUIEnvironment()->getFont(kFontPath);
     
+    startTime = device->getTimer()->getTime();
 }
 
 void GUIManager::update(double dt) {
-    if (lastFPS != m_device->getVideoDriver()->getFPS()) {
-        core::stringw str = L"FPS: ";
-        str += m_device->getVideoDriver()->getFPS();
-        fpsTextElement->setText(str.c_str());
-        lastFPS = m_device->getVideoDriver()->getFPS();
-    }
-    core::stringw str = L"View distance: ";
-    str += worldInfo()->viewDistance;
-    viewDistanceElement->setText(str.c_str());
-    
     core::stringw str2 = L"Coords: ";
     str2 += worldInfo()->player->getPosition().X;
     str2 += L", ";
@@ -54,6 +43,39 @@ void GUIManager::update(double dt) {
 }
 
 void GUIManager::render() {
-    auto str = L"AMMO: " + std::to_wstring(PLAYER_PROPS.ammo) + L" / " + std::to_wstring(kPlayerMaxAmmo);
-    font->draw(str.c_str(), core::rect<s32>{static_cast<int>(m_device->getVideoDriver()->getScreenSize().Width-500),0,0,0}, video::SColor{255,0,0,0});
+    auto str = L"AMMO: " + std::to_wstring(PLAYER_PROPS.ammo) + L"/" + std::to_wstring(kPlayerMaxAmmo);
+    font->draw(str.c_str(), core::rect<s32>{static_cast<int>(m_device->getVideoDriver()->getScreenSize().Width-420),5,0,0}, video::SColor{255,0,0,0});
+    
+    auto dt = worldInfo()->device->getTimer()->getTime() -startTime;
+    if (dt < 4000.f) {
+        str = L"PREPARE";
+        font->draw(str.c_str(), core::rect<s32>{static_cast<int>(m_device->getVideoDriver()->getScreenSize().Width/2.f)-250, static_cast<int>(m_device->getVideoDriver()->getScreenSize().Height/2.f)-50,0,0}, video::SColor{255,0,0,0});
+    }
+    
+    str = L"ENTITIES: " + std::to_wstring(worldInfo()->entity->entities().size());
+    font->draw(str.c_str(), core::rect<s32>{10, 5 + 45,0,0}, video::SColor{180,0,0,0});
+
+    str = L"FPS: ";
+    str += std::to_wstring(m_device->getVideoDriver()->getFPS());
+    font->draw(str.c_str(), core::rect<s32>{10, 5,0,0}, video::SColor{180,170,170,0});
+    
+    str = L"View distance: ";
+    str += std::to_wstring(worldInfo()->viewDistance);
+    font->draw(str.c_str(), core::rect<s32>{10, 5+45+45,0,0}, video::SColor{180,20,40,20});
+    
+    
+    // Query entities and render health bar texture after transform position to screen coords
+    for (auto e : worldInfo()->entity->entities()) {
+        auto dist = worldInfo()->player->getPosition().getDistanceFrom(e.first->getPosition());
+        if (dist > 200.f || e.first->getID() != kEnemyID) {
+            continue;
+        }
+        
+        auto screenPos = m_device->getSceneManager()->getSceneCollisionManager()->getScreenCoordinatesFrom3DPosition(e.first->getPosition());
+        
+        str = L"hp: ";
+        str += std::to_wstring(e.second.health);
+        font->draw(str.c_str(), core::rect<s32>{screenPos.X-100, screenPos.Y-120,0,0}, video::SColor{255,20,20,20});
+        
+    }
 }

@@ -58,7 +58,8 @@ void EnemyManager::enemyDied(irr::scene::ISceneNode *node, const LivingMetadata 
     if (iter != m_entities.end())
         m_entities.erase(iter);
     
-    // TODO: remove from physics sim
+    // TODO: remove from physics sim?!
+    worldInfo()->physics->world();
     node->remove();
     
     
@@ -78,9 +79,10 @@ void EnemyManager::enemyDied(irr::scene::ISceneNode *node, const LivingMetadata 
         worldInfo()->mainScene->addChild(dropModel);
         
         worldInfo()->physics->addEntity(dropModel->getMesh(), dropModel);
+        worldInfo()->physics->rigidBody(dropModel)->setLinearVelocity(velocity);
         
         LivingMetadata md;
-        md.xzVelocity = vector2df{velocity.X, velocity.Z};
+        //md.xzVelocity = vector2df{velocity.X, velocity.Z};
         m_entities[dropModel] = md;
     }
 }

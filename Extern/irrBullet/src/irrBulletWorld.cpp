@@ -744,7 +744,7 @@ irrBulletWorld::~irrBulletWorld()
     printf("-- irrBullet: Finished freeing memory --\n");
 }
 
-IRigidBody* irrBulletWorld::rayTest(irr::core::vector3df rfw, irr::core::vector3df rtw) {
+IRigidBody* irrBulletWorld::rayTest(const irr::core::vector3df &rfw, const irr::core::vector3df &rtw, irr::core::vector3df &hitNormalWorld, irr::core::vector3df &hitPointWorld) {
     btVector3 rayFromWorld = irrlichtToBulletVector(rfw);
     btVector3 rayToWorld = irrlichtToBulletVector(rtw);
     btCollisionWorld::ClosestRayResultCallback rayCallback(rayFromWorld,rayToWorld);
@@ -756,7 +756,10 @@ IRigidBody* irrBulletWorld::rayTest(irr::core::vector3df rfw, irr::core::vector3
     const btRigidBody* pBody = btRigidBody::upcast(rayCallback.m_collisionObject);
     
     if (!pBody) return nullptr;
-    
+
+    hitNormalWorld = bulletToIrrlichtVector(rayCallback.m_hitNormalWorld);
+    hitPointWorld = bulletToIrrlichtVector(rayCallback.m_hitPointWorld);
+
     SCollisionObjectIdentification *d = (SCollisionObjectIdentification*)((SCollisionObjectIdentification*)pBody->getUserPointer());
     if (d) {
         auto rigidBody = (IRigidBody*)(d->getCollisionObject());
