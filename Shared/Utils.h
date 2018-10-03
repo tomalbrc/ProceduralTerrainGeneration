@@ -28,15 +28,16 @@
 static const irr::core::stringc ResourcePath(const char* resource) {
 	char buff[1024];
 	auto cwd = getcwd(buff, 1024);
+    
+    std::string res{ resource };
 #ifdef __APPLE__
     strcat(cwd, "/ProcMapGeneration-macOS.app/Contents/Resources/");
 #elif defined(_WIN32)
 	strcat(cwd, "\\");
+    std::replace(res.begin(), res.end(), '/', '\\');
 #else
     strcat(cwd, "/");
 #endif
-	std::string res{ resource };
-	std::replace(res.begin(), res.end(), '/', '\\');
 
     strcat(cwd, res.c_str());
     return cwd;

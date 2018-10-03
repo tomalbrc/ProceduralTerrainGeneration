@@ -48,6 +48,7 @@ void PhysicsManager::warp(vector3df origin) {
 
 IRigidBody* PhysicsManager::addEntity(irr::scene::IMesh * const mesh, irr::scene::ISceneNode * const node) {
     auto shape = new IBoxShape(node, 1.f, false);
+    shape->setLocalScaling(vector3df{0.2}, EScalingPair::ESP_COLLISIONSHAPE);
     
     IRigidBody *body;
     body = m_world->addRigidBody(shape);
