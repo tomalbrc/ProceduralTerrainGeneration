@@ -25,12 +25,29 @@
 #include <unistd.h>
 #endif
 
+#ifdef __APPLE__
+#include <CoreFoundation/CoreFoundation.h>
+#endif
+
+
 static const irr::core::stringc ResourcePath(const char* resource) {
-	char buff[1024];
-	auto cwd = getcwd(buff, 1024);
+    using namespace std::literals;
+
+	char buff[PATH_MAX];
+	auto cwd = getcwd(buff, PATH_MAX);
     std::string res{ resource };
 #ifdef __APPLE__
-    strcat(cwd, "/ProcMapGeneration-macOS.app/Contents/Resources/");
+    CFBundleRef mainBundle = CFBundleGetMainBundle();
+    CFURLRef resourcesURL = CFBundleCopyBundleURL(mainBundle);
+    CFStringRef str = CFURLCopyFileSystemPath(resourcesURL, kCFURLPOSIXPathStyle);
+    CFRelease(resourcesURL);
+    char path[PATH_MAX];
+    
+    CFStringGetCString(str, path, FILENAME_MAX, kCFStringEncodingASCII);
+    CFRelease(str);
+    printf("%s\n", path);
+    res = "/Contents/Resources/"s + res;
+    cwd = path;
 #elif defined(_WIN32)
 	strcat(cwd, "\\");
     std::replace(res.begin(), res.end(), '/', '\\');

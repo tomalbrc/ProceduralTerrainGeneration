@@ -25,29 +25,51 @@ using namespace irr::core;
 using namespace tom;
 
 // Paths for irrlicht fonts (generated using FontTool)
-static auto kFontPath1 = ResourcePath("fonts/betafont.xml");
+static irr::core::stringc kFontPath1;
 
 // Paths for models
-static auto kModelBigBushPath = ResourcePath("models/BigBush.obj");
-static auto kModelSmallTreeWithLeavePath = ResourcePath("models/SmallTreeWithLeave.obj");
-static auto kModelBigTreeWithLeavesPath = ResourcePath("models/BigTreeWithLeaves.obj");
-static auto kModelRock1Path = ResourcePath("models/Rock1.obj");
-static auto kModelCloud1Path = ResourcePath("models/Cloud1.obj");
-static auto kModelCloud2Path = ResourcePath("models/Cloud2.obj");
-static auto kModelCloud3Path = ResourcePath("models/Cloud3.obj");
+static irr::core::stringc kModelBigBushPath;
+static irr::core::stringc kModelSmallTreeWithLeavePath;
+static irr::core::stringc kModelBigTreeWithLeavesPath;
+static irr::core::stringc kModelRock1Path;
+static irr::core::stringc kModelCloud1Path;
+static irr::core::stringc kModelCloud2Path;
+static irr::core::stringc kModelCloud3Path;
 
 // Paths for textures
-static auto kTreeTexturePath = ResourcePath("models/TreeTexture.png");
-static auto kBushTexturePath = ResourcePath("models/BushTexture.png");
-static auto kCloudTexturePath = ResourcePath("models/white.png");
-static auto kRockTexturePath = ResourcePath("models/rock.png");
-static auto kVegetationTexturePath = ResourcePath("models/vegetation.png");
+static irr::core::stringc kTreeTexturePath;
+static irr::core::stringc kBushTexturePath;
+static irr::core::stringc kCloudTexturePath;
+static irr::core::stringc kRockTexturePath;
+static irr::core::stringc kVegetationTexturePath;
 
 static const irr::core::vector3df kPlayerSpawnPosition{5000.f, 400.f, 5000.f};
 
 static const int kPlayerMaxAmmo = 1000.f;
 
 WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
+    // Paths for irrlicht fonts (generated using FontTool)
+    kFontPath1 = ResourcePath("fonts/betafont.xml");
+    
+    // Paths for models
+    kModelBigBushPath = ResourcePath("models/BigBush.obj");
+    kModelSmallTreeWithLeavePath = ResourcePath("models/SmallTreeWithLeave.obj");
+    kModelBigTreeWithLeavesPath = ResourcePath("models/BigTreeWithLeaves.obj");
+    kModelRock1Path = ResourcePath("models/Rock1.obj");
+    kModelCloud1Path = ResourcePath("models/Cloud1.obj");
+    kModelCloud2Path = ResourcePath("models/Cloud2.obj");
+    kModelCloud3Path = ResourcePath("models/Cloud3.obj");
+    
+    // textures
+    kTreeTexturePath = ResourcePath("models/TreeTexture.png");
+    kBushTexturePath = ResourcePath("models/BushTexture.png");
+    kCloudTexturePath = ResourcePath("models/white.png");
+    kRockTexturePath = ResourcePath("models/rock.png");
+    kVegetationTexturePath = ResourcePath("models/vegetation.png");
+
+    
+    
+    
     IVideoDriver* video = device->getVideoDriver();
     ISceneManager* smgr = device->getSceneManager();
     

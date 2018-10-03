@@ -68,6 +68,9 @@ void InputManager::setupKeyHandler() {
         } else if (kc == irr::KEY_ESCAPE) {
             worldInfo()->device->closeDevice();
         }
+        else if (kc == irr::KEY_RETURN) {
+            worldInfo()->gui->pause(!worldInfo()->gui->paused());
+        }
     });
 }
 

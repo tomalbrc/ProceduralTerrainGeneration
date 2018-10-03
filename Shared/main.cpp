@@ -32,7 +32,9 @@ int main(int argc, char** argv) {
     
 	irr::core::stringw str = L"Procedural Terrain Generation";
 	device->setWindowCaption(str.c_str());
-	
+    
+    
+    
     WorldScene ws{device};
     
     u32 then = device->getTimer()->getTime();

@@ -15,6 +15,7 @@
 		9A3AD2B32160662300B38D80 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3AD2942160662300B38D80 /* OpenAL.framework */; };
 		9A3AD2B62160675100B38D80 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3AD2B42160675100B38D80 /* SoundManager.cpp */; };
 		9A3AD2BD21608FAD00B38D80 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 9A3AD2BC21608FAC00B38D80 /* sounds */; };
+		9A3E7D5E2164658C00C76A8B /* libcAudio.2.3.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9ACE6C5D21627F3600DE86F9 /* libcAudio.2.3.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A5FD230214B02070031027B /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9A5FD22F214B02070031027B /* fonts */; };
 		9A65920121613F3A009D22C8 /* IrrManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6591FF21613F3A009D22C8 /* IrrManager.cpp */; };
 		9A65920521614685009D22C8 /* EnemyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A65920321614685009D22C8 /* EnemyManager.cpp */; };
@@ -224,6 +225,19 @@
 			remoteInfo = BulletSoftBody;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A3E7D3D2164656800C76A8B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9A3E7D5E2164658C00C76A8B /* libcAudio.2.3.0.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		09570A73213410B0001A5FCC /* NoiseMapGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoiseMapGenerator.h; path = Shared/NoiseMapGenerator.h; sourceTree = SOURCE_ROOT; wrapsLines = 0; };
@@ -570,6 +584,8 @@
 				9A75F6EA212F3AD400E375B5 /* Sources */,
 				9A75F6EB212F3AD400E375B5 /* Frameworks */,
 				9A75F6EC212F3AD400E375B5 /* Resources */,
+				9A3E7D3D2164656800C76A8B /* CopyFiles */,
+				9A3E7D5F2164675400C76A8B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -842,6 +858,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9A3E7D5F2164675400C76A8B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\napp=$BUILT_PRODUCTS_DIR/$EXECUTABLE_PATH\nfw_path=$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH\napp_dyl_list=(`ls $fw_path | grep dylib`)\n\nfunction change_paths {\nlocal bin=$1\necho change_path $bin\ndyl_list=(`otool -L $bin | grep Users | awk '{print $1}'`)\n\nfor dyl in ${dyl_list[*]}; do\nlibname=$(basename $dyl)\nlibname=${libname%%.*}\nactual_libname=(`ls $fw_path | grep $libname | xargs basename`)\ninstall_name_tool -change $dyl \"@executable_path/../Frameworks/$actual_libname\" $bin\nprintf \"\\t%s edited\\n\" $actual_libname\ndone\n}\n\nchange_paths $app\nfor dyl_bin in ${app_dyl_list[*]}; do\nchange_paths $fw_path/$dyl_bin\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A75F6EA212F3AD400E375B5 /* Sources */ = {

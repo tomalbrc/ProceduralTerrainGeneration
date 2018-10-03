@@ -19,7 +19,8 @@ using namespace tom;
 
 #define PLAYER_PROPS worldInfo()->entity->entities()[worldInfo()->player]
 
-static auto kFontPath = ResourcePath("fonts/betafont.xml");
+static auto kFontPath = ResourcePath("fonts/haettenschweiler.xml");
+static auto kFontStoneSans = ResourcePath("fonts/stone-sans.xml");
 static int kPlayerMaxAmmo = 1000.f;
 
 GUIManager::GUIManager(irr::IrrlichtDevice *device) {
@@ -28,8 +29,12 @@ GUIManager::GUIManager(irr::IrrlichtDevice *device) {
     coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 150, 140+115, 170), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
     
     font = device->getGUIEnvironment()->getFont(kFontPath);
-    
+    fontStoneSans = device->getGUIEnvironment()->getFont(kFontStoneSans);
+
     startTime = device->getTimer()->getTime();
+    
+    auto img = device->getVideoDriver()->createImageFromFile(ResourcePath("models/pauseBackground.png"));
+    pauseBackTex = device->getVideoDriver()->addTexture("pauseBackground", img);
 }
 
 void GUIManager::update(double dt) {
@@ -44,7 +49,7 @@ void GUIManager::update(double dt) {
 
 void GUIManager::render() {
     auto str = L"AMMO: " + std::to_wstring(PLAYER_PROPS.ammo) + L"/" + std::to_wstring(kPlayerMaxAmmo);
-    font->draw(str.c_str(), core::rect<s32>{static_cast<int>(m_device->getVideoDriver()->getScreenSize().Width-420),5,0,0}, video::SColor{255,0,0,0});
+    font->draw(str.c_str(), core::rect<s32>{static_cast<int>(m_device->getVideoDriver()->getScreenSize().Width-205),5,0,0}, video::SColor{255,0,0,0});
     
     auto dt = worldInfo()->device->getTimer()->getTime() -startTime;
     if (dt < 4000.f) {
@@ -75,7 +80,30 @@ void GUIManager::render() {
         
         str = L"hp: ";
         str += std::to_wstring(e.second.health);
-        font->draw(str.c_str(), core::rect<s32>{screenPos.X-100, screenPos.Y-120,0,0}, video::SColor{255,20,20,20});
-        
+        fontStoneSans->draw(str.c_str(), core::rect<s32>{screenPos.X-30, screenPos.Y-90,0,0}, video::SColor{255,200,20,20});
     }
+    
+    if (m_paused) {
+        renderPauseMenu();
+    }
+}
+
+void GUIManager::pause(bool isPaused) {
+    m_paused = isPaused;
+}
+
+bool GUIManager::paused() const {
+    return m_paused;
+}
+
+
+
+
+
+
+/// PRIVATE IMPL.
+
+void GUIManager::renderPauseMenu() {
+    
+    worldInfo()->device->getVideoDriver()->draw2DImage(pauseBackTex, vector2di{10,10});
 }

@@ -21,19 +21,26 @@ public:
     virtual void update(double dt) override;
     void render();
     
+    void pause(bool isPaused);
+    bool paused() const;
+    
 private:
     irr::IrrlichtDevice *m_device;
     
     // GUI elements
-    irr::gui::IGUIStaticText* viewDistanceElement;
     irr::gui::IGUIStaticText* coordsElement;
     
     // font for ammo
     irr::gui::IGUIFont *font;
-    
+    irr::gui::IGUIFont *fontStoneSans;
+
     int lastFPS = 0;
     
     irr::u32 startTime;
+    
+    bool m_paused = false;
+    irr::video::ITexture *pauseBackTex = nullptr;
+    void renderPauseMenu();
 };
 
 #endif /* GUIManager_h */
