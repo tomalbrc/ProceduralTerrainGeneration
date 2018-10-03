@@ -27,3 +27,5 @@ xcuserdata/
 *.xcscmblueprint
 *.xccheckout
 
+Extern/cAudio/CMake/
+
