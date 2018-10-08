@@ -33,7 +33,7 @@ public:
     irr::IrrlichtDevice *device;
     // set manually
     EffectHandler* effectHandler;
-    irr::scene::IMeshSceneNode *player;
+    irr::scene::IAnimatedMeshSceneNode *player;
     irr::scene::ICameraSceneNode *camera;
 
     // chunk cache

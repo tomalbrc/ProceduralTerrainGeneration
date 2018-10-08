@@ -25,7 +25,7 @@ static int kPlayerMaxAmmo = 1000.f;
 
 GUIManager::GUIManager(irr::IrrlichtDevice *device) {
     m_device = device;
-    
+    m_paused = false;
     coordsElement = device->getGUIEnvironment()->addStaticText(L"", irr::core::rect<irr::s32>(5, 150, 140+115, 170), false, false, device->getGUIEnvironment()->getRootGUIElement(), 1003, true);
     
     font = device->getGUIEnvironment()->getFont(kFontPath);
@@ -71,8 +71,12 @@ void GUIManager::render() {
     
     // Query entities and render health bar texture after transform position to screen coords
     for (auto e : worldInfo()->entity->entities()) {
+        if (e.second.health <= 0) {
+            continue;
+        }
+        
         auto dist = worldInfo()->player->getPosition().getDistanceFrom(e.first->getPosition());
-        if (dist > 200.f || e.first->getID() != kEnemyID) {
+        if (dist > 150.f || e.first->getID() != kEnemyID) {
             continue;
         }
         
@@ -104,6 +108,108 @@ bool GUIManager::paused() const {
 /// PRIVATE IMPL.
 
 void GUIManager::renderPauseMenu() {
-    
+    // draw pause menu background
     worldInfo()->device->getVideoDriver()->draw2DImage(pauseBackTex, vector2di{10,10});
+    
+    switch (m_menuDepth) {
+        case 0: {
+            auto selectedColor = video::SColor{255,200,250,200};
+            auto normalColor = video::SColor{255,255,255,255};
+            
+            auto contCol = m_selectedPauseMenuEntry == 1 ? selectedColor : normalColor;
+            auto optCol = m_selectedPauseMenuEntry == 2 ? selectedColor : normalColor;
+            auto exCol = m_selectedPauseMenuEntry == 3 ? selectedColor : normalColor;
+            
+            std::wstring str = L"Continue";
+            font->draw(str.c_str(), core::rect<s32>{40, 100,0,0}, contCol);
+            
+            str = L"Options";
+            font->draw(str.c_str(), core::rect<s32>{40, 200,0,0}, optCol);
+            
+            str = L"Exit";
+            font->draw(str.c_str(), core::rect<s32>{40, 300,0,0}, exCol);
+            break;
+        }
+        case 1: {
+            auto selectedColor = video::SColor{255,250,250,250};
+            auto normalColor = video::SColor{255,190,255,190};
+            
+            auto contCol = m_selectedPauseMenuEntry == 1 ? selectedColor : normalColor;
+            auto optCol = m_selectedPauseMenuEntry == 2 ? selectedColor : normalColor;
+            auto exCol = m_selectedPauseMenuEntry == 3 ? selectedColor : normalColor;
+            
+            std::wstring str = L"Continue2";
+            font->draw(str.c_str(), core::rect<s32>{40, 100,0,0}, contCol);
+            
+            str = L"Options";
+            font->draw(str.c_str(), core::rect<s32>{40, 200,0,0}, optCol);
+            
+            str = L"Exit";
+            font->draw(str.c_str(), core::rect<s32>{40, 300,0,0}, exCol);
+            break;
+        }
+        case 2: {
+            auto selectedColor = video::SColor{255,250,250,250};
+            auto normalColor = video::SColor{255,190,255,190};
+            
+            auto contCol = m_selectedPauseMenuEntry == 1 ? selectedColor : normalColor;
+            auto optCol = m_selectedPauseMenuEntry == 2 ? selectedColor : normalColor;
+            auto exCol = m_selectedPauseMenuEntry == 3 ? selectedColor : normalColor;
+            
+            std::wstring str = L"Continue3";
+            font->draw(str.c_str(), core::rect<s32>{40, 100,0,0}, contCol);
+            
+            str = L"Options";
+            font->draw(str.c_str(), core::rect<s32>{40, 200,0,0}, optCol);
+            
+            str = L"Exit";
+            font->draw(str.c_str(), core::rect<s32>{40, 300,0,0}, exCol);
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+/// move up in current menu
+void GUIManager::menuUp() {
+    m_selectedPauseMenuEntry--;
+    if (m_selectedPauseMenuEntry < 0) {
+        m_selectedPauseMenuEntry = 0;
+    }
+}
+/// move down in current menu
+void GUIManager::menuDown() {
+    m_selectedPauseMenuEntry++;
+    if (m_selectedPauseMenuEntry > 3) {
+        m_selectedPauseMenuEntry = 3;
+    }
+}
+/// select currently active menu entry
+void GUIManager::select() {
+    if (m_menuDepth == 0) {
+        // main pause menu
+        if (m_selectedPauseMenuEntry == 3) {
+            worldInfo()->device->closeDevice();
+        } else if (m_selectedPauseMenuEntry == 1) {
+            pause(false);
+        } else if (m_selectedPauseMenuEntry == 2) {
+            m_selectedPauseMenuEntry = 1;
+            m_menuDepth++;
+        }
+    } else if (m_menuDepth == 1) { // >pause -> options< menu
+        
+    }
+}
+
+/// Goes back in menu (if possible)
+/// Does not close pause menu, pause(true) to do that
+void GUIManager::back() {
+    m_selectedPauseMenuEntry = 1;
+
+    if (m_menuDepth > 0) {
+        m_menuDepth--;
+    } else {
+        pause(false);
+    }
 }

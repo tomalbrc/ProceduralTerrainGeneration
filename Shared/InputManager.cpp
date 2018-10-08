@@ -22,6 +22,7 @@ InputManager::InputManager(IrrlichtDevice *device) {
 
 InputManager::~InputManager() {
     //m_device->setEventReceiver(nullptr);
+    m_eventReceiver->setPressedKeyHandler([](irr::EKEY_CODE kc){});
 }
 
 void InputManager::setupKeyHandler() {
@@ -35,19 +36,15 @@ void InputManager::setupKeyHandler() {
             worldInfo()->viewDistance++;
         } else if (kc == irr::KEY_KEY_M) {
             worldInfo()->viewDistance--;
-        } else if (kc == irr::KEY_F1) {
+        }
+        else if (kc == irr::KEY_F1) {
             worldInfo()->physics->warp(kPlayerSpawnPosition);
             worldInfo()->camera->setPosition(kPlayerSpawnPosition);
-        }  else if (kc == irr::KEY_SPACE) {
+        }
+        else if (kc == irr::KEY_SPACE) {
             if (worldInfo()->physics->grounded()) worldInfo()->physics->jump(30.f);
-        } else if (kc == irr::KEY_F2) {
-            // TODO: Update to use irrBullet
-            if (worldInfo()->player->getAnimators().size() == 0) {
-                //this->setupCollisionAnimator();
-            } else {
-                //player->removeAnimators();
-            }
-        } else if (kc == irr::KEY_F4) {
+        }
+        else if (kc == irr::KEY_F4) {
             
             for (auto & node : worldInfo()->chunks) {
                 auto chldr = node.second->getChildren();
@@ -61,15 +58,28 @@ void InputManager::setupKeyHandler() {
             }
             worldInfo()->chunks.clear();
             
-        } else if (kc == irr::KEY_KEY_P) {
+        }
+        else if (kc == irr::KEY_KEY_P) {
             worldInfo()->entity->spawnEnemy();
-        } else if (kc == irr::KEY_KEY_R) {
+        }
+        else if (kc == irr::KEY_KEY_R) {
             worldInfo()->entity->entities()[worldInfo()->player].ammo = 1000;
-        } else if (kc == irr::KEY_ESCAPE) {
-            worldInfo()->device->closeDevice();
+        }
+        else if (kc == irr::KEY_ESCAPE) {
+            if (worldInfo()->gui->paused()) {
+                worldInfo()->gui->back();
+            } else {
+                worldInfo()->gui->pause(true);
+            }
         }
         else if (kc == irr::KEY_RETURN) {
-            worldInfo()->gui->pause(!worldInfo()->gui->paused());
+            if (worldInfo()->gui->paused()) worldInfo()->gui->select();
+        }
+        else if (kc == irr::KEY_UP) {
+            if (worldInfo()->gui->paused()) worldInfo()->gui->menuUp();
+        }
+        else if (kc == irr::KEY_DOWN) {
+            if (worldInfo()->gui->paused()) worldInfo()->gui->menuDown();
         }
     });
 }

@@ -76,9 +76,13 @@ WorldScene::WorldScene(irr::IrrlichtDevice *device) : IrrScene(device) {
     worldInfo = std::make_shared<WorldInfo>();
     worldInfo->setup(device, vector3df{0,-50,0});
     
-    worldInfo->player = smgr->addCubeSceneNode(1.f);
+    auto aniMesh = smgr->getMesh(ResourcePath("models/anim.b3d"));
+    auto meshSceneNode = smgr->addAnimatedMeshSceneNode(aniMesh);
+    meshSceneNode->setLoopMode(true);
+    
+    worldInfo->player = meshSceneNode;
     worldInfo->player->setPosition(kPlayerSpawnPosition);
-    worldInfo->player->setScale(core::vector3df{1.5f,3.0f,1.5f}*3.f);
+    worldInfo->player->setScale(core::vector3df{1.5f,3.0f,1.5f}*1.f);
     LivingMetadata md;
     md.health = 100;
     md.ammo = kPlayerMaxAmmo;
